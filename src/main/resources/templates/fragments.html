@@ -2,12 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:fragment="head">
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"/>
-
     <title>Health Recipes</title>
 
-<!--    <link th:href="@{/css/health_recipe.css}" rel="stylesheet"/>-->
     <link th:href="@{/css/health_recipe.css}" rel="stylesheet"/>
-
 
     <title th:text="'health_recipe' + ${title == null ? '' : ' :: ' + title}">Health Recipe</title>
 </head>
@@ -28,9 +25,7 @@
                     <li class="nav-recipes">
                         <a th:href="@{/list}">Recipes</a>
                     </li>
-                    <li class="nav-search">
-                        <a th:href="@{/search}">Search</a>
-                    </li>
+
                     <li class="nav-add">
                         <a th:href="@{/add}">Add Recipes</a>
                     </li>

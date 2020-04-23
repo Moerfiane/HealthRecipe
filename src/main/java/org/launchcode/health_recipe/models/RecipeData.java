@@ -87,12 +87,12 @@ public class RecipeData {
 //            results = findByValue(value, allRecipes);
 //            return results;
 //        }
-//        for (Recipe recipe : allRecipes) {
+//        for (Recipe recipes : allRecipes) {
 //
-//            String aValue = getFieldValue(recipe, column);
+//            String aValue = getFieldValue(recipes, column);
 //
 //            if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
-//                results.add(recipe);
+//                results.add(recipes);
 //            }
 //        }
 //
@@ -140,11 +140,11 @@ public class RecipeData {
 //
 //        ArrayList<Recipe> results = new ArrayList<>();
 //
-//        for (Recipe recipe : allRecipes) {
-//            if (recipe.getName().toLowerCase().contains(value.toLowerCase())) {
-//                results.add(recipe);
-//            } else if (recipe.toString().toLowerCase().contains(value.toLowerCase())) {
-//                results.add(recipe);
+//        for (Recipe recipes : allRecipes) {
+//            if (recipes.getName().toLowerCase().contains(value.toLowerCase())) {
+//                results.add(recipes);
+//            } else if (recipes.toString().toLowerCase().contains(value.toLowerCase())) {
+//                results.add(recipes);
 //            }
 //        }
 //        return results;
