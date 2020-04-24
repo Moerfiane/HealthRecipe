@@ -13,16 +13,16 @@ import java.util.Set;
 import static javax.persistence.CascadeType.ALL;
 
 @Entity
-public class Recipe {
+public class Recipe extends AbstractEntity{
 
-    @Id
-    @GeneratedValue
-    private int id;
-
-    @NotNull
-    @Size(max = 150)
-//    @OneToMany(mappedBy ="name")
-    private String name;
+//    @Id
+//    @GeneratedValue
+//    private int id;
+//
+//    @NotNull
+//    @Size(max = 150)
+////    @OneToMany(mappedBy ="name")
+//    private String name;
 
     @OneToMany(/*mappedBy = "recipes"*/)
     @JoinColumn(name = "ingredient")
@@ -44,25 +44,24 @@ public class Recipe {
 
     public Recipe() {}
 
-    public Recipe(int id, String name, String servings, String timeToServe, String stepsToRecipe) {
-        this.id = id;
-        this.name = name;
+    public Recipe(/*int id, String name, */String servings, String timeToServe, String stepsToRecipe) {
+        super();
         this.servings = servings;
         this.serve_time = timeToServe;
         this.steps = stepsToRecipe;
     }
 
-    public String getName() { return name; }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getId() { return id; }
+//    public String getName() { return name; }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//    public int getId() { return id; }
 
     public String getServings() {
         return servings;
@@ -92,16 +91,16 @@ public class Recipe {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Recipe recipe = (Recipe) o;
-        return id == recipe.id &&
-                name.equals( recipe.name ) &&
-                Objects.equals( servings, recipe.servings ) &&
-                Objects.equals( serve_time, recipe.serve_time ) &&
-                Objects.equals( steps, recipe.steps );
+        return Objects.equals(ingredients, recipe.ingredients) &&
+                Objects.equals(servings, recipe.servings) &&
+                Objects.equals(serve_time, recipe.serve_time) &&
+                Objects.equals(steps, recipe.steps);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash( id, name, servings, serve_time, steps );
+        return Objects.hash(super.hashCode(), ingredients, servings, serve_time, steps);
     }
 }

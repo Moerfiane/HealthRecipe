@@ -9,16 +9,16 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Ingredient {
+public class Ingredient extends AbstractEntity{
 
-    @Id
-    @GeneratedValue
-    private int id;
-
-    @NotNull
-    @Size(max = 150)
-//    @ManyToOne()
-    private String name;
+//    @Id
+//    @GeneratedValue
+//    private int id;
+//
+//    @NotNull
+//    @Size(max = 150)
+////    @ManyToOne()
+//    private String name;
 
     @NotBlank(message = "Please provide Recipe ingredient.")
     @Size(min = 3,max = 150, message = "Ingredient must be only 3-150 characters.  Please try again.")
@@ -29,33 +29,32 @@ public class Ingredient {
 //    @JoinColumn(/*name="recipe_name",*/ nullable=false)
 //    protected Recipe recipe;
 
-    @Override
-    public String toString() {
-        return name;
-    }
+//    @Override
+//    public String toString() {
+//        return name;
+//    }
 
-    public Ingredient(int id, String name, String ingredient){
+    public Ingredient(/*int id, String name, */String ingredient){
 
-        this.id = id;
-        this.name = name;
+        super();
         this.ingredient = ingredient;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
+//
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public Ingredient() {}
 
@@ -71,15 +70,15 @@ public class Ingredient {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Ingredient that = (Ingredient) o;
-        return id == that.id &&
-                name.equals( that.name ) &&
-                ingredient.equals( that.ingredient );
+        return Objects.equals(ingredient, that.ingredient) &&
+                Objects.equals(recipes, that.recipes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash( id, name, ingredient );
+        return Objects.hash(super.hashCode(), ingredient, recipes);
     }
 
     @ManyToOne(optional = false)

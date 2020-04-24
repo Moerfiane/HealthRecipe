@@ -11,15 +11,15 @@ import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-public class User /*extends AbstractEntity*/{
+public class User extends AbstractEntity{
 
-    @Id
-    @GeneratedValue
-    private int id;
-
-    @NotNull
-    @Size(max = 150)
-    private String name;
+//    @Id
+//    @GeneratedValue
+//    private int id;
+//
+//    @NotNull
+//    @Size(max = 150)
+//    private String name;
 
     @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
     @Size(min=9)
@@ -39,7 +39,7 @@ public class User /*extends AbstractEntity*/{
 
     public User(/*int id, */String name, String email, String username, String password, String access) {
 //        this.id = id;
-        this.name = name;
+        super();
         this.email = email;
         this.username = username;
         this.pwHash = encoder.encode(password);
@@ -86,17 +86,16 @@ public class User /*extends AbstractEntity*/{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         User user = (User) o;
-        return id == user.id &&
-                Objects.equals( name, user.name ) &&
-                Objects.equals( email, user.email ) &&
-                Objects.equals( username, user.username ) &&
-                Objects.equals( pwHash, user.pwHash ) &&
-                Objects.equals( access, user.access );
+        return Objects.equals(email, user.email) &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(pwHash, user.pwHash) &&
+                Objects.equals(access, user.access);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash( id, name, email, username, pwHash, access );
+        return Objects.hash(super.hashCode(), email, username, pwHash, access);
     }
 }
