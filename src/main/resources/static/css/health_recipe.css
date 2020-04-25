@@ -162,7 +162,7 @@ table.job-listing td:last-child {
 
 label {
     display: block;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .centered {
@@ -224,7 +224,7 @@ div.job-listing {
   I just put borders around cards for now*/
 
 .loginCard-1 {
-   background: #067242; url('/images/avocados.jpg');
+   background:  #067242 url('../images/avocados.jpg');
     background-position: 0% 0%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -301,11 +301,17 @@ div.job-listing {
     padding: 0;
     margin: 0;
 }
+
 .card-3 p {
  color: DarkGreen;
 }
 .card-3 card-content {
    margin-top: 5rem;
+}
+.checkboxesrestrictions {
+float:left;
+  width:7em;
+  margin-right:1em
 }
 
 .card-4 {

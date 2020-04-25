@@ -22,7 +22,7 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
     AuthenticationController authenticationController;
 
     //In the constructor on the next line below is where any whitelisted paths are suppose to go:
-    private static final List<String> whitelist = Arrays.asList("/list-recipes","/search","/adminregister", "/list","/login", "/register", "/logout", "/css");
+    private static final List<String> whitelist = Arrays.asList("/selection","/list-recipes","/search","/adminregister", "/list","/login", "/register", "/logout", "/css", "/index");
 
     private static boolean isWhitelisted(String path) {
         for (String pathRoot : whitelist) {
@@ -52,7 +52,7 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
         }
 
         //The user is not logged in, this statement below redirects the user to the specified path stated in the ("/path)
-        response.sendRedirect("/login");
+        response.sendRedirect("/index");
         return true;
 
     }

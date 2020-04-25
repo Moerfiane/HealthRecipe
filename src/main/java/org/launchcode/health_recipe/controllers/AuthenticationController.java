@@ -84,7 +84,7 @@ public class AuthenticationController {
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
-        return "redirect:/login";
+        return "redirect:/index";
     }
 
     @GetMapping("adminregister")
@@ -128,24 +128,24 @@ public class AuthenticationController {
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
-        return "redirect:/login";
+        return "redirect:/index";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/index")
     public String displayLoginForm(Model model) {
         model.addAttribute(new LoginFormDTO());
         model.addAttribute("title", "Log In");
-        return "login";
+        return "index";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/index")
     public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
                                    Errors errors, HttpServletRequest request,
                                    Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Log In");
-            return "login";
+            return "index";
         }
 
         User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
@@ -153,7 +153,7 @@ public class AuthenticationController {
         if (theUser == null) {
             errors.rejectValue("username", "user.invalid", "The given username does not exist");
             model.addAttribute("title", "Log In");
-            return "login";
+            return "index";
         }
 
         String password = loginFormDTO.getPassword();
@@ -161,7 +161,7 @@ public class AuthenticationController {
         if (!theUser.isMatchingPassword(password)) {
             errors.rejectValue("password", "password.invalid", "Invalid password");
             model.addAttribute("title", "Log In");
-            return "login";
+            return "index";
         }
 
         setUserInSession(request.getSession(), theUser);
@@ -172,7 +172,7 @@ public class AuthenticationController {
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
-        return "redirect:/login";
+        return "redirect:/index";
     }
 
 }

@@ -1,103 +1,59 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 
+<head th:replace="fragments :: head">
 </head>
+
 <body>
 
 <div th:replace="fragments :: page-header"></div>
 
-<div class="container body-content">
-    <h2>MAKE YOUR RECIPE CHOICES AND CLICK GET RESULTS</h2>
+<div class="login-cards">
+    <div class="loginCard-1 card-image-1">
+        <!--                 <img th:src="@{../images/avocados.jpg}" alt="none displayed"/>-->
 
+        <div class="loginForm">
+            <!--              <img th:src="@{../images/avocados.jpg}" alt="none displayed"/>-->
+            <form method="post">
+                <div class="form-group">
+                    <label th:for="username">Username</label>
+                    <input class="form-control" th:field="${loginFormDTO.username}" alt="none to display"/>
+                    <span class="error" th:errors="${loginFormDTO.username}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input class="form-control" th:field="${loginFormDTO.password}" type="password"/>
+                    <span class="error" th:errors="${loginFormDTO.password}"></span>
+                </div>
+                <br>
+                <input class="btn btn-primary loginbtn" type="submit" value="Log In"/>
+            </form>
+        </div>
+    </div>
+    <div class="loginCard-2">
+        <div class="form-group">
+
+            <p>Don't Have An Account?     </p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <a href="/register" class="btn btn-primary registerbtn">Register</a>
+        </div>
+    </div>
+    <div class="loginCard-3">
+        <div class="form-group">
+
+            <p>Choose Recipe Options<br>Without Registering or Login </p>
+            <br>
+            <br>
+            <a href="/selection" class="btn btn-primary optionsbtn">Click Here.</a>
+            </form>
+        </div>
+    </div>
 </div>
 
-
-<div class="checkbox-cards">
-    <div class="card-1 card-image">
-
-        <p><span>HEALTH CONDITION</span></p>
-
-        <div class="card-content">
-
-            <ul class="checkboxesconditions">
-
-                <label class="checkbox"><input type="checkbox" value="" id="diabetes">DIABETES</label>
-                <label class="checkbox"><input type="checkbox" value="" id="highbloodpressure">HIGH BLOOD PRESSURE</label>
-                <label class="checkbox"><input type="checkbox" value="" id="celiacdisease">CELIAC DSEASE</label>
-
-            </ul>
-        </div>
-    </div>
-
-    <div class="card-2 card-image">
-        <p>INGREDIENT SEARCH</p>
-
-        <div class="card-content">
-
-            <ul class="checkboxesingredients">
-
-                <label class="checkbox"><input type="checkbox"value="" id="pork">PORK</label>
-                <label class="checkbox"><input type="checkbox"value="" id="chicken">CHICKEN</label>
-                <label class="checkbox"><input type="checkbox"value="" id="beef">BEEF</label>
-                <label class="checkbox"><input type="checkbox"value="" id="vegetables">VEGETABLES</label>
-                <label class="checkbox"><input type="checkbox"value="" id="cucumbers">CUCUMBERS</label>
-                <label class="checkbox"><input type="checkbox"value="" id="cheese">CHEESE</label>
-                <label class="checkbox"><input type="checkbox"value="" id="peppers">PEPPERS</label>
-                <label class="checkbox"><input type="checkbox"value="" id="fish">FISH</label>
-                <label class="checkbox"><input type="checkbox"value="" id="onions">ONIONS</label>
-                <label class="checkbox"><input type="checkbox"value="" id="nuts">NUTS</label>
-
-            </ul>
-        </div>
-    </div>
-
-    <div class="card-3 card-image">
-        <p>DIETARY RESTRICTIONS</p>
-
-        <div class="card-content">
-
-            <ul class="checkboxesrestrictions">
-
-                <label class="checkbox"><input type="checkbox"value="" id="no pork">NO PORK</label>
-                <label class="checkbox"><input type="checkbox"value="" id="no chicken">NO CHICKEN</label>
-                <label class="checkbox"><input type="checkbox"value="" id="no beef">NO BEEF</label>
-                <label class="checkbox"><input type="checkbox"value="" id="no milk">NO MILK</label>
-                <label class="checkbox"><input type="checkbox"value="" id="no cheese">NO CHEESE</label>
-                <label class="checkbox"><input type="checkbox"value="" id="no butter">NO BUTTER</label>
-                <label class="checkbox"><input type="checkbox"value="" id="no eggs">NO EGGS</label>
-                <label class="checkbox"><input type="checkbox"value="" id="no sugar">NO SUGAR</label>
-                <label class="checkbox"><input type="checkbox"value="" id="no nuts">NO NUTS</label>
-                <label class="checkbox"><input type="checkbox"value="" id="gluten free">GLUTEN FREE</label>
-
-            </ul>
-        </div>
-    </div>
-
-    <div class="card-4 card-image">
-        <p>COOKING TIME</p>
-
-        <div class="card-content">
-
-            <ul class="checkboxescookingtime">
-
-                <label class="checkbox"><input type="checkbox"value="" id="15min">15 MINUTES</label>
-                <label class="checkbox"><input type="checkbox"value="" id="30min">30 MINUTES</label>
-                <label class="checkbox"><input type="checkbox"value="" id="45min">45 MINUTES</label>
-                <label class="checkbox"><input type="checkbox"value="" id="60min">60 MINUTES</label>
-
-            </ul>
-        </div>
-    </div>
-
-
-</div>
-
-<div class="footer">
-    <button id="filterResults" type="button" class="btn btn-primary btn-lg" >Get Results</button>
-
-</div>
 </body>
 </html>

@@ -1,0 +1,110 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org/">-->
+<!--<head th:replace="fragments :: head">-->
+<!--    <meta charset="utf-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+
+<!--</head>-->
+<!--<script>-->
+<!--</script>-->
+<!--<body>-->
+
+<!--<div th:replace="fragments :: page-header"></div>-->
+
+<!--<div class="container body-content">-->
+<!--    <div th:if="${not #lists.isEmpty(restrictions)}"></div>-->
+<!--    <h2>MAKE YOUR RECIPE CHOICES AND CLICK GET RESULTS</h2>-->
+<!--</div>-->
+
+
+<!--<div class="checkbox-cards">-->
+<!--    <div class="card-1 card-image">-->
+
+<!--        <p><span>HEALTH CONDITION</span></p>-->
+
+<!--        <div class="card-content">-->
+
+<!--            <ul class="checkboxesconditions">-->
+
+<!--                <label class="checkbox"><input type="checkbox" value="" id="diabetes">DIABETES</label>-->
+<!--                <label class="checkbox"><input type="checkbox" value="" id="highbloodpressure">HIGH BLOOD PRESSURE</label>-->
+<!--                <label class="checkbox"><input type="checkbox" value="" id="celiacdisease">CELIAC DSEASE</label>-->
+
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card-2 card-image">-->
+<!--        <p>INGREDIENT SEARCH</p>-->
+
+<!--        <div class="card-content">-->
+
+<!--            <ul class="checkboxesingredients">-->
+
+<!--                <label class="checkbox"><input type="checkbox"value="" id="pork">PORK</label>-->
+<!--                <label class="checkbox"><input type="checkbox"value="" id="chicken">CHICKEN</label>-->
+<!--                <label class="checkbox"><input type="checkbox"value="" id="beef">BEEF</label>-->
+<!--                <label class="checkbox"><input type="checkbox"value="" id="vegetables">VEGETABLES</label>-->
+<!--                <label class="checkbox"><input type="checkbox"value="" id="cucumbers">CUCUMBERS</label>-->
+<!--                <label class="checkbox"><input type="checkbox"value="" id="cheese">CHEESE</label>-->
+<!--                <label class="checkbox"><input type="checkbox"value="" id="peppers">PEPPERS</label>-->
+<!--                <label class="checkbox"><input type="checkbox"value="" id="fish">FISH</label>-->
+<!--                <label class="checkbox"><input type="checkbox"value="" id="onions">ONIONS</label>-->
+<!--                <label class="checkbox"><input type="checkbox"value="" id="nuts">NUTS</label>-->
+
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card-3 card-image">-->
+<!--        <p>DIETARY RESTRICTIONS</p>-->
+
+<!--        <div class="card-content">-->
+
+<!--&lt;!&ndash;            <a th:href="@{/restrictions(column=restrictions,value=${restriction.restrictions})}" th:text="${restriction.restrictions}"></a>&ndash;&gt;-->
+<!--            <ul class="checkboxesrestrictions"></ul>-->
+
+<!--            <tr th:each="restriction : ${restrictions}">-->
+
+<!--                            <td class="checkbox"><input type="checkbox" th:text="${restrictions}"></td>-->
+<!--&lt;!&ndash;                <td class="checkbox"><input type="checkbox" th:text="${restriction}"></td>&ndash;&gt;-->
+<!--            </tr>-->
+<!--&lt;!&ndash;                            <label class="checkbox"><input type="checkbox"value="" id="no chicken">NO CHICKEN</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <label class="checkbox"><input type="checkbox"value="" id="no beef">NO BEEF</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <label class="checkbox"><input type="checkbox"value="" id="no milk">NO MILK</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <label class="checkbox"><input type="checkbox"value="" id="no cheese">NO CHEESE</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <label class="checkbox"><input type="checkbox"value="" id="no butter">NO BUTTER</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <label class="checkbox"><input type="checkbox"value="" id="no eggs">NO EGGS</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <label class="checkbox"><input type="checkbox"value="" id="no sugar">NO SUGAR</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <label class="checkbox"><input type="checkbox"value="" id="no nuts">NO NUTS</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                             <label class="checkbox"><input type="checkbox"value="" id="gluten free">GLUTEN FREE</label>&ndash;&gt;-->
+
+
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="card-4 card-image">-->
+<!--        <p>COOKING TIME</p>-->
+
+<!--        <div class="card-content">-->
+
+<!--            <ul class="checkboxescookingtime">-->
+
+<!--                <label class="checkbox"><input type="checkbox"value="" id="15min">15 MINUTES</label>-->
+<!--                <label class="checkbox"><input type="checkbox"value="" id="30min">30 MINUTES</label>-->
+<!--                <label class="checkbox"><input type="checkbox"value="" id="45min">45 MINUTES</label>-->
+<!--                <label class="checkbox"><input type="checkbox"value="" id="60min">60 MINUTES</label>-->
+
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<!--</div>-->
+
+<!--<div class="footer">-->
+<!--    <button id="filterResults" type="button" class="btn btn-primary btn-lg" >Get Results</button>-->
+
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
