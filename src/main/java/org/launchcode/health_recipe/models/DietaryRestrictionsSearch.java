@@ -9,10 +9,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 import java.sql.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name= "dietary_restrictions_search")
+@SecondaryTable(name= "user_restrictions")
 public class DietaryRestrictionsSearch {
 
     @Id
@@ -23,14 +25,13 @@ public class DietaryRestrictionsSearch {
     @Column
     private String restrictions;
 
-    String[] checkboxSelectedValues;
-
     private boolean active;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="users_restrict_id")
     private UserRestrictions userRestrictions;
+
 
     public DietaryRestrictionsSearch() {}
 
@@ -54,13 +55,6 @@ public class DietaryRestrictionsSearch {
     }
 
 
-    public String[] getCheckboxSelectedValues() {
-        return checkboxSelectedValues;
-    }
-
-    public void setCheckboxSelectedValues(String[] checkboxSelectedValues) {
-        this.checkboxSelectedValues = checkboxSelectedValues;
-    }
     public boolean isActive() {
         return active;
     }

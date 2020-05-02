@@ -16,8 +16,8 @@
 
 </div>
 
-
-<div class="checkbox-cards">
+<form method="post" th:action="@{/}" th:object="${DietaryRestrictionsSearch}">
+<div class="checkbox-cards" >
     <div class="card-1 card-image">
 
         <p><span>HEALTH CONDITION</span></p>
@@ -60,13 +60,18 @@
         <p>DIETARY RESTRICTIONS</p>
 
         <div class="card-content">
-<!--                <ul class="checkboxesrestrictions"></ul>-->
-            <form action="#" th:action="@{/selection}" th:object="${restrictions}" method="post"/>
+<!-
+            <div class="checkboxrestrictions">
+               <ul>
+                   <li th:each="restriction : ${restrictions}">
 
+                       <label class="checkbox-3"><input type="checkbox" th:text="${restriction.restrictions}" th:value="${restriction.restrict_id}" th:checked="${restriction.active}"></label>
 
-<!--                        <div th:each="restriction, iterStat : ${restrictions}">-->
-                            <div th:each="restriction : ${restrictions}">
-                                <label class="checkbox-3"><input type="checkbox" th:text="${restriction.restrictions}" th:checked="${restriction.active}"></label>
+                   </li>
+               </ul>
+<!--                            <div th:each="restriction : ${restrictions}">-->
+
+<!--                                <label class="checkbox-3"><input type="checkbox" th:field="*{restriction}" th:text="${restriction.restrictions}" th:checked="${restriction.active}"></label>-->
 
 <!--                                th:<label th:for="${restriction.restrictions}" th:text="${restriction.restrictions}"></label>-->
 <!--                                <input type="checkbox" th:id="${restriction.restrict_id}"-->
@@ -81,7 +86,7 @@
 <!--                                <label class="checkbox"><input type="checkbox"value="" id="no nuts">NO NUTS</label>-->
 <!--                                 <label class="checkbox"><input type="checkbox"value="" id="gluten free">GLUTEN FREE</label>-->
                     </div>
-            </form>
+<!--            </div>-->
         </div>
     </div>
 
@@ -105,8 +110,8 @@
 </div>
 
 <div class="footer">
-    <button id="filterResults" type="submit" class="btn btn-primary btn-lg"value="Save">Get Results</button>
-
+    <button id="filterResults" class="btn btn-primary btn-lg" type="submit" onclick="create()">Get Results</button>
 </div>
+</form>
 </body>
 </html>

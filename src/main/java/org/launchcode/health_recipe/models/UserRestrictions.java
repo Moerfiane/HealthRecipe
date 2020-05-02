@@ -19,7 +19,7 @@ public class UserRestrictions {
     //these are table User_restrictions that keeps track of user choices from selection page.
 //   id_from_user is the id assigned when user registers. user_restrict_id is auto generated.
 //    nothing is saved if user does not register.
-//
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "users_restrict_id")
@@ -28,7 +28,6 @@ public class UserRestrictions {
     @Column(name = "id_from_user")
     private int id_from_user;
 
-//    private User user;
 
     @OneToMany(mappedBy = "userRestrictions", cascade = CascadeType.ALL)
 //    private List<DietaryRestrictionsSearch> restrictions = new ArrayList<>();
