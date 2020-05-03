@@ -1,5 +1,6 @@
 package org.launchcode.health_recipe.controllers;
 
+import org.hibernate.criterion.Restrictions;
 import org.launchcode.health_recipe.models.*;
 import org.launchcode.health_recipe.models.data.DietaryRestrictionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class DietaryRestrictionsController {
@@ -31,10 +33,15 @@ public class DietaryRestrictionsController {
         model.addAttribute("restrictions", dietaryRestrictionsRepository.findAll());
         return "/selection";
     }
-  @RequestMapping(value = "", method = RequestMethod.POST )
-    public String selectedCheckboxes(@ModelAttribute("dietaryRestrictionsSearch") DietaryRestrictionsSearch dietaryRestrictionsSearch) {
+  @PostMapping("update")
+    public String selectedCheckboxes(Integer restrict_id, boolean active) {
+        Optional restrict_idBeingUpdated = dietaryRestrictionsRepository.findById(restrict_id);
+          if (restrict_idBeingUpdated.isPresent()) {
+              DietaryRestrictionsSearch dietaryRestrictionsSearch = (DietaryRestrictionsSearch) restrict_idBeingUpdated.get();
+              dietaryRestrictionsRepository.save(dietaryRestrictionsSearch);
+          }
 
-        return "";
+        return "redirect:../";
     }
 
 
