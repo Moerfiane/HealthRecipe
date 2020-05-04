@@ -29,20 +29,32 @@ public class DietaryRestrictionsController {
 
     @GetMapping
     public String displayAllRestrictions(Model model) {
+        model.addAttribute("dietaryRestrictionsSearch", new DietaryRestrictionsSearch());
         model.addAttribute("title", "All Restrictions");
         model.addAttribute("restrictions", dietaryRestrictionsRepository.findAll());
         return "/selection";
     }
-  @PostMapping("update")
-    public String selectedCheckboxes(Integer restrict_id, boolean active) {
-        Optional restrict_idBeingUpdated = dietaryRestrictionsRepository.findById(restrict_id);
-          if (restrict_idBeingUpdated.isPresent()) {
-              DietaryRestrictionsSearch dietaryRestrictionsSearch = (DietaryRestrictionsSearch) restrict_idBeingUpdated.get();
-              dietaryRestrictionsRepository.save(dietaryRestrictionsSearch);
-          }
+  @RequestMapping(value="update", method = RequestMethod.POST)
+    public String selectedCheckboxes(@ModelAttribute("dietaryRestrictionsSearch") DietaryRestrictionsSearch dietaryRestrictionsSearch,
+                                     BindingResult bindingResult, Model model) {
+        model.addAttribute("dietaryRestrictionsSearch", new DietaryRestrictionsSearch());
+        if(bindingResult.hasErrors()) {
+            return "selection";
+        }
+        this.dietaryRestrictionsRepository.save(dietaryRestrictionsSearch);
 
         return "redirect:../";
     }
+//@PostMapping("update")
+//public String selectedCheckboxes(Integer restrict_id, boolean active) {
+//    Optional restrict_idBeingUpdated = dietaryRestrictionsRepository.findById(restrict_id);
+//    if (restrict_idBeingUpdated.isPresent()) {
+//        DietaryRestrictionsSearch dietaryRestrictionsSearch = (DietaryRestrictionsSearch) restrict_idBeingUpdated.get();
+//        dietaryRestrictionsRepository.save(dietaryRestrictionsSearch);
+//    }
+//
+//    return "redirect:../";
+//}
 
 
 }
