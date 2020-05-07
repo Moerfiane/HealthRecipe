@@ -4,33 +4,11 @@ import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-
-import static javax.persistence.CascadeType.ALL;
 
 @Entity
-public class Recipe {
-
-    @Id
-    @GeneratedValue
-    private int id;
-
-    @NotNull
-    @Size(max = 150)
-//    @OneToMany(mappedBy ="name")
-    private String name;
-
-    @OneToMany(/*mappedBy = "recipes"*/)
-    @JoinColumn(name = "ingredient")
-    private Set<Ingredient> ingredients;
-
-//    @OneToMany(orphanRemoval=true)
-//    @JoinColumn(name="ingredient") // join column is in table for Ingredient
-//    public Set<Ingredient> getIngredient() {return ingredient;}
+public class Recipe extends AbstractEntity {
 
     @NotNull (message = "Servings?")
     private String servings;
@@ -44,25 +22,15 @@ public class Recipe {
 
     public Recipe() {}
 
-    public Recipe(int id, String name, String servings, String timeToServe, String stepsToRecipe) {
-        this.id = id;
-        this.name = name;
+    public Recipe(String servings, String timeToServe, String stepsToRecipe) {
+        super();
         this.servings = servings;
         this.serve_time = timeToServe;
         this.steps = stepsToRecipe;
     }
 
-    public String getName() { return name; }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getId() { return id; }
+    @OneToMany(mappedBy = "recipe")
+    public List<Ingredient> ingredients = new ArrayList<>();
 
     public String getServings() {
         return servings;
@@ -86,22 +54,5 @@ public class Recipe {
 
     public void setSteps(String steps) {
         this.steps = steps;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Recipe recipe = (Recipe) o;
-        return id == recipe.id &&
-                name.equals( recipe.name ) &&
-                Objects.equals( servings, recipe.servings ) &&
-                Objects.equals( serve_time, recipe.serve_time ) &&
-                Objects.equals( steps, recipe.steps );
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash( id, name, servings, serve_time, steps );
     }
 }
