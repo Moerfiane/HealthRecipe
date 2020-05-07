@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
-@RequestMapping(value = "list")
 public class RecipeController {
 
     @Autowired
@@ -33,18 +32,17 @@ public class RecipeController {
 
     static HashMap<String, String> columnChoices = new HashMap<>();
 
-    public RecipeController () {
+    public RecipeController() {
 
         columnChoices.put("all", "All");
     }
 
-    @RequestMapping("")
+    @RequestMapping("/list")
     public String list(Model model, Pageable page) {
         Page<Recipe> recipes;
         model.addAttribute("recipes", recipeData.findAllByPage(page));
         return "list";
     }
-
 
     @RequestMapping(value = "recipes")
     public String listRecipeByChoice(Model model, @RequestParam String column,
@@ -83,15 +81,17 @@ public class RecipeController {
     }
 
     @GetMapping("view/{recipeId}")
-    public String displayViewRecipe(Model model, @PathVariable int recipeId){
+    public String displayViewRecipe(Model model, @PathVariable int recipeId) {
+
         Optional optRecipe = recipeRepository.findById(recipeId);
         if (optRecipe.isPresent()) {
             Recipe recipe = (Recipe) optRecipe.get();
-            model.addAttribute("recipe", recipe);
+            model.addAttribute("recipes", recipe);
             return "view";
         } else {
             return "redirect:../";
         }
     }
 }
+
 

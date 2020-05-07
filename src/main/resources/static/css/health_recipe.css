@@ -22,7 +22,6 @@ body {
 }
 
 ol,ul {
-    list-style: 0;
     margin: 0;
     padding: 0
 }
@@ -95,7 +94,10 @@ ol,ul {
   grid-gap: 10px;
   background-color: #003e21;
   margin: 4em auto;
-  max-width: 1270px
+  max-width: 1270px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #f8d098;
 }
 
 .grid-container > div {
@@ -106,10 +108,11 @@ ol,ul {
   color: #f8D098;
 }
 
-/*this is view recipes by category page - All, Recipe, Serve Time, Servings */
+/*this is view recipes by category page - All, Recipe, Serve Time, Servings
 .centeredTable th {
   background-color: ForestGreen;
 }
+*/
 
 /*may be only Add Recipe on add.html and possibly Username and Password*/
 h1 {
@@ -125,85 +128,77 @@ h2 {
     text-align: center
 }
 
-td, th {
-    padding: 10px;
-}
-
-th {
+#searchParent {
+    list-style: none;
+    width: 1270px;
+    overflow: hidden;
     text-align: center;
 }
 
-td {
-    vertical-align: top;
+#searchParent > li {
+    display: inline-block;
+    align: center;
+    margin-top: 4px;
+    margin-left: 8em;
+    padding-right: 4px;
 }
 
-tr:nth-child(odd) {
-    background-color: #e4e4e4;
-}
-
-.centeredTable {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-table.job-listing {
-    margin: 30px auto;
-    border: 1px solid #e4e4e4;
-    width: 80%;
-}
-
-table.job-listing td:first-child {
-    font-weight: bold;
-}
-
-table.job-listing td:last-child {
-    width: 80%;
-}
-
-label {
-    display: block;
-    margin-left: 5px;
-}
-
-.centered {
-    text-align: center;
-}
-
-.centeredTable {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-div.job-listing {
-    border: 1px solid #e4e4e4;
-    width: 80%;
-    background-color: #e4e4e4;
+#searchParent input, textarea {
+    background-color: #f8d098;
+    height: 22px;
+    width: 180px;
+    padding-left: 8px;
 }
 
 /*login page styling*/
 .login-cards {
     margin: 4em auto;
-  max-width: 1000px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 1em;
-  font-weight: bold;
-  height: 600px;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1em;
+    font-weight: bold;
+    height: 600px;
 }
-.card-image-1 {
-   width: 100%;
-   position: relative;
-   display: block;
-   border-radius: 10px;
- }
 
- /*username and password styling*/
+/*cards on login page; pictures are not displaying at this time - don't know why.
+  I just put borders around cards for now*/
+
+.loginCard-1 {
+    background: url('../login/images/avocados.jpg');
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 5em;
+    border-radius: 10px 100px / 120px;
+}
+.loginCard-2 {
+    background: url('../login/images/glutenfree.jpg');
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 5em;
+    margin: 0;
+    border-radius: 10px 100px / 120px;
+}
+
+.loginCard-3 {
+    background: url('../login/images/vegincircle.jpg');
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 5em;
+    margin: 0;
+    border-radius: 10px 100px / 120px;
+}
+
+/*username and password styling*/
  .form-group {
     align: center;
     text-align: center;
     font-size: 2rem;
     font-weight: bold;
-
+    margin-top: 1em;
  }
 
  .form-group label {
@@ -214,41 +209,11 @@ div.job-listing {
  /*this controls the username and password boxes user types in*/
  .form-control {
     background-color: #f8D098;
-     width: 85%;
+     width: 50%;
      padding: 1.3em;
      border: hidden;
      border-radius: .5em;
  }
-
-/*cards on login page; pictures are not displaying at this time - don't know why.
-  I just put borders around cards for now*/
-
-.loginCard-1 {
-   background: #067242; url('/images/avocados.jpg');
-    background-position: 0% 0%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-top: 5em;
-    border-radius: 10px 100px / 120px;
-}
-.loginCard-2 {
-    background: #098b54 url('/images/vegincircle.jpg');
-    background-position: 0% 0%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-top: 5em;
-    margin: 0;
-    border-radius: 10px 100px / 120px;
-}
-.loginCard-3 {
-    background:  #067242 url('/images/glutenfree.jpg');
-    background-position: 0% 0%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-top: 5em;
-    margin: 0;
-    border-radius: 10px 100px / 120px;
-}
 
 /*checkboxes layout*/
 .checkbox-cards {
@@ -337,6 +302,7 @@ div.job-listing {
   grid-template-row: 4/6;
 
   }
+
   /*footer and buttons; not button for logout. this is on recipes choices page*/
   .footer {
      background-color: #098b54;
@@ -345,6 +311,7 @@ div.job-listing {
      width: 1270px;
      text-align: center;
   }
+
 .btn {
     color: #F8D098;
     background-color: #003e21;
@@ -361,27 +328,29 @@ div.job-listing {
 .loginbtn {
   background-color: #003e21;
   box-shadow: 0 5px #F8D098;
-  width: 80%;
+  width: 50%;
   padding: 1em;
   border-radius: .5em;
-  margin-left:  30px;
+  margin-left: 70px;
+
 }
 /*registration button*/
 .registerbtn {
    background-color: #003e21;
    box-shadow: 0 5px #F8D098;
-   width: 70%;
+   width: 50%;
    padding: 1em;
    border-radius: .5em;
-   margin-top; 15px;
+   margin-top: 120px;
    margin-left: 5px;
    text-decoration: none;
 }
+
 /*go to recipe choices page button*/
 .optionsbtn {
   background-color: #003e21;
      box-shadow: 0 5px #F8D098;
-     width: 70%;
+     width: 50%;
      padding: 1em;
      border-radius: .5em;
      margin-left: 3px;
@@ -405,13 +374,16 @@ div.job-listing {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     margin: 2em auto;
     width: 1270px;
-   }
+}
 
 .list-container > div {
   background-color: #067242;
   color: #f8D098;
   text-align: center;
   font-size: 125%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #f8d098;
 }
 
 .list-context {
@@ -441,6 +413,48 @@ a, li {
     padding:6px 9px 5px 9px;
     font-weight: bold;
     background: #0950E8;
+}
+
+/*Registration Form*/
+.register-form form {
+    background-color: #067242;
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    grid-gap: 2em;
+    margin: auto;
+    max-width: 1270px;
+    padding-top: 1em;
+    font-family: Montserrat;
+ }
+
+.register-form label {
+    grid-column: 1 / 2;
+    color: #f8d098;
+    text-align: right;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.register-form input {
+    grid-column: 2 / 3;
+    background-color: #f8d098;
+    border: hidden;
+    width: 60%;
+}
+
+.register-form input[type=submit]  {
+    background-color: #003e21;
+     box-shadow: 0 5px #F8D098;
+     width: 95px;
+     height: 25px;
+     border-radius: .5em;
+     text-align: center;
+     text-decoration: none;
+     margin-left: 185px;
+}
+
+.error p {
+    grid-columns: 2 / 3;
 }
 
 img {

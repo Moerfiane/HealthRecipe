@@ -2,44 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
 </head>
+
 <body>
 
 <div th:replace="fragments :: page-header"></div>
 
 <div class="container body-content">
+    <h2>Recipe Search Results</h2>
+</div>
 
-    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
-
-    <form th:action="@{/search/results}" method = "post">
-        <h2>Search Recipe Database</h2>
-
-        <p>
-            <span th:each="column : ${columns}">
-                <input
-                        type="radio"
-                        name="searchType"
-                        th:id="${column.key}"
-                        th:value="${column.key}"
-                        th:checked="${column.key == 'all'}"/>
-                <label th:for="${column.key}" th:text="${column.value}"></label>
-            </span>
-
-        </p>
-
-        <p>
-            <label for="searchTerms">Keyword(s):</label>
-            <input type="text" name="searchTerms" id="searchTerms" />
-        </p>
-
-        <input type="submit" value="Search" />
-    </form>
-
-    <hr />
-
-<!--Remove ID: from line 42 before final deployment; is currently being used for referencing recipe IDs-->
     <div class="grid-container" th:each="recipe : ${recipes}">
         <div class="item1">
-            <p th:text="${recipe.name + ' | ID: ' + recipe.id}"></p>
+            <p th:text="${recipe.name}"></p>
         </div>
         <div class="item2">Total Time
             <p th:text="${recipe.serve_time}"></p>
@@ -52,8 +26,6 @@
             <p th:text="${recipe.steps}"></p>
         </div>
     </div>
-
-</div>
 
 </body>
 </html>
