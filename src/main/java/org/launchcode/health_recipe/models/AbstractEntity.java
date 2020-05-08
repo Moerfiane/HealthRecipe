@@ -1,27 +1,26 @@
 package org.launchcode.health_recipe.models;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @MappedSuperclass
 public abstract class AbstractEntity {
 
+
     @Id
-    @GeneratedValue
-    protected Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-//  Removed active name from AbstractEntity. Id is there for James' authentication controller. This class matches the
-//    request that James had for it's makeup.
-
-    @NotNull
+    @NotBlank
     @Size(max = 150)
-    protected String name;
+    private String name;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -43,12 +42,12 @@ public abstract class AbstractEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AbstractEntity that = (AbstractEntity) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name);
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id);
     }
+
 }

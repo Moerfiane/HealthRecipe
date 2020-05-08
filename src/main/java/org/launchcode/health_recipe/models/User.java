@@ -3,23 +3,13 @@ package org.launchcode.health_recipe.models;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-public class User extends AbstractEntity{
-
-//    @Id
-//    @GeneratedValue
-//    private int id;
-//
-//    @NotNull
-//    @Size(max = 150)
-//    private String name;
+public class User extends AbstractEntity {
 
     @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
     @Size(min=9)
@@ -31,29 +21,20 @@ public class User extends AbstractEntity{
     @NotNull
     private String pwHash;
 
-    private String access;
+//    @NotNull
+    private int access;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public User() {}
 
-    public User(/*int id, */String name, String email, String username, String password, String access) {
-//        super.id = id;
-//        super.setName(name);
-        this.name = name;
+    public User(String name, String email, String username, String password, int access) {
+        super.setName(name);
         this.email = email;
         this.username = username;
         this.pwHash = encoder.encode(password);
-        this.access = access;
+        this.access =access;
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-//    public void setId(int id) {
-//        super.id = id;
-//    }
 
     public String getUsername() {
         return username;
@@ -75,28 +56,12 @@ public class User extends AbstractEntity{
         return encoder.matches(password, pwHash);
     }
 
-    public String getAccess() {
+    public int getAccess() {
         return access;
     }
 
-    public void setAccess(String access) {
+    public void setAccess(int access) {
         this.access = access;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals( o )) return false;
-        User user = (User) o;
-        return Objects.equals( email, user.email ) &&
-                Objects.equals( username, user.username ) &&
-                Objects.equals( pwHash, user.pwHash ) &&
-                Objects.equals( access, user.access );
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash( super.hashCode(), email, username, pwHash, access );
-    }
 }

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+
+<body>
+<div>
+    <section class="nav-scope">
+        <ul class="nav-section">
+            <li class="nav-logo">
+                <a th:href="@{/admin-home}" aria-label="Health Recipe">Health Recipe
+                </a>
+                <a th:href="@{/logout}">
+                    <button type="button" class="nav-btn btn-primary btn-lg" style="float:right;">LogOut</button>
+                </a>
+            </li>
+            <div class="nav-links">
+                <li class="nav-search">
+                    <a th:href="@{/admin/search}">Search</a>
+                </li>
+                <li class="nav-add-recipes">
+                    <a th:href="@{/add}">Add Recipes</a>
+                </li>
+                <li class="nav-add-ingredient">
+                    <a th:href="@{/ingredient/add}">Add Ingredient</a>
+                </li>
+                <li class="nav-add-admin">
+                    <a th:href="@{/admin/add-admin_user}">Add Admin User</a>
+                </li>
+            </div>
+        </ul>
+    </section>
+</div>
+
+<div id = "search-container">
+
+    <ul id = "searchParent">
+        <li>
+            <h2>View or Search Recipes</h2>
+        </li>
+
+        <li>
+            <form th:action="@{/search/results}" method = "post">
+
+        <li>
+            <input type="text" name="searchTerms" />
+
+            <input type="submit" value="Search" />
+        </li>
+        </form>
+        </li>
+    </ul>
+</div>
+
+
+<div class="list-container">
+    <div class="list1">
+        <a th:href="@{/admin/list/recipes(column='All',value='View All')}">View All</a>
+    </div>
+    <div class="list2" th:each="recipe : ${recipes}">
+        <a th:href="@{/admin/list/recipes(column=name,value=${recipe.name})}" th:text="${recipe.name}"></a>
+        <div class="list-context">
+            <p th:text="${'Serve Time: ' + recipe.serve_time}"></p>
+            <p th:text="${'Servings: ' + recipe.servings}"></p>
+        </div>
+    </div>
+</div>
+
+<div class="navigation">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="?page=0">1</a></li>
+        <li class="page-item"><a class="page-link" href="?page=1">2</a></li>
+        <li class="page-item"><a class="page-link" href="?page=2">3</a></li>
+        <li class="page-item"><a class="page-link" href="?page=3">4</a></li>
+        <li class="page-item"><a class="page-link" href="?page=4">5</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
