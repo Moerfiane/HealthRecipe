@@ -2,7 +2,6 @@ package org.launchcode.health_recipe.models.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class LoginFormDTO  {
@@ -20,8 +19,8 @@ public class LoginFormDTO  {
     @Size(min=3, max=20, message = "Invalid username, must be between 3 and 20 characters.")
     private  String password;
 
-    @Pattern(regexp = "[1-2]")
-    private String access;
+    @NotNull
+    private int access;
 
     public String getName() {
         return name;
@@ -47,11 +46,11 @@ public class LoginFormDTO  {
         this.password = password;
     }
 
-    public String getAccess() {
+    public int getAccess() {
         return access;
     }
 
-    public void setAccess(String access) {
+    public void setAccess(int access) {
         this.access = access;
     }
 

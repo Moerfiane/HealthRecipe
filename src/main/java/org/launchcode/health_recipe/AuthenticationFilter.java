@@ -22,7 +22,8 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
     AuthenticationController authenticationController;
 
     //In the constructor on the next line below is where any whitelisted paths are suppose to go:
-    private static final List<String> whitelist = Arrays.asList("/list-recipes","/search","/adminregister", "/list","/login", "/register", "/logout", "/css");
+    private static final List<String> whitelist = Arrays.asList("/list/recipe","/list-recipes","/search",
+            "/view","/adminregister", "/list","/login", "/register", "/logout", "/css");
 
     private static boolean isWhitelisted(String path) {
         for (String pathRoot : whitelist) {

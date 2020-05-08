@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+<div>
+    <section class="nav-scope">
+    <ul class="nav-section">
+        <li class="nav-logo">
+            <a th:href="@{/admin-home}" aria-label="Health Recipe">Health Recipe
+            </a>
+            <a th:href="@{/logout}">
+                <button type="button" class="nav-btn btn-primary btn-lg" style="float:right;">LogOut</button>
+            </a>
+        </li>
+        <div class="nav-links">
+            <li class="nav-recipes">
+                <a th:href="@{/admin/list}">Recipes</a>
+            </li>
+            <li class="nav-search">
+                <a th:href="@{/admin/search}">Search</a>
+            </li>
+        </div>
+    </ul>
+    </section>
+</div>
+<header><h1 th:text="${title}">Greeting</h1></header>
+
+<div class="login-cards">
+    <div class="loginCard-2">
+        <div class="form-group">
+
+            <p>Want to add a new Recipe?</p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <a href="/add" class="btn btn-primary registerbtn">Add Recipe</a>
+        </div>
+    </div>
+    <div class="loginCard-2">
+        <div class="form-group">
+
+            <p>Need to add additional Ingredients?</p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <a href="/ingredient/add" class="btn btn-primary registerbtn">Add Ingredient</a>
+        </div>
+    </div>
+    <div class="loginCard-2">
+        <div class="form-group">
+
+            <p>Adding a new Admin User?</p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <a href="/admin/add-admin_user" class="btn btn-primary registerbtn">Add New Admin</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

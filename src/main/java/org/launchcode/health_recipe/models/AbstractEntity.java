@@ -1,9 +1,10 @@
 package org.launchcode.health_recipe.models;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
@@ -12,10 +13,10 @@ public abstract class AbstractEntity {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull
+    @NotBlank
     @Size(max = 150)
     private String name;
 
