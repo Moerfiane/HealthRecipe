@@ -11,7 +11,6 @@ import java.util.Objects;
 @MappedSuperclass
 public abstract class AbstractEntity {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

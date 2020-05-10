@@ -8,11 +8,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
@@ -55,26 +54,25 @@ public class RecipeController {
 
         return "list-recipes";
     }
-//
-//    @GetMapping("add")
-//    public String displayAddRecipeForm(Model model) {
-//        model.addAttribute("title", "Add Recipe");
-//        model.addAttribute(new Recipe());
-//        return "add";
-//    }
-//
-//    @PostMapping("add")
-//    public String processAddRecipeForm(@ModelAttribute Recipe newRecipe,
-//                                       Errors errors, Model model){
-//
-//        if (errors.hasErrors()) {
+    @GetMapping("add")
+    public String displayAddRecipeForm(Model model) {
+        model.addAttribute("title", "Add Recipe");
+        model.addAttribute(new Recipe());
+        return "add";
+    }
+
+    @PostMapping("add")
+    public String processAddRecipeForm(@ModelAttribute @Valid Recipe newRecipe,
+                                       Errors errors, Model model){
+
+        if (errors.hasErrors()) {
 //            model.addAttribute("title", "Add Recipe");
-//            return "add";
-//        }
-//
-//        recipeRepository.save(newRecipe);
-//        return "redirect:";
-//    }
+            return "add";
+        }
+
+        recipeRepository.save(newRecipe);
+        return "redirect:./ingredients/add";
+    }
 
     @GetMapping("view/{recipeId}")
     public String displayViewRecipe(Model model, @PathVariable int recipeId) {
