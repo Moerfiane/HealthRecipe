@@ -358,13 +358,18 @@ h2 {
 }
 /*add recipe button*/
 .addRecipeBtn {
-  background-color: MediumSlateBlue;
-    box-shadow: 0 5px #666;
-    width: 50%;
-    padding: 1em;
-    border-radius: .5em;
-    margin-left:  30px;
-    margin-top: 1em;
+   background-color: #003e21;
+       box-shadow: 0 5px #F8D098;
+       color: #f8d098;
+       font-family: Montserrat;
+       font-size: 18px;
+       font-weight: bold;
+       width: 185px;
+       height: 25px;
+       border-radius: .5em;
+       margin: 0 auto;
+       text-align: center;
+       text-decoration: none;
 }
 
 /* list.html CSS Grid */
