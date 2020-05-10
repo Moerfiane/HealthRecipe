@@ -1,6 +1,5 @@
 package org.launchcode.health_recipe.models;
 
-//import org.launchcode.health_recipe.models.data.DietaryRestrictionsRepository;
 import org.hibernate.criterion.Restrictions;
 import org.launchcode.health_recipe.models.data.DietaryRestrictionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,10 @@ public class UserRestrictions {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "users_restrict_id")
+    @Column
+    private int checked_id;
+
+    @Column
     private int users_restrict_id;
 
     @Column(name = "id_from_user")
@@ -30,15 +32,13 @@ public class UserRestrictions {
 
 
     @OneToMany(mappedBy = "userRestrictions", cascade = CascadeType.ALL)
-//    private List<DietaryRestrictionsSearch> restrictions = new ArrayList<>();
-    public  List<DietaryRestrictionsSearch> restrictions;
+    private List<DietaryRestrictionsSearch> restrictions = new ArrayList<>();
+//    public  List<DietaryRestrictionsSearch> restrictions;
 
-    public int getUsers_restrict_id() {
-        return users_restrict_id;
-    }
+    public UserRestrictions() {}
 
-    public void setUsers_restrict_id(int users_restrict_id) {
-        this.users_restrict_id = users_restrict_id;
+    public int getChecked_id() {
+        return checked_id;
     }
 
     public int getId_from_user() {
@@ -57,7 +57,6 @@ public class UserRestrictions {
         this.restrictions = restrictions;
     }
 }
-
 
 //@Service
 //public class UserRestrictions {

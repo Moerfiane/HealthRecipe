@@ -16,12 +16,12 @@
 
 </div>
 
-<form method="post" th:action="@{update}" th:object="${dietaryRestrictionsSearch}" commandName="dietaryRestrictionsSearch">
+<form action="#"  th:action="@{/save}" th:object="${dietaryRestrictionsSearch}" method="POST">
 <div class="checkbox-cards" >
     <div class="card-1 card-image">
 
         <p><span>HEALTH CONDITION</span></p>
-        <p this is a test ></p>
+
         <div class="card-content">
 
             <ul class="checkboxesconditions">
@@ -65,12 +65,10 @@
                <ul>
                    <li th:each="restriction : ${restrictions}">
 
-                       <input type="checkbox" th:field="*{restriction}" th:text="${restriction.restrictions}" th:value="${restrict_id}"/>
-                       <label th:for="${#ids.prev('restrictions)}"
-                              th:text="#{${'dietaryRestrictionsSearch.restrict_id' + restriction}}"</label
+<!--                       <input type="checkbox" th:text="${restriction.restrictions}" name="users_restrict_id" th:checked="${restriction}/>-->
 
-<!--                       <label class="checkbox-3"><input type="checkbox" th:text="${restriction.restrictions}" th:value="${restriction.restrict_id}" th:checked="restrict_id"></label>-->
-<!--                        <input type="hidden" th:value="${restrict_id}"/>-->
+                      <label class="checkbox-3"><input type="checkbox" th:field="*{active}" th:text="${restriction.restrictions}" name="active" id="restrict_id"  th:value="${restriction}"></label>
+                       
                    </li>
                </ul>
 
