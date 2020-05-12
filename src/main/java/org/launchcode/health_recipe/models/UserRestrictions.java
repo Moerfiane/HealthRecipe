@@ -31,8 +31,8 @@ public class UserRestrictions {
     private int id_from_user;
 
 
-    @OneToMany(mappedBy = "userRestrictions", cascade = CascadeType.ALL)
-    private List<DietaryRestrictionsSearch> restrictions = new ArrayList<>();
+//    @OneToMany(mappedBy = "userRestrictions", cascade = CascadeType.ALL)
+//    private List<DietaryRestrictionsSearch> restrictions = new ArrayList<>();
 //    public  List<DietaryRestrictionsSearch> restrictions;
 
     public UserRestrictions() {}
@@ -49,13 +49,13 @@ public class UserRestrictions {
         this.id_from_user = id_from_user;
     }
 
-    public List<DietaryRestrictionsSearch> getRestrictions() {
-        return restrictions;
-    }
-
-    public void setRestrictions(List<DietaryRestrictionsSearch> restrictions) {
-        this.restrictions = restrictions;
-    }
+//    public List<DietaryRestrictionsSearch> getRestrictions() {
+//        return restrictions;
+//    }
+//
+//    public void setRestrictions(List<DietaryRestrictionsSearch> restrictions) {
+//        this.restrictions = restrictions;
+//    }
 }
 
 //@Service

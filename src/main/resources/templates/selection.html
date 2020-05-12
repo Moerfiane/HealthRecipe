@@ -16,7 +16,7 @@
 
 </div>
 
-<form action="#"  th:action="@{/save}" th:object="${dietaryRestrictionsSearch}" method="POST">
+<form action="#"  th:action="@{/savecheckboxes}" th:object="${dietaryRestrictionsSearch}" method="POST">
 <div class="checkbox-cards" >
     <div class="card-1 card-image">
 
@@ -67,8 +67,8 @@
 
 <!--                       <input type="checkbox" th:text="${restriction.restrictions}" name="users_restrict_id" th:checked="${restriction}/>-->
 
-                      <label class="checkbox-3"><input type="checkbox" th:field="*{active}" th:text="${restriction.restrictions}" name="active" id="restrict_id"  th:value="${restriction}"></label>
-                       
+                      <label class="checkbox-3"><input type="checkbox" th:field="*{active}" th:text="${restriction.restrictions}" name="active" id="restrict_id"  th:value="${restriction.restrict_id}"></label>
+                                                <input type="hidden" th:field="*{restrict_id}" value="${dietaryRestrictionsSearch.getRestrictId()}"/>
                    </li>
                </ul>
 
@@ -113,7 +113,7 @@
 </div>
 
 <div class="footer">
-    <button id="filterResults" class="btn btn-primary btn-lg" type="submit" >Get Results</button>
+    <button id="filterResults" class="btn btn-primary btn-lg" type="submit" onclick="SaveList()">Get Results</button>
 </div>
 </form>
 </body>

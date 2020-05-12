@@ -28,9 +28,9 @@ public class DietaryRestrictionsSearch {
     private boolean active;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="checked_id")
-    private UserRestrictions userRestrictions;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="checked_id")
+//    private UserRestrictions userRestrictions;
 //     private List<UserRestrictions> userRestrictions;
 
     public DietaryRestrictionsSearch() {}
@@ -61,13 +61,13 @@ public class DietaryRestrictionsSearch {
         return active;
     }
 
-    public UserRestrictions getUserRestrictions() {
-        return userRestrictions;
-    }
-
-    public void setUserRestrictions(UserRestrictions userRestrictions) {
-        this.userRestrictions = userRestrictions;
-    }
+//    public UserRestrictions getUserRestrictions() {
+//        return userRestrictions;
+//    }
+//
+//    public void setUserRestrictions(UserRestrictions userRestrictions) {
+//        this.userRestrictions = userRestrictions;
+//    }
 
     @Override
     public boolean equals(Object o) {

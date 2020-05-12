@@ -36,6 +36,7 @@ public class DietaryRestrictionsController {
 //    private UserRestrictions userRestrictions;
 
 
+
     @GetMapping
     public String displayAllRestrictions(Model model) {
         model.addAttribute("dietaryRestrictionsSearch", new DietaryRestrictionsSearch());
@@ -59,35 +60,29 @@ public class DietaryRestrictionsController {
 //    }
 
 
+    @RequestMapping(value = "/savecheckboxes", method = RequestMethod.POST)
+    public String selectedCheckboxes(Model model, Integer restrict_id, Integer checked_id) {
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String selectedCheckboxes(@RequestParam(value="restrict_id") int restrict_id, List<String> values) {
+        model.addAttribute("dietaryRestrictionsSearch", new DietaryRestrictionsSearch());
+        model.addAttribute("userRestrictions", new UserRestrictions());
+        model.addAttribute("restrict_id", restrict_id);
+        model.addAttribute("checked_id", checked_id);
 
-        List selectedCheckboxes = dietaryRestrictionsRepository.findById(restrict_id);
+        checked_id.equals(new DietaryRestrictionsSearch().getRestrict_id());
+        UserRestrictions userrestrict = new UserRestrictions();
+        userrestrict.getChecked_id();
+        return "checked_id";
 
-        if (selectedCheckboxes.contains(restrict_id)) {
-            DietaryRestrictionsSearch dietaryRestrictionsSearch = (DietaryRestrictionsSearch) selectedCheckboxes.get(restrict_id);
-            dietaryRestrictionsRepository.save(dietaryRestrictionsSearch);
-            System.out.println(restrict_id);
-        }
-        return "values.contains(restrict_id)";
+//        List selectedCheckboxes = dietaryRestrictionsRepository.findById(restrict_id);
+//
+//        if (selectedCheckboxes.contains(restrict_id)) {
+//            DietaryRestrictionsSearch dietaryRestrictionsSearch = (DietaryRestrictionsSearch) selectedCheckboxes.get(restrict_id);
+//            dietaryRestrictionsRepository.save(dietaryRestrictionsSearch);
+//
+//       }
+
 
     }
-
-//    @RequestMapping(value="/selection", method = RequestMethod.POST)
-//    public String saveCheckBoxes(final DietaryRestrictionsSearch dietaryRestrictionsSearch,
-//                                 final BindingResult bindingResult, Model model,
-//                                 @RequestParam int restrict_id) {
-//        if (bindingResult.hasErrors()) {
-//            return "selection";
-//        }
-//        model.addAttribute("restrict_id", dietaryRestrictionsRepository.findById(restrict_id));
-//        dietaryRestrictionsRepository.save(dietaryRestrictionsSearch);
-//
-//        return "redirect:/selection";
-//    }
-
-
 
 
 
