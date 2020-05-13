@@ -3,6 +3,7 @@ package org.launchcode.health_recipe.controllers;
 import org.hibernate.criterion.Restrictions;
 import org.launchcode.health_recipe.models.*;
 import org.launchcode.health_recipe.models.data.DietaryRestrictionsRepository;
+import org.launchcode.health_recipe.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -32,9 +33,8 @@ public class DietaryRestrictionsController {
     @Autowired
     private DietaryRestrictionsRepository dietaryRestrictionsRepository;
 
-//    @Autowired
-//    private UserRestrictions userRestrictions;
-
+    @Autowired
+    private UserRepository userRepository;
 
 
     @GetMapping
@@ -45,45 +45,33 @@ public class DietaryRestrictionsController {
         return "/selection";
     }
 
-//    @RequestMapping(value = "/save/{restrict_id}", method = RequestMethod.POST)
-//    public String selectedCheckboxes(@ModelAttribute @Valid DietaryRestrictionsSearch newDietaryRestrictionsSearch,
-//            @RequestParam Integer restrict_id,  Errors errors, Model model) {
-//
-//        if (errors.hasErrors()) {
-//            model.addAttribute("restrict_id", restrict_id);
-//            model.addAttribute("DietaryRestrictionsSearch", dietaryRestrictionsRepository.findById(restrict_id));
-//            return "/list";
-//        }
-//        newDietaryRestrictionsSearch.getRestrict_id();
-//        dietaryRestrictionsRepository.save(newDietaryRestrictionsSearch);
-//        return "/list";
-//    }
+    @RequestMapping(value="/add",method=RequestMethod.POST,params={"dietaryrestrictionssearches"})
+    public String processUserDietaryRestrictions(@ModelAttribute @Valid User newUser,
+                                    @RequestParam List<Integer> dietaryrestrictionssearches,
+                                    Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "AddUserRestriction");
+            return "add";
+        }
+
+        if (!dietaryrestrictionssearches.isEmpty()) {
+
+            List<DietaryRestrictionsSearch> drsObjs = (List<DietaryRestrictionsSearch>) dietaryRestrictionsRepository.findAllById(dietaryrestrictionssearches);
+            if (!drsObjs.isEmpty()) {
+                newUser.setDietaryrestrictionssearches(drsObjs);
+            }
+            userRepository.save(newUser);
+            return "redirect:/view/" + newUser.getId();
+        }
+        return "redirect:../add";
+    }
 
 
-    @RequestMapping(value = "/savecheckboxes", method = RequestMethod.POST)
-    public String selectedCheckboxes(Model model, Integer restrict_id, Integer checked_id) {
 
-        model.addAttribute("dietaryRestrictionsSearch", new DietaryRestrictionsSearch());
-        model.addAttribute("userRestrictions", new UserRestrictions());
-        model.addAttribute("restrict_id", restrict_id);
-        model.addAttribute("checked_id", checked_id);
 
-        checked_id.equals(new DietaryRestrictionsSearch().getRestrict_id());
-        UserRestrictions userrestrict = new UserRestrictions();
-        userrestrict.getChecked_id();
-        return "checked_id";
-
-//        List selectedCheckboxes = dietaryRestrictionsRepository.findById(restrict_id);
-//
-//        if (selectedCheckboxes.contains(restrict_id)) {
-//            DietaryRestrictionsSearch dietaryRestrictionsSearch = (DietaryRestrictionsSearch) selectedCheckboxes.get(restrict_id);
-//            dietaryRestrictionsRepository.save(dietaryRestrictionsSearch);
-//
-//       }
 
 
     }
 
 
-
-}

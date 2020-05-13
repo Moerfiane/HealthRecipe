@@ -14,7 +14,4 @@ import java.util.Optional;
 @Transactional
 public interface DietaryRestrictionsRepository extends CrudRepository <DietaryRestrictionsSearch, Integer> {
 
-    List<String> findById(int restrict_id);
-//    List<DietaryRestrictionsSearch> saveAll(Integer checked_id);
-
 }
