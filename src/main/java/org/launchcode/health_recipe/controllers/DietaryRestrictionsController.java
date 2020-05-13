@@ -45,7 +45,7 @@ public class DietaryRestrictionsController {
         return "/selection";
     }
 
-    @RequestMapping(value="/add",method=RequestMethod.POST,params={"dietaryrestrictionssearches"})
+    @RequestMapping(value="/add",method=RequestMethod.POST, params = {"dietaryrestrictionssearches"})
     public String processUserDietaryRestrictions(@ModelAttribute @Valid User newUser,
                                     @RequestParam List<Integer> dietaryrestrictionssearches,
                                     Errors errors, Model model) {

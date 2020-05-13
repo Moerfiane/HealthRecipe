@@ -16,7 +16,7 @@
 
 </div>
 
-<form action="#"  th:action="@{/add}" th:object="${dietaryRestrictionsSearch}" method="POST">
+<form action="#"  th:action="@{/add}" th:object="${dietaryrestrictionssearches}" method="POST">
 <div class="checkbox-cards" >
     <div class="card-1 card-image">
 
@@ -68,7 +68,7 @@
 <!--                       <input type="checkbox" th:text="${restriction.restrictions}" name="users_restrict_id" th:checked="${restriction}/>-->
 
                       <label class="checkbox-3"><input type="checkbox"  th:text="${restriction.restrictions}" name="active"   th:value="${restriction}"></label>
-                                                <input type="hidden"  value="${restriction}"/>
+                                                <input type="hidden"  value="${restriction.restrict_id}"/>
                    </li>
                </ul>
 
