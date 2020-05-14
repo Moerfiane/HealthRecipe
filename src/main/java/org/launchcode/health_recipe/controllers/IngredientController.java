@@ -40,12 +40,13 @@ public class IngredientController {
                                          Errors errors, Model model) {
 
         if (errors.hasErrors()) {
+            errors.rejectValue("ingredient", "ingredient.invalid", "Ingredient is required");
             return "ingredient/add";
         }
 
-        model.addAttribute("title", "Add Ingredient");
+
         ingredientRepository.save(newIngredient);
-        return "redirect:../admin-home";
+        return "redirect:./add";
     }
 
     @GetMapping("view/{ingredientId}")
