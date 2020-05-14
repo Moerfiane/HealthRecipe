@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
+<html xmlns:th="http://www.thymeleaf.org/" lang="en">
 <head th:replace="fragments :: head">
 </head>
 
@@ -58,10 +58,11 @@
         <a th:href="@{/admin/list/recipes(column='All',value='View All')}">View All</a>
     </div>
     <div class="list2" th:each="recipe : ${recipes}">
-        <a th:href="@{/admin/list/recipes(column=name,value=${recipe.name})}" th:text="${recipe.name}"></a>
+        <a th:href="@{/admin/list/recipes(column= recipe, value=${recipe.name})}" th:text="${recipe.name}"></a>
         <div class="list-context">
             <p th:text="${'Serve Time: ' + recipe.serve_time}"></p>
             <p th:text="${'Servings: ' + recipe.servings}"></p>
+            <p th:text="${'Ingredients: ' + recipe.ingredients}"></p>
         </div>
     </div>
 </div>

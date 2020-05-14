@@ -31,6 +31,15 @@ public class Recipe extends AbstractEntity {
 
     @OneToMany(mappedBy = "recipe")
     public List<Ingredient> ingredients = new ArrayList<>();
+//    ingredients.add(Ingredient chicken);
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
 
     public String getServings() {
         return servings;

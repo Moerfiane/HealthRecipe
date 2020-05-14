@@ -31,6 +31,14 @@ public class Ingredient extends AbstractEntity {
         this.ingredient = anIngredient;
     }
 
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
     public String getIngredient() {
         return ingredient;
     }
