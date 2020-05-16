@@ -20,7 +20,7 @@
 <div class="checkbox-cards" >
     <div class="card-1 card-image">
 
-        <p><span>HEALTH CONDITION</span></p>
+        <p>HEALTH CONDITION</p>
 
         <div class="card-content">
 
@@ -31,6 +31,7 @@
                 <label class="checkbox"><input type="checkbox" value="" id="celiacdisease">CELIAC DSEASE</label>
 
             </ul>
+
         </div>
     </div>
 
@@ -65,20 +66,12 @@
                <ul>
                    <li th:each="restriction : ${restrictions}">
 
-<!--                       <input type="checkbox" th:text="${restriction.restrictions}" name="users_restrict_id" th:checked="${restriction}/>-->
 
-                      <label class="checkbox-3"><input type="checkbox"  th:text="${restriction.restrictions}" name="active"   th:value="${restriction}"></label>
+                      <label class="checkbox-3"><input type="checkbox"  th:text="${restriction.restrictions}" name="restrict_id"   th:value="${restriction.restrict_id}"></label>
                                                 <input type="hidden"  value="${restriction.restrict_id}"/>
                    </li>
                </ul>
 
-<!--                            <div th:each="restriction : ${restrictions}">-->
-
-<!--                                <label class="checkbox-3"><input type="checkbox" th:field="*{restriction}" th:text="${restriction.restrictions}" th:checked="${restriction.active}"></label>-->
-
-<!--                                th:<label th:for="${restriction.restrictions}" th:text="${restriction.restrictions}"></label>-->
-<!--                                <input type="checkbox" th:id="${restriction.restrict_id}"-->
-<!--                                       checked="${restriction.active}"/>-->
                             <!--     <label class="checkbox"><input type="checkbox"value="" id="no chicken">NO CHICKEN</label>-->
 <!--                                <label class="checkbox"><input type="checkbox"value="" id="no beef">NO BEEF</label>-->
 <!--                                <label class="checkbox"><input type="checkbox"value="" id="no milk">NO MILK</label>-->
@@ -113,7 +106,7 @@
 </div>
 
 <div class="footer">
-    <button id="filterResults" class="btn btn-primary btn-lg" type="submit" onclick="SaveList()">Get Results</button>
+    <button id="filterResults" class="btn btn-primary btn-lg" type="submit">Get Results</button>
 </div>
 </form>
 </body>

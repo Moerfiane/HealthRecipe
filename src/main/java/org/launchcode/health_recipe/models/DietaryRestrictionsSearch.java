@@ -41,7 +41,7 @@ public class DietaryRestrictionsSearch {
         this.restrictions = restrictions;
         this.restrict_id = restrict_id;
     }
-
+  //getters and setters
 
     public String getRestrictions() {
         return restrictions;
