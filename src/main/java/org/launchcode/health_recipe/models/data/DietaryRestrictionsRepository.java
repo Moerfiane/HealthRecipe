@@ -14,4 +14,6 @@ import java.util.Optional;
 @Transactional
 public interface DietaryRestrictionsRepository extends CrudRepository <DietaryRestrictionsSearch, Integer> {
 
+
+     void save(List<DietaryRestrictionsSearch> drsObj);
 }

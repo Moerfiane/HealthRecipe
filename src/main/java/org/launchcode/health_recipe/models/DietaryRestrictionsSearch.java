@@ -30,7 +30,7 @@ public class DietaryRestrictionsSearch {
         this.users = users;
     }
 
-    @ManyToMany(mappedBy="dietaryrestrictionssearches")
+    @ManyToMany
     private List<User> users = new ArrayList<>();
 
     public DietaryRestrictionsSearch() {}

@@ -11,7 +11,5 @@ import java.util.Optional;
 @Transactional
 public interface UserRepository extends CrudRepository <User, Integer> {
     User findByUsername(String username);
-    User save(int id);
-    Optional<User> findById(int id);
 
 }
