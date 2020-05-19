@@ -50,7 +50,7 @@ public class DietaryRestrictionsController {
         Optional<User> userObj = userRepository.findById(userId);
         if (userObj.isPresent()) {
             User user1 = userObj.get();
-            newUserPreference.setUser(user1);
+            newUserPreference.setUsersId(userId);
         }
 
         Optional<DietaryRestrictionsSearch> drsObj = dietaryRestrictionsRepository.findById(restrict_id);
