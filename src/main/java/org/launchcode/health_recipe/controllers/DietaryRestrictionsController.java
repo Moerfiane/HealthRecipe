@@ -44,19 +44,28 @@ public class DietaryRestrictionsController {
     public String processUserDietaryRestrictions(@ModelAttribute @Valid UserPreference newUserPreference,
                                                  Errors errors, Model model,
                                                  HttpSession session, User user,
-                                                 @RequestParam List<Integer> restrict_id) {
+                                                 @RequestParam Integer restrict_id) {
 
         Integer userId = (Integer) session.getAttribute(drsSessionKey);
         Optional<User> userObj = userRepository.findById(userId);
-        User myUser = userObj.get();
-        newUserPreference.setUsersId(userId);
-
-
-        List<DietaryRestrictionsSearch> drsObj = (List<DietaryRestrictionsSearch>) dietaryRestrictionsRepository.findAllById(restrict_id);
-        if (!drsObj.isEmpty()) {
-            System.out.println(drsObj);
-
+        if (userObj.isPresent()) {
+            User user1 = userObj.get();
+            newUserPreference.setUser(user1);
         }
+
+        Optional<DietaryRestrictionsSearch> drsObj = dietaryRestrictionsRepository.findById(restrict_id);
+        DietaryRestrictionsSearch resObj = drsObj.get();
+        Integer myRestId = resObj.getRestrict_id();
+        newUserPreference.setPreferenceId(myRestId);
+
+        userPreferenceRepository.save(newUserPreference);
+
+
+//        List<DietaryRestrictionsSearch> drsObj = (List<DietaryRestrictionsSearch>) dietaryRestrictionsRepository.findAllById(restrict_id);
+//        if (!drsObj.isEmpty()) {
+//            System.out.println(drsObj);
+//
+//        }
 
         return "redirect:/list/";
 

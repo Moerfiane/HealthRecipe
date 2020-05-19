@@ -55,7 +55,9 @@ public class DietaryRestrictionsSearch {
         return restrict_id;
     }
 
-
+    public void setRestrict_id(int restrict_id) {
+        this.restrict_id = restrict_id;
+    }
 
     @Override
     public String toString() {
