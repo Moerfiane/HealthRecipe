@@ -7,13 +7,6 @@ import javax.validation.constraints.NotBlank;
 @Entity
 public class Recipe extends AbstractEntity{
 
-//    @OneToMany(/*mappedBy = "recipes"*/)
-//    @JoinColumn(name = "ingredient")
-//    private Set<Ingredient> ingredients;
-
-//    @OneToMany(orphanRemoval=true)
-//    @JoinColumn(name="ingredient") // join column is in table for Ingredient
-//    public Set<Ingredient> getIngredient() {return ingredient;}
 
     @NotBlank(message = "Servings?")
     private String servings;
