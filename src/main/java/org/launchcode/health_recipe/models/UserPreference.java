@@ -7,28 +7,30 @@ import javax.persistence.Id;
 public class UserPreference {
 
     @Id
-    private int usersId;
+    private Integer usersId;
 
-    private int preferenceId;
+    private Integer preferenceId;
 
-    public UserPreference(int usersId, int preferenceId) {
+    public UserPreference() {}
+
+    public UserPreference(Integer usersId, Integer preferenceId) {
         this.usersId = usersId;
         this.preferenceId = preferenceId;
     }
 
-    public int getUsersId() {
+    public Integer getUsersId() {
         return usersId;
     }
 
-    public void setUsersId(int usersId) {
+    public void setUsersId(Integer usersId) {
         this.usersId = usersId;
     }
 
-    public int getPreferenceId() {
+    public Integer getPreferenceId() {
         return preferenceId;
     }
 
-    public void setPreferenceId(int preferenceId) {
+    public void setPreferenceId(Integer preferenceId) {
         this.preferenceId = preferenceId;
     }
 }

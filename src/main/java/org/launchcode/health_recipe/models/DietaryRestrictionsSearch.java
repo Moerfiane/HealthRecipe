@@ -17,7 +17,7 @@ import java.util.Objects;
 public class DietaryRestrictionsSearch {
 
     @Id
-    private int restrict_id;
+    private Integer restrict_id;
 
     @Column
     private String restrictions;
@@ -36,7 +36,7 @@ public class DietaryRestrictionsSearch {
     public DietaryRestrictionsSearch() {}
 
 
-    public DietaryRestrictionsSearch(String restrictions, int restrict_id) {
+    public DietaryRestrictionsSearch(String restrictions, Integer restrict_id) {
         super();
         this.restrictions = restrictions;
         this.restrict_id = restrict_id;
@@ -55,7 +55,9 @@ public class DietaryRestrictionsSearch {
         return restrict_id;
     }
 
-
+    public void setRestrict_id(Integer restrict_id) {
+        this.restrict_id = restrict_id;
+    }
 
     @Override
     public String toString() {
@@ -77,5 +79,7 @@ public class DietaryRestrictionsSearch {
     public int hashCode() {
         return Objects.hash(super.hashCode(), getRestrict_id());
     }
+
+
 }
 
