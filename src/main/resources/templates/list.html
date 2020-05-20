@@ -5,18 +5,44 @@
 
 <body>
 
+
 <div th:replace="fragments :: page-header"></div>
 
-<div class="container body-content">
-    <h2>VIEW RECIPES</h2>
+<div id = "search-container">
+
+    <ul id = "searchParent">
+        <li>
+            <h2>View or Search Recipes</h2>
+        </li>
+
+        <li>
+            <form th:action="@{/search/results}" method = "post">
+
+                <!--
+                                <span th:each="column : ${columns}">
+                                    <input
+                                            type="radio"
+                                            name="searchType"
+                                            th:id="${column.key}"
+                                            th:value="${column.key}"
+                                            th:checked="${column.key == 'all'}"/>
+                                    <label th:for="${column.key}" th:text="${column.value}"></label>
+                                </span>
+                -->
+        <li>
+            <input type="text" name="searchTerms" />
+
+            <input type="submit" value="Search" />
+        </li>
+        </form>
+        </li>
+    </ul>
 </div>
 
 <div class="list-container">
-    <div class="list1">
-        <a th:href="@{/list/recipes(column='All',value='View All')}">View All</a>
-    </div>
-    <div class="list2" th:each="recipe : ${recipes}">
-        <a th:href="@{/list/recipes(column=name,value=${recipe.name})}" th:text="${recipe.name}"></a>
+
+    <div class="list1" th:each="recipe : ${recipes}">
+        <a th:href="@{'/view/' + ${recipe.id}}" th:text="${recipe.name}"></a>
         <div class="list-context">
             <p th:text="${'Serve Time: ' + recipe.serve_time}"></p>
             <p th:text="${'Servings: ' + recipe.servings}"></p>

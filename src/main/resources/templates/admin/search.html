@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<div>
+    <section class="nav-scope">
+        <ul class="nav-section">
+            <li class="nav-logo">
+                <a th:href="@{/admin-home}" aria-label="Health Recipe">Health Recipe
+                </a>
+                <a th:href="@{/logout}">
+                    <button type="button" class="nav-btn btn-primary btn-lg" style="float:right;">LogOut</button>
+                </a>
+            </li>
+            <div class="nav-links">
+                <li class="nav-recipes">
+                    <a th:href="@{/admin/list}">Recipes</a>
+                </li>
+                <li class="nav-add-recipes">
+                    <a th:href="@{/add}">Add Recipes</a>
+                </li>
+                <li class="nav-add-ingredient">
+                    <a th:href="@{/ingredient/add}">Add Ingredient</a>
+                </li>
+                <li class="nav-add-admin">
+                    <a th:href="@{/admin/add-admin_user}">Add Admin User</a>
+                </li>
+            </div>
+        </ul>
+    </section>
+</div>
+
+<div class="container body-content">
+
+    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+
+    <form th:action="@{/admin/search/results}" method = "post">
+        <h2>Search Recipe Database</h2>
+
+        <p>
+            <span th:each="column : ${columns}">
+                <input
+                        type="radio"
+                        name="searchType"
+                        th:id="${column.key}"
+                        th:value="${column.key}"
+                        th:checked="${column.key == 'all'}"/>
+                <label th:for="${column.key}" th:text="${column.value}"></label>
+            </span>
+
+        </p>
+
+        <p>
+            <label class="form-group" for="searchTerms">Keyword(s):</label>
+            <input class="form-control" type="text" name="searchTerms" id="searchTerms" />
+        </p>
+
+        <input class="btn btn-primary" type="submit" value="Search" />
+    </form>
+
+    <hr />
+
+<!--Remove ID: from line 42 before final deployment; is currently being used for referencing recipe IDs-->
+    <div class="grid-container" th:each="recipe : ${recipes}">
+        <div class="item1">
+            <p th:text="${recipe.name + ' | ID: ' + recipe.id}"></p>
+        </div>
+        <div class="item2">Total Time
+            <p th:text="${recipe.serve_time}"></p>
+        </div>
+        <div class="item3">Servings
+            <p th:text="${recipe.servings}"></p>
+        </div>
+        <div class="item4">Ingredients</div>
+        <div class="item5">Directions
+            <p th:text="${recipe.steps}"></p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

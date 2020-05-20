@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container  body-content">
+
+<div>
+    <section class="nav-scope">
+        <ul class="nav-section">
+            <li class="nav-logo">
+                <a th:href="@{/admin-home}" aria-label="Health Recipe">Health Recipe
+                </a>
+                <a th:href="@{/logout}">
+                    <button type="button" class="nav-btn btn-primary btn-lg" style="float:right;">LogOut</button>
+                </a>
+            </li>
+            <div class="nav-links">
+                <li class="nav-recipes">
+                    <a th:href="@{/admin/list}">Recipes</a>
+                </li>
+                <li class="nav-search">
+                    <a th:href="@{/admin/search}">Search</a>
+                </li>
+                <li class="nav-add-recipes">
+                    <a th:href="@{/add}">Add Recipes</a>
+                </li>
+                <li class="nav-add-admin">
+                    <a th:href="@{/admin/add-admin_user}">Add Admin User</a>
+                </li>
+            </div>
+        </ul>
+    </section>
+</div>
+<h1>Add Ingredients</h1>
+
+<form method="post" style="max-width:600px;" action="#" th:action="@{/ingredient/add}" th:object="${ingredient}">
+    <!--    <div class="form-group">-->
+
+    <div class="form-group">
+        <label th:for="name">Recipe Name</label>
+        <input class="form-control" th:field="*{name}" required/>
+        <span th:errors="*{name}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="ingredient">Ingredient</label>
+        <input class="form-control" th:field="*{ingredient}" required/>
+        <span th:errors="*{ingredient}" class="error"></span>
+    </div>
+
+    <input class="btn btn-primary" type="submit" value="Add Ingredient" />
+</form>
+
+</body>
+</html>

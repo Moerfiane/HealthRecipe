@@ -1,28 +1,23 @@
 package org.launchcode.health_recipe.controllers;
 
 import org.launchcode.health_recipe.models.Recipe;
+import org.launchcode.health_recipe.models.RecipeData;
 import org.launchcode.health_recipe.models.data.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
-
-import org.launchcode.health_recipe.models.RecipeData;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Controller
-@RequestMapping(value = "list")
 public class RecipeController {
 
     @Autowired
@@ -33,18 +28,17 @@ public class RecipeController {
 
     static HashMap<String, String> columnChoices = new HashMap<>();
 
-    public RecipeController () {
+    public RecipeController() {
 
         columnChoices.put("all", "All");
     }
 
-    @RequestMapping("")
+    @RequestMapping("/list")
     public String list(Model model, Pageable page) {
         Page<Recipe> recipes;
         model.addAttribute("recipes", recipeData.findAllByPage(page));
         return "list";
     }
-
 
     @RequestMapping(value = "recipes")
     public String listRecipeByChoice(Model model, @RequestParam String column,
@@ -61,37 +55,39 @@ public class RecipeController {
 
         return "list-recipes";
     }
-
-    @GetMapping("add")
-    public String displayAddRecipeForm(Model model) {
-        model.addAttribute("title", "Add Recipe");
-        model.addAttribute(new Recipe());
-        return "add";
-    }
-
-    @PostMapping("add")
-    public String processAddRecipeForm(@ModelAttribute Recipe newRecipe,
-                                       Errors errors, Model model){
-
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Recipe");
-            return "add";
-        }
-
-        recipeRepository.save(newRecipe);
-        return "redirect:";
-    }
+//
+//    @GetMapping("add")
+//    public String displayAddRecipeForm(Model model) {
+//        model.addAttribute("title", "Add Recipe");
+//        model.addAttribute(new Recipe());
+//        return "add";
+//    }
+//
+//    @PostMapping("add")
+//    public String processAddRecipeForm(@ModelAttribute Recipe newRecipe,
+//                                       Errors errors, Model model){
+//
+//        if (errors.hasErrors()) {
+//            model.addAttribute("title", "Add Recipe");
+//            return "add";
+//        }
+//
+//        recipeRepository.save(newRecipe);
+//        return "redirect:";
+//    }
 
     @GetMapping("view/{recipeId}")
-    public String displayViewRecipe(Model model, @PathVariable int recipeId){
+    public String displayViewRecipe(Model model, @PathVariable int recipeId) {
+
         Optional optRecipe = recipeRepository.findById(recipeId);
         if (optRecipe.isPresent()) {
             Recipe recipe = (Recipe) optRecipe.get();
-            model.addAttribute("recipe", recipe);
+            model.addAttribute("recipes", recipe);
             return "view";
         } else {
             return "redirect:../";
         }
     }
 }
+
 

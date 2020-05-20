@@ -1,22 +1,27 @@
 package org.launchcode.health_recipe.models;
 
-import org.springframework.context.annotation.Primary;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
 
 @Entity
-public class Recipe extends AbstractEntity {
+public class Recipe extends AbstractEntity{
 
-    @NotNull (message = "Servings?")
+//    @OneToMany(/*mappedBy = "recipes"*/)
+//    @JoinColumn(name = "ingredient")
+//    private Set<Ingredient> ingredients;
+
+//    @OneToMany(orphanRemoval=true)
+//    @JoinColumn(name="ingredient") // join column is in table for Ingredient
+//    public Set<Ingredient> getIngredient() {return ingredient;}
+
+    @NotBlank(message = "Servings?")
     private String servings;
 
-    @NotNull (message = "Serve time?")
+    @NotBlank (message = "Serve time?")
     private String serve_time;
 
-    @NotNull (message = "Recipe steps?")
+    @NotBlank (message = "Recipe steps?")
     @Column(length=15500)
     private String steps;
 

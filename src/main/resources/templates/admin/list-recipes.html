@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
 <body>
 
-<nav th:replace="fragments :: page-header"></nav>
+<div th:replace="fragments :: page-header1"></div>
 
 <div class="grid-container" th:each="recipe : ${recipes}">
-    <p>
-        <a th:href="@{'/list/' + ${recipe.id}}"></a>
-    </p>
     <div class="item1">
         <p th:text="${recipe.name}"></p>
     </div>
@@ -24,7 +21,6 @@
         <p th:text="${recipe.steps}"></p>
     </div>
 </div>
-
 
 </body>
 </html>
