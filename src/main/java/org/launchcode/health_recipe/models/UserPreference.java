@@ -2,6 +2,8 @@ package org.launchcode.health_recipe.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 @Entity
 public class UserPreference {
@@ -9,11 +11,13 @@ public class UserPreference {
     @Id
     private Integer usersId;
 
-    private Integer preferenceId;
+    private Integer[] preferenceId;
 
-    public UserPreference() {}
 
-    public UserPreference(Integer usersId, Integer preferenceId) {
+    public UserPreference() {
+    }
+
+    public UserPreference(Integer usersId, Integer[] preferenceId) {
         this.usersId = usersId;
         this.preferenceId = preferenceId;
     }
@@ -26,11 +30,12 @@ public class UserPreference {
         this.usersId = usersId;
     }
 
-    public Integer getPreferenceId() {
+    public Integer[] getPreferenceId() {
         return preferenceId;
     }
 
-    public void setPreferenceId(Integer preferenceId) {
+    public void setPreferenceId(Integer[] preferenceId) {
         this.preferenceId = preferenceId;
     }
+
 }

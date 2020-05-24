@@ -1,14 +1,7 @@
 package org.launchcode.health_recipe.models;
 
-import org.launchcode.health_recipe.Health_RecipeApplication;
-import org.launchcode.health_recipe.models.data.DietaryRestrictionsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-
 import javax.persistence.*;
-import java.io.Serializable;
 
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -30,18 +23,19 @@ public class DietaryRestrictionsSearch {
         this.users = users;
     }
 
+
     @ManyToMany
     private List<User> users = new ArrayList<>();
 
     public DietaryRestrictionsSearch() {}
 
-
-    public DietaryRestrictionsSearch(String restrictions, Integer restrict_id) {
-        super();
-        this.restrictions = restrictions;
+    public DietaryRestrictionsSearch(Integer restrict_id, String restrictions, List<User> users) {
         this.restrict_id = restrict_id;
+        this.restrictions = restrictions;
+        this.users = users;
     }
-  //getters and setters
+
+    //getters and setters
 
     public String getRestrictions() {
         return restrictions;
@@ -51,7 +45,7 @@ public class DietaryRestrictionsSearch {
         this.restrictions = restrictions;
     }
 
-    public int getRestrict_id() {
+    public Integer getRestrict_id() {
         return restrict_id;
     }
 

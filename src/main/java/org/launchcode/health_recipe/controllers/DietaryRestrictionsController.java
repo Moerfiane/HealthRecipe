@@ -11,9 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Controller
@@ -45,7 +43,9 @@ public class DietaryRestrictionsController {
     public String processUserDietaryRestrictions(@ModelAttribute @Valid UserPreference newUserPreference,
                                                  Errors errors, Model model,
                                                  HttpSession session, User user,
-                                                 @RequestParam Integer restrict_id) {
+                                                 @RequestParam Integer[] restrict_id) {
+
+
 
         Integer userId = (Integer) session.getAttribute(drsSessionKey);
         Optional<User> userObj = userRepository.findById(userId);
@@ -54,23 +54,18 @@ public class DietaryRestrictionsController {
             newUserPreference.setUsersId(userId);
         }
 
-        Optional<DietaryRestrictionsSearch> drsObj = dietaryRestrictionsRepository.findById(restrict_id);
-        DietaryRestrictionsSearch resObj = drsObj.get();
-        Integer myRestId = resObj.getRestrict_id();
-        newUserPreference.setPreferenceId(myRestId);
+        Integer[] drsObj = restrict_id;
+        Integer[] preferenceId = drsObj;
+        newUserPreference.getPreferenceId();
+        newUserPreference.setPreferenceId(preferenceId);
 
         userPreferenceRepository.save(newUserPreference);
 
 
-//        List<DietaryRestrictionsSearch> drsObj = (List<DietaryRestrictionsSearch>) dietaryRestrictionsRepository.findAllById(restrict_id);
-//        if (!drsObj.isEmpty()) {
-//            System.out.println(drsObj);
-//
-//        }
-
         return "redirect:/list/";
-
     }
+
+
 }
 
 
