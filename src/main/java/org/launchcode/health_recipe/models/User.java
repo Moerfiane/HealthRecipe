@@ -3,12 +3,9 @@ package org.launchcode.health_recipe.models;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class User extends AbstractEntity {
@@ -26,9 +23,6 @@ public class User extends AbstractEntity {
     private int access;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-    @ManyToMany
-    private List<DietaryRestrictionsSearch> dietaryrestrictionssearches = new ArrayList<>();
 
     public User() {}
 
@@ -68,11 +62,4 @@ public class User extends AbstractEntity {
         this.access = access;
     }
 
-    public List<DietaryRestrictionsSearch> getDietaryrestrictionssearches() {
-        return dietaryrestrictionssearches;
-    }
-
-    public void setDietaryrestrictionssearches(List<DietaryRestrictionsSearch> dietaryrestrictionssearches) {
-        this.dietaryrestrictionssearches = dietaryrestrictionssearches;
-    }
 }

@@ -39,37 +39,47 @@ public class DietaryRestrictionsController {
         return "/selection";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST, params = {"restrict_id"})
+    @RequestMapping(value = "/selection", method = RequestMethod.POST)
     public String processUserDietaryRestrictions(@ModelAttribute @Valid UserPreference newUserPreference,
                                                  Errors errors, Model model,
                                                  HttpSession session, User user,
-                                                 @RequestParam Integer[] restrict_id) {
-
-
+                                                 @RequestParam List<Integer> dietaryrestrictionssearches) {
 
         Integer userId = (Integer) session.getAttribute(drsSessionKey);
-        Optional<User> userObj = userRepository.findById(userId);
-        if (userObj.isPresent()) {
-            User user1 = userObj.get();
             newUserPreference.setUsersId(userId);
-        }
 
-        Integer[] drsObj = restrict_id;
-        Integer[] preferenceId = drsObj;
-        newUserPreference.getPreferenceId();
-        newUserPreference.setPreferenceId(preferenceId);
+        List<DietaryRestrictionsSearch> restObjs = (List<DietaryRestrictionsSearch>) dietaryRestrictionsRepository.findAllById(dietaryrestrictionssearches);
+            if (!restObjs.isEmpty()) {
+                newUserPreference.setDietaryrestrictionssearches(restObjs);
 
-        userPreferenceRepository.save(newUserPreference);
+            }
 
+            userPreferenceRepository.save(newUserPreference);
 
         return "redirect:/list/";
     }
 
 
 }
+//            userPreferenceRepository.save(newUserPreference);
 
 
+//        Integer userId = (Integer) session.getAttribute(drsSessionKey);
+//        Optional<User> userObj = userRepository.findById(userId);
+//        if (userObj.isPresent()) {
+//            newUserPreference.setUsersId(userId);
+//        }
+//
+//        if (restrict_id != null) {
+//            for (int restId : restrict_id) {
+//                newUserPreference.setPreferenceId(restId);
+//                userPreferenceRepository.save(newUserPreference);
+//            }
+//        }
 
+//        Integer[] drsObj = restrict_id;
+//        Integer[] preferenceId = drsObj;
+//        newUserPreference.getPreferenceId();
+//        newUserPreference.setPreferenceId(preferenceId);
 
-
-
+//        userPreferenceRepository.save(newUserPreference);

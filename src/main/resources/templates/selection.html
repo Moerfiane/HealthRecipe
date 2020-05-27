@@ -16,7 +16,7 @@
 
 </div>
 
-<form action="#"  th:action="@{/add}" th:object="${dietaryrestrictionssearches}" method="POST">
+<form action="#"  th:action="@{/selection}" th:object="${dietaryrestrictionssearches}" method="POST">
 <div class="checkbox-cards" >
     <div class="card-1 card-image">
 
@@ -42,16 +42,16 @@
 
             <ul class="checkboxesingredients">
 
-                <label class="checkbox"><input type="checkbox"value="" id="pork">PORK</label>
-                <label class="checkbox"><input type="checkbox"value="" id="chicken">CHICKEN</label>
-                <label class="checkbox"><input type="checkbox"value="" id="beef">BEEF</label>
-                <label class="checkbox"><input type="checkbox"value="" id="vegetables">VEGETABLES</label>
-                <label class="checkbox"><input type="checkbox"value="" id="cucumbers">CUCUMBERS</label>
-                <label class="checkbox"><input type="checkbox"value="" id="cheese">CHEESE</label>
-                <label class="checkbox"><input type="checkbox"value="" id="peppers">PEPPERS</label>
-                <label class="checkbox"><input type="checkbox"value="" id="fish">FISH</label>
-                <label class="checkbox"><input type="checkbox"value="" id="onions">ONIONS</label>
-                <label class="checkbox"><input type="checkbox"value="" id="nuts">NUTS</label>
+                <label class="checkbox"><input type="checkbox" value="" id="pork">PORK</label>
+                <label class="checkbox"><input type="checkbox" value="" id="chicken">CHICKEN</label>
+                <label class="checkbox"><input type="checkbox" value="" id="beef">BEEF</label>
+                <label class="checkbox"><input type="checkbox" value="" id="vegetables">VEGETABLES</label>
+                <label class="checkbox"><input type="checkbox" value="" id="cucumbers">CUCUMBERS</label>
+                <label class="checkbox"><input type="checkbox" value="" id="cheese">CHEESE</label>
+                <label class="checkbox"><input type="checkbox" value="" id="peppers">PEPPERS</label>
+                <label class="checkbox"><input type="checkbox" value="" id="fish">FISH</label>
+                <label class="checkbox"><input type="checkbox" value="" id="onions">ONIONS</label>
+                <label class="checkbox"><input type="checkbox" value="" id="nuts">NUTS</label>
 
             </ul>
         </div>
@@ -67,7 +67,7 @@
 <!--                   <li th:each="restriction : ${restrictions}">-->
                    <th:block th:each="restriction : ${restrictions}">
 
-                      <label class="checkbox-3"><input type="checkbox"  th:text="${restriction.restrictions}" name="restrict_id"   th:value="${restriction.restrict_id}"></label>
+                      <label class="checkbox-3"><input type="checkbox"  th:text="${restriction.restrictions}" name="dietaryrestrictionssearches"   th:value="${restriction.restrict_id}"></label>
                                                 <input type="hidden"  value="${restriction.restrict_id}"/>
                    </th:block>
                </ul>
@@ -84,10 +84,10 @@
 
             <ul class="checkboxescookingtime">
 
-                <label class="checkbox"><input type="checkbox"value="" id="15min">15 MINUTES</label>
-                <label class="checkbox"><input type="checkbox"value="" id="30min">30 MINUTES</label>
-                <label class="checkbox"><input type="checkbox"value="" id="45min">45 MINUTES</label>
-                <label class="checkbox"><input type="checkbox"value="" id="60min">60 MINUTES</label>
+                <label class="checkbox"><input type="checkbox" value="" id="15min">15 MINUTES</label>
+                <label class="checkbox"><input type="checkbox" value="" id="30min">30 MINUTES</label>
+                <label class="checkbox"><input type="checkbox" value="" id="45min">45 MINUTES</label>
+                <label class="checkbox"><input type="checkbox" value="" id="60min">60 MINUTES</label>
 
             </ul>
         </div>

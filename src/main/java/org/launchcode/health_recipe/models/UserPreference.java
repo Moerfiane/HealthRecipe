@@ -2,7 +2,9 @@ package org.launchcode.health_recipe.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,15 +13,16 @@ public class UserPreference {
     @Id
     private Integer usersId;
 
-    private Integer[] preferenceId;
-
+    @ManyToMany
+    @JoinTable
+    private List<DietaryRestrictionsSearch> dietaryrestrictionssearches = new ArrayList<>();
 
     public UserPreference() {
     }
 
-    public UserPreference(Integer usersId, Integer[] preferenceId) {
+    public UserPreference(Integer usersId, List<DietaryRestrictionsSearch> dietaryrestrictionssearches) {
         this.usersId = usersId;
-        this.preferenceId = preferenceId;
+        this.dietaryrestrictionssearches = dietaryrestrictionssearches;
     }
 
     public Integer getUsersId() {
@@ -30,12 +33,11 @@ public class UserPreference {
         this.usersId = usersId;
     }
 
-    public Integer[] getPreferenceId() {
-        return preferenceId;
+    public List<DietaryRestrictionsSearch> getDietaryrestrictionssearches() {
+        return dietaryrestrictionssearches;
     }
 
-    public void setPreferenceId(Integer[] preferenceId) {
-        this.preferenceId = preferenceId;
+    public void setDietaryrestrictionssearches(List<DietaryRestrictionsSearch> dietaryrestrictionssearches) {
+        this.dietaryrestrictionssearches = dietaryrestrictionssearches;
     }
-
 }
