@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
-    <meta charset="utf-8">
+<!--    <meta charset="utf-8">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
@@ -16,7 +16,7 @@
 
 </div>
 
-<form action="#"  th:action="@{/add}" th:object="${dietaryrestrictionssearches}" method="POST">
+<form action="#"  th:action="@{/selection}" th:object="${dietaryrestrictionssearches}" method="POST">
 <div class="checkbox-cards" >
     <div class="card-1 card-image">
 
@@ -67,7 +67,7 @@
 <!--                   <li th:each="restriction : ${restrictions}">-->
                    <th:block th:each="restriction : ${restrictions}">
 
-                      <label class="checkbox-3"><input type="checkbox"  th:text="${restriction.restrictions}" name="restrict_id"   th:value="${restriction.restrict_id}"></label>
+                      <label class="checkbox-3"><input type="checkbox"  th:text="${restriction.restrictions}" name="dietaryrestrictionssearches"   th:value="${restriction.restrict_id}"></label>
                                                 <input type="hidden"  value="${restriction.restrict_id}"/>
                    </th:block>
                </ul>

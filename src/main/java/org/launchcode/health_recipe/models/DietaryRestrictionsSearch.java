@@ -15,24 +15,23 @@ public class DietaryRestrictionsSearch {
     @Column
     private String restrictions;
 
-    public List<User> getUsers() {
-        return users;
+    public List<UserPreference> getPreferences() {
+        return preferences;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setPreferences(List<UserPreference> preferences) {
+        this.preferences = preferences;
     }
 
 
-    @ManyToMany
-    private List<User> users = new ArrayList<>();
+    @ManyToMany(mappedBy = "dietaryrestrictionssearches")
+    private List<UserPreference> preferences = new ArrayList<>();
 
     public DietaryRestrictionsSearch() {}
 
-    public DietaryRestrictionsSearch(Integer restrict_id, String restrictions, List<User> users) {
+    public DietaryRestrictionsSearch(Integer restrict_id, String restrictions) {
         this.restrict_id = restrict_id;
         this.restrictions = restrictions;
-        this.users = users;
     }
 
     //getters and setters

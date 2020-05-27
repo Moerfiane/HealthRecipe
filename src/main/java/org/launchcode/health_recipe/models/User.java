@@ -27,9 +27,6 @@ public class User extends AbstractEntity {
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    @ManyToMany
-    private List<DietaryRestrictionsSearch> dietaryrestrictionssearches = new ArrayList<>();
-
     public User() {}
 
     public User(String name, String email, String username, String password, int access) {
@@ -68,11 +65,4 @@ public class User extends AbstractEntity {
         this.access = access;
     }
 
-    public List<DietaryRestrictionsSearch> getDietaryrestrictionssearches() {
-        return dietaryrestrictionssearches;
-    }
-
-    public void setDietaryrestrictionssearches(List<DietaryRestrictionsSearch> dietaryrestrictionssearches) {
-        this.dietaryrestrictionssearches = dietaryrestrictionssearches;
-    }
 }

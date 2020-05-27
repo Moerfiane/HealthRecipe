@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.*;
@@ -39,28 +40,22 @@ public class DietaryRestrictionsController {
         return "/selection";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST, params = {"restrict_id"})
+    @RequestMapping(value = "/selection", method = RequestMethod.POST)
     public String processUserDietaryRestrictions(@ModelAttribute @Valid UserPreference newUserPreference,
                                                  Errors errors, Model model,
                                                  HttpSession session, User user,
-                                                 @RequestParam Integer[] restrict_id) {
-
-
+                                                 @RequestParam List<Integer> dietaryrestrictionssearches) {
 
         Integer userId = (Integer) session.getAttribute(drsSessionKey);
-        Optional<User> userObj = userRepository.findById(userId);
-        if (userObj.isPresent()) {
-            User user1 = userObj.get();
-            newUserPreference.setUsersId(userId);
+        newUserPreference.setUsersId(userId);
+
+        List<DietaryRestrictionsSearch> restObjs = (List<DietaryRestrictionsSearch>) dietaryRestrictionsRepository.findAllById(dietaryrestrictionssearches);
+        if (!restObjs.isEmpty()) {
+            newUserPreference.setDietaryrestrictionssearches(restObjs);
+
         }
 
-        Integer[] drsObj = restrict_id;
-        Integer[] preferenceId = drsObj;
-        newUserPreference.getPreferenceId();
-        newUserPreference.setPreferenceId(preferenceId);
-
         userPreferenceRepository.save(newUserPreference);
-
 
         return "redirect:/list/";
     }
