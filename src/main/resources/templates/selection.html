@@ -24,15 +24,14 @@
 
         <div class="card-content">
 
-            <ul class="checkboxesconditions">
+         <ul class="checkboxesconditions"></ul>
 
-                <label class="checkbox"><input type="checkbox" value="" id="diabetes">DIABETES</label>
-                <label class="checkbox"><input type="checkbox" value="" id="highbloodpressure">HIGH BLOOD PRESSURE</label>
-                <label class="checkbox"><input type="checkbox" value="" id="celiacdisease">CELIAC DSEASE</label>
+                   <div th:each="health_cond : ${health_conds}">
 
-            </ul>
-
+                        <label class="checkbox-1"><input type="checkbox"  th:text="${health_cond.health_conds}" name="dietaryrestrictionssearches"  th:value="${health_cond.cond_id}"></label>
+<!--                        <input type="hidden"  value="${health_cond.cond_id}"/>-->
         </div>
+    </div>
     </div>
 
     <div class="card-2 card-image">
@@ -40,7 +39,7 @@
 
         <div class="card-content">
 
-            <ul class="checkboxesingredients">
+        <ul class="checkboxesingredients">
 
                 <label class="checkbox"><input type="checkbox"value="" id="pork">PORK</label>
                 <label class="checkbox"><input type="checkbox"value="" id="chicken">CHICKEN</label>
@@ -52,8 +51,7 @@
                 <label class="checkbox"><input type="checkbox"value="" id="fish">FISH</label>
                 <label class="checkbox"><input type="checkbox"value="" id="onions">ONIONS</label>
                 <label class="checkbox"><input type="checkbox"value="" id="nuts">NUTS</label>
-
-            </ul>
+        </ul>
         </div>
     </div>
 
@@ -64,7 +62,6 @@
 
             <div class="checkboxrestrictions">
                <ul>
-<!--                   <li th:each="restriction : ${restrictions}">-->
                    <th:block th:each="restriction : ${restrictions}">
 
                       <label class="checkbox-3"><input type="checkbox"  th:text="${restriction.restrictions}" name="dietaryrestrictionssearches"   th:value="${restriction.restrict_id}"></label>

@@ -41,5 +41,8 @@ public class UserPreference {
     public void setDietaryrestrictionssearches(List<DietaryRestrictionsSearch> dietaryrestrictionssearches) {
         this.dietaryrestrictionssearches = dietaryrestrictionssearches;
     }
+
+    public void setDietaryrestrictionssearches() {
+    }
 }
 

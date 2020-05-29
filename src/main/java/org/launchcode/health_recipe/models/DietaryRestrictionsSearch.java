@@ -15,13 +15,11 @@ public class DietaryRestrictionsSearch {
     @Column
     private String restrictions;
 
-    public List<UserPreference> getPreferences() {
-        return preferences;
-    }
+    @Column
+    private Integer cond_id;
 
-    public void setPreferences(List<UserPreference> preferences) {
-        this.preferences = preferences;
-    }
+    @Column
+    private String health_conds;
 
 
     @ManyToMany(mappedBy = "dietaryrestrictionssearches")
@@ -29,9 +27,11 @@ public class DietaryRestrictionsSearch {
 
     public DietaryRestrictionsSearch() {}
 
-    public DietaryRestrictionsSearch(Integer restrict_id, String restrictions) {
+    public DietaryRestrictionsSearch(Integer restrict_id, String restrictions, Integer cond_id, String health_conds) {
         this.restrict_id = restrict_id;
         this.restrictions = restrictions;
+        this.cond_id = cond_id;
+        this.health_conds = health_conds;
     }
 
     //getters and setters
@@ -50,6 +50,29 @@ public class DietaryRestrictionsSearch {
 
     public void setRestrict_id(Integer restrict_id) {
         this.restrict_id = restrict_id;
+    }
+
+    public Integer getCond_id() {
+        return cond_id;
+    }
+
+    public void setCond_id(Integer cond_id) {
+        this.cond_id = cond_id;
+    }
+
+    public String getHealth_conds() {
+        return health_conds;
+    }
+
+    public void setHealth_conds(String health_conds) {
+        this.health_conds = health_conds;
+    }
+    public List<UserPreference> getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(List<UserPreference> preferences) {
+        this.preferences = preferences;
     }
 
     @Override
