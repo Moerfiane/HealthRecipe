@@ -72,6 +72,7 @@ public class DietaryRestrictionsSearch {
         return Objects.hash(super.hashCode(), getRestrict_id());
     }
 
-
 }
+
+// LisaFix13 push 05/29/2020
 

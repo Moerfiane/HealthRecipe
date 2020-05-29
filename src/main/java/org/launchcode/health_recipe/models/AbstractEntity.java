@@ -50,5 +50,6 @@ public abstract class AbstractEntity {
         return Objects.hash(id);
     }
 
-
 }
+
+// LisaFix13 push 05/29/2020

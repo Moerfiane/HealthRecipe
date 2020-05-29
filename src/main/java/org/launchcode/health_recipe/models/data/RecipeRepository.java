@@ -11,3 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface RecipeRepository extends CrudRepository <Recipe, Integer>, PagingAndSortingRepository<Recipe, Integer> {
     Page<Recipe> findAll(Pageable pageable);
 }
+
+// LisaFix13 push 05/29/2020

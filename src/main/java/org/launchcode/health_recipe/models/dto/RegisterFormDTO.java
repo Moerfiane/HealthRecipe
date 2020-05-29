@@ -49,3 +49,5 @@ public class RegisterFormDTO extends LoginFormDTO {
         return email;
     }
 }
+
+// LisaFix13 push 05/29/2020

@@ -5,8 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface UserPreferenceRepository extends CrudRepository<UserPreference, Integer[]>{
 
-
-//    void save();
-    private void userPreferenceRepository(Integer[] preferenceId) {
-    }
 }
+
+// LisaFix13 push 05/29/2020
