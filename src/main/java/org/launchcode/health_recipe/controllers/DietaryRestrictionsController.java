@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.*;
@@ -31,6 +32,8 @@ public class DietaryRestrictionsController {
 
     private static final String drsSessionKey = "user";
 
+
+
     @GetMapping
     public String displayAllRestrictions(Model model) {
         model.addAttribute("dietaryRestrictionsSearch", new DietaryRestrictionsSearch());
@@ -44,25 +47,37 @@ public class DietaryRestrictionsController {
     @RequestMapping(value = "/selection", method = RequestMethod.POST)
     public String processUserDietaryRestrictions(@ModelAttribute @Valid UserPreference newUserPreference,
                                                  Errors errors, Model model,
-                                                 HttpSession session, User user, Integer cond_id,
-                                                 @RequestParam(required=false) List<Integer> dietaryrestrictionssearches) {
+                                                 HttpSession session, User user, @RequestParam Integer cond_id,
+                                                 @RequestParam List<Integer> dietaryrestrictionssearches) {
 
-        Integer userId = (Integer) session.getAttribute(drsSessionKey);
-        newUserPreference.setUsersId(userId);
+        if (dietaryrestrictionssearches != null) {
+            Integer userId = (Integer) session.getAttribute(drsSessionKey);
+            newUserPreference.setUsersId(userId);
+        }
 
-        List<DietaryRestrictionsSearch> dietaryRestrictionsSearches = (List<DietaryRestrictionsSearch>) dietaryRestrictionsRepository.findAllById(dietaryrestrictionssearches);
-        if (!dietaryRestrictionsSearches.isEmpty()) {
-            newUserPreference.getDietaryrestrictionssearches();
+            if (cond_id != null) {
+                Optional<DietaryRestrictionsSearch> condId = dietaryRestrictionsRepository.findById(cond_id);
+                if (condId.isPresent()) {
+                    DietaryRestrictionsSearch drs = condId.get();
+                    newUserPreference.setDietaryrestrictionssearches();
+                    userPreferenceRepository.save(newUserPreference);
+                }
 
+                    List<DietaryRestrictionsSearch> restObjs = (List<DietaryRestrictionsSearch>) dietaryRestrictionsRepository.findAllById(dietaryrestrictionssearches);
 
+                    if (!restObjs.isEmpty()) {
+                        newUserPreference.getDietaryrestrictionssearches();
+                        newUserPreference.setDietaryrestrictionssearches();
+
+                    }
+                        userPreferenceRepository.save(newUserPreference);
+                        return "redirect:/list/";
+                    }
+            return "redirect:/list";
             }
-        userPreferenceRepository.save(newUserPreference);
 
-        return "redirect:/list/";
     }
 
-
-}
 
 
 

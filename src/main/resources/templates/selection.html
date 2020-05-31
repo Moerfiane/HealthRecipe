@@ -28,8 +28,8 @@
 
                    <div th:each="health_cond : ${health_conds}">
 
-                        <label class="checkbox-1"><input type="checkbox"  th:text="${health_cond.health_conds}" name="dietaryrestrictionssearches"  th:value="${health_cond.cond_id}"></label>
-<!--                        <input type="hidden"  value="${health_cond.cond_id}"/>-->
+                        <label class="checkbox-1"><input type="checkbox" th:text="${health_cond.health_conds}" name="dietaryrestrictionssearches"  th:value="${health_cond.cond_id}"></label>
+                        <input type="hidden" value="${health_cond.cond_id}"/>
         </div>
     </div>
     </div>

@@ -21,7 +21,6 @@ public class DietaryRestrictionsSearch {
     @Column
     private String health_conds;
 
-
     @ManyToMany(mappedBy = "dietaryrestrictionssearches")
     private List<UserPreference> preferences = new ArrayList<>();
 
@@ -65,8 +64,8 @@ public class DietaryRestrictionsSearch {
     }
 
     public void setHealth_conds(String health_conds) {
-        this.health_conds = health_conds;
-    }
+        this.health_conds = health_conds; }
+
     public List<UserPreference> getPreferences() {
         return preferences;
     }
@@ -74,6 +73,7 @@ public class DietaryRestrictionsSearch {
     public void setPreferences(List<UserPreference> preferences) {
         this.preferences = preferences;
     }
+
 
     @Override
     public String toString() {

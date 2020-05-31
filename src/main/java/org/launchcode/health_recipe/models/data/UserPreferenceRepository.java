@@ -9,5 +9,4 @@ import java.util.List;
 public interface UserPreferenceRepository extends CrudRepository<UserPreference, Integer[]>{
 
 
-
 }
