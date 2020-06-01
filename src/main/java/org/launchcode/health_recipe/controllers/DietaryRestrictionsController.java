@@ -33,7 +33,6 @@ public class DietaryRestrictionsController {
     private static final String drsSessionKey = "user";
 
 
-
     @GetMapping
     public String displayAllRestrictions(Model model) {
         model.addAttribute("dietaryRestrictionsSearch", new DietaryRestrictionsSearch());
@@ -47,7 +46,7 @@ public class DietaryRestrictionsController {
     @RequestMapping(value = "/selection", method = RequestMethod.POST)
     public String processUserDietaryRestrictions(@ModelAttribute @Valid UserPreference newUserPreference,
                                                  Errors errors, Model model,
-                                                 HttpSession session, User user, @RequestParam Integer cond_id,
+                                                 HttpSession session, User user, Integer cond_id,
                                                  @RequestParam List<Integer> dietaryrestrictionssearches) {
 
         if (dietaryrestrictionssearches != null) {
@@ -55,28 +54,32 @@ public class DietaryRestrictionsController {
             newUserPreference.setUsersId(userId);
         }
 
-            if (cond_id != null) {
-                Optional<DietaryRestrictionsSearch> condId = dietaryRestrictionsRepository.findById(cond_id);
-                if (condId.isPresent()) {
-                    DietaryRestrictionsSearch drs = condId.get();
-                    newUserPreference.setDietaryrestrictionssearches();
-                    userPreferenceRepository.save(newUserPreference);
-                }
 
-                    List<DietaryRestrictionsSearch> restObjs = (List<DietaryRestrictionsSearch>) dietaryRestrictionsRepository.findAllById(dietaryrestrictionssearches);
+        List<DietaryRestrictionsSearch> drsObj = (List<DietaryRestrictionsSearch>) dietaryRestrictionsRepository.findAllById(dietaryrestrictionssearches);
 
-                    if (!restObjs.isEmpty()) {
-                        newUserPreference.getDietaryrestrictionssearches();
-                        newUserPreference.setDietaryrestrictionssearches();
+//        int i = 0;
+//        while (i < dietaryrestrictionssearches.size()) {
+//            drsObj.get(i);
 
-                    }
-                        userPreferenceRepository.save(newUserPreference);
-                        return "redirect:/list/";
-                    }
-            return "redirect:/list";
-            }
+        for(int i = 0; i < dietaryrestrictionssearches.size(); i++){
+           dietaryrestrictionssearches.get(i);
+
+        }
+          drsObj.equals(dietaryrestrictionssearches);
+
+
+//        if (!restObjs.isEmpty()) {
+            newUserPreference.getDietaryrestrictionssearches();
+            newUserPreference.setDietaryrestrictionssearches(drsObj);
+
+
+            userPreferenceRepository.save(newUserPreference);
+            return "redirect:/list/";
+
+          }
 
     }
+
 
 
 
