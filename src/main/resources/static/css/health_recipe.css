@@ -245,6 +245,7 @@ h2 {
     margin: 0;
 
 }
+
 .card-2 {
   background: url('../images/ingredients.jpg');
     background-position: 0% 0%;
@@ -304,13 +305,13 @@ h2 {
 
   }
 
-  .card-content input {
+.card-content input {
     width: 20px;
     position: relative;
     vertical-align: middle;
   }
 
-  .card-content label {
+.card-content label {
     width: 250px;
     position: relative;
     display: inline-block;

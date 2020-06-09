@@ -15,6 +15,12 @@ public class DietaryRestrictionsSearch {
     @Column
     private String restrictions;
 
+//    @Column
+//    private Integer cond_id;
+
+    @Column
+    private String health_conds;
+
     public List<UserPreference> getPreferences() {
         return preferences;
     }
@@ -28,9 +34,10 @@ public class DietaryRestrictionsSearch {
 
     public DietaryRestrictionsSearch() {}
 
-    public DietaryRestrictionsSearch(Integer restrict_id, String restrictions) {
+    public DietaryRestrictionsSearch(Integer restrict_id, String restrictions, String health_conds) {
         this.restrict_id = restrict_id;
         this.restrictions = restrictions;
+        this.health_conds = health_conds;
     }
 
     //getters and setters
@@ -51,12 +58,35 @@ public class DietaryRestrictionsSearch {
         this.restrict_id = restrict_id;
     }
 
+//    public Integer getCond_id() {
+//        return cond_id;
+//    }
+//
+//    public void setCond_id(Integer cond_id) {
+//        this.cond_id = cond_id;
+//    }
+
+    public String getHealth_conds() {
+        return health_conds;
+    }
+
+    public void setHealth_conds(String health_conds) {
+        this.health_conds = health_conds;
+    }
+
     @Override
     public String toString() {
         return "DietaryRestrictionsSearch{" +
                 "restrictions='" + restrictions + '\'' +
+                ", health_conds='" + health_conds + '\'' +
                 '}';
     }
+//    @Override
+//    public String toString() {
+//        return "DietaryRestrictionsSearch{" +
+//                "restrictions='" + restrictions + '\'' +
+//                '}';
+//    }
 
     @Override
     public boolean equals(Object o) {

@@ -30,12 +30,13 @@ public class DietaryRestrictionsController {
 
     private static final String drsSessionKey = "user";
 
-
     @GetMapping
     public String displayAllRestrictions(Model model) {
         model.addAttribute("dietaryRestrictionsSearch", new DietaryRestrictionsSearch());
         model.addAttribute("title", "All Restrictions");
         model.addAttribute("restrictions", dietaryRestrictionsRepository.findAll());
+        model.addAttribute("Title", "All Health Conditions");
+        model.addAttribute("health_conds", dietaryRestrictionsRepository.findAll());
         return "/selection";
     }
 
@@ -50,6 +51,8 @@ public class DietaryRestrictionsController {
             newUserPreference.setUsersId(userId);
 
             List<DietaryRestrictionsSearch> restObjs = (List<DietaryRestrictionsSearch>) dietaryRestrictionsRepository.findAllById(dietaryrestrictionssearches);
+
+
             if (!restObjs.isEmpty()) {
                 newUserPreference.setDietaryrestrictionssearches(restObjs);
             }
@@ -59,7 +62,7 @@ public class DietaryRestrictionsController {
         }
         return "redirect:/list";
     }
-
 }
+
 
 // LisaFix13 push 05/29/2020
