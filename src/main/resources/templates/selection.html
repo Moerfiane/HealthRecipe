@@ -26,10 +26,11 @@
 
          <ul class="checkboxesconditions"></ul>
 
-                   <div th:each="health_cond : ${health_conds}">
+                   <div th:if="${health_cond.restrict_id <= 103}"
+                           th:each="health_cond : ${health_conds}">
 
-                        <label class="checkbox-1"><input type="checkbox" th:text="${health_cond.health_conds}" name="dietaryrestrictionssearches"  th:value="${health_cond.cond_id}"></label>
-                        <input type="hidden" value="${health_cond.cond_id}"/>
+                        <label class="checkbox-1"><input type="checkbox" th:text="${health_cond.health_conds}" name="dietaryrestrictionssearches"  th:value="${health_cond.restrict_id}"></label>
+                        <input type="hidden" value="${health_cond.restrict_id}"/>
         </div>
     </div>
     </div>
@@ -39,19 +40,16 @@
 
         <div class="card-content">
 
-        <ul class="checkboxesingredients">
+        <ul class="checkboxesingredients"></ul>
 
-                <label class="checkbox"><input type="checkbox"value="" id="pork">PORK</label>
-                <label class="checkbox"><input type="checkbox"value="" id="chicken">CHICKEN</label>
-                <label class="checkbox"><input type="checkbox"value="" id="beef">BEEF</label>
-                <label class="checkbox"><input type="checkbox"value="" id="vegetables">VEGETABLES</label>
-                <label class="checkbox"><input type="checkbox"value="" id="cucumbers">CUCUMBERS</label>
-                <label class="checkbox"><input type="checkbox"value="" id="cheese">CHEESE</label>
-                <label class="checkbox"><input type="checkbox"value="" id="peppers">PEPPERS</label>
-                <label class="checkbox"><input type="checkbox"value="" id="fish">FISH</label>
-                <label class="checkbox"><input type="checkbox"value="" id="onions">ONIONS</label>
-                <label class="checkbox"><input type="checkbox"value="" id="nuts">NUTS</label>
-        </ul>
+            <div th:if="${ingred.restrict_id <= 210}"
+                    th:each="ingred : ${ingred_search}" th:unless="${ingred.ingred_search eq null}">
+
+                <label class="checkbox-2"><input type="checkbox" th:text="${ingred.ingred_search}" name="dietaryrestrictionssearches"  th:value="${ingred.restrict_id}"></label>
+                <input type="hidden" value="${ingred.restrict_id}"/>
+
+
+            </div>
         </div>
     </div>
 
@@ -62,7 +60,8 @@
 
             <div class="checkboxrestrictions">
                <ul>
-                   <th:block th:each="restriction : ${restrictions}">
+                   <th:block th:if="${restriction.restrict_id <= 307}"
+                           th:each="restriction : ${restrictions}" th:unless="${restriction.restrictions eq null}">
 
                       <label class="checkbox-3"><input type="checkbox"  th:text="${restriction.restrictions}" name="dietaryrestrictionssearches"   th:value="${restriction.restrict_id}"></label>
                                                 <input type="hidden"  value="${restriction.restrict_id}"/>
@@ -79,14 +78,15 @@
 
         <div class="card-content">
 
-            <ul class="checkboxescookingtime">
+            <ul class="checkboxescookingtime"></ul>
+                <div th:if="${time.restrict_id <= 404}"
+                     th:each="time : ${cook_time}" th:unless="${time.cook_time eq null or time.cook_time eq ''}">
 
-                <label class="checkbox"><input type="checkbox"value="" id="15min">15 MINUTES</label>
-                <label class="checkbox"><input type="checkbox"value="" id="30min">30 MINUTES</label>
-                <label class="checkbox"><input type="checkbox"value="" id="45min">45 MINUTES</label>
-                <label class="checkbox"><input type="checkbox"value="" id="60min">60 MINUTES</label>
+                    <label class="checkbox-4"><input type="checkbox" th:text="${time.cook_time}" name="dietaryrestrictionssearches" th:value="${time.restrict_id}"></label>
+                    <input type="hidden" value="${time.restrict_id}"/>
 
-            </ul>
+
+                </div>
         </div>
     </div>
 

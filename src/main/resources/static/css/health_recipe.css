@@ -96,6 +96,9 @@ ol,ul {
   background-color: #003e21;
   margin: 4em auto;
   max-width: 1270px
+  border-width: 5px;
+    border-style: solid;
+    border-color: #f8d098;
 }
 
 .grid-container > div {
@@ -106,11 +109,11 @@ ol,ul {
   color: #f8D098;
 }
 
-/*this is view recipes by category page - All, Recipe, Serve Time, Servings */
+/*this is view recipes by category page - All, Recipe, Serve Time, Servings
 .centeredTable th {
   background-color: ForestGreen;
 }
-
+*/
 /*may be only Add Recipe on add.html and possibly Username and Password*/
 h1 {
  text-align: center;
@@ -124,7 +127,7 @@ h1 {
 h2 {
     text-align: center
 }
-
+/*
 td, th {
     padding: 10px;
 }
@@ -178,6 +181,27 @@ div.job-listing {
     border: 1px solid #e4e4e4;
     width: 80%;
     background-color: #e4e4e4;
+}*/
+#searchParent {
+    list-style: none;
+    width: 1270px;
+    overflow: hidden;
+    text-align: center;
+}
+
+#searchParent > li {
+    display: inline-block;
+    align: center;
+    margin-top: 4px;
+    margin-left: 8em;
+    padding-right: 4px;
+}
+
+#searchParent input, textarea {
+    background-color: #f8d098;
+    height: 22px;
+    width: 180px;
+    padding-left: 8px;
 }
 
 /*login page styling*/
@@ -190,6 +214,7 @@ div.job-listing {
   font-weight: bold;
   height: 600px;
 }
+
 .card-image-1 {
    width: 100%;
    position: relative;
@@ -197,7 +222,37 @@ div.job-listing {
    border-radius: 10px;
  }
 
- /*username and password styling*/
+/*cards on login page; pictures are not displaying at this time - don't know why.
+  I just put borders around cards for now*/
+
+.loginCard-1 {
+    background: url('../login/images/avocados.jpg');
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 5em;
+    border-radius: 10px 100px / 120px;
+}
+.loginCard-2 {
+    background: url('../login/images/glutenfree.jpg');
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 5em;
+    margin: 0;
+    border-radius: 10px 100px / 120px;
+    color: #003e21;
+}
+.loginCard-3 {
+    background: url('../login/images/vegincircle.jpg');
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 5em;
+    margin: 0;
+    border-radius: 10px 100px / 120px;
+}
+/*username and password styling*/
  .form-group {
     align: center;
     text-align: center;
@@ -219,36 +274,6 @@ div.job-listing {
      border: hidden;
      border-radius: .5em;
  }
-
-/*cards on login page; pictures are not displaying at this time - don't know why.
-  I just put borders around cards for now*/
-
-.loginCard-1 {
-   background:  #067242 url('../images/avocados.jpg');
-    background-position: 0% 0%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-top: 5em;
-    border-radius: 10px 100px / 120px;
-}
-.loginCard-2 {
-    background: #098b54 url('/images/vegincircle.jpg');
-    background-position: 0% 0%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-top: 5em;
-    margin: 0;
-    border-radius: 10px 100px / 120px;
-}
-.loginCard-3 {
-    background:  #067242 url('/images/glutenfree.jpg');
-    background-position: 0% 0%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-top: 5em;
-    margin: 0;
-    border-radius: 10px 100px / 120px;
-}
 
 /*checkboxes layout*/
 .checkbox-cards {
@@ -308,11 +333,12 @@ div.job-listing {
 .card-3 card-content {
    margin-top: 5rem;
 }
+/*
 .checkboxesrestrictions {
 float:left;
   width:7em;
   margin-right:1em
-}
+}*/
 
 .card-4 {
   background: url('../images/manyclocks.jpg');
@@ -343,6 +369,19 @@ float:left;
   grid-template-row: 4/6;
 
   }
+
+  .card-content input {
+      width: 20px;
+      position: relative;
+      vertical-align: middle;
+    }
+
+  .card-content label {
+      width: 250px;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+    }
   /*footer and buttons; not button for logout. this is on recipes choices page*/
   .footer {
      background-color: #098b54;
@@ -418,6 +457,9 @@ float:left;
   color: #f8D098;
   text-align: center;
   font-size: 125%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #f8d098;
 }
 
 .list-context {
@@ -447,6 +489,48 @@ a, li {
     padding:6px 9px 5px 9px;
     font-weight: bold;
     background: #0950E8;
+}
+
+/*Registration Form*/
+.register-form form {
+    background-color: #067242;
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    grid-gap: 2em;
+    margin: auto;
+    max-width: 1270px;
+    padding-top: 1em;
+    font-family: Montserrat;
+ }
+
+.register-form label {
+    grid-column: 1 / 2;
+    color: #f8d098;
+    text-align: right;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.register-form input {
+    grid-column: 2 / 3;
+    background-color: #f8d098;
+    border: hidden;
+    width: 60%;
+}
+
+.register-form input[type=submit]  {
+    background-color: #003e21;
+     box-shadow: 0 5px #F8D098;
+     width: 95px;
+     height: 25px;
+     border-radius: .5em;
+     text-align: center;
+     text-decoration: none;
+     margin-left: 185px;
+}
+
+.error p {
+    grid-columns: 2 / 3;
 }
 
 img {

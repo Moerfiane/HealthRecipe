@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
 @Entity
 public class DietaryRestrictionsSearch {
 
@@ -16,21 +17,35 @@ public class DietaryRestrictionsSearch {
     private String restrictions;
 
     @Column
-    private Integer cond_id;
+    private String health_conds;
 
     @Column
-    private String health_conds;
+    private String ingred_search;
+
+    @Column
+    private String cook_time;
+
+    public List<UserPreference> getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(List<UserPreference> preferences) {
+        this.preferences = preferences;
+    }
 
     @ManyToMany(mappedBy = "dietaryrestrictionssearches")
     private List<UserPreference> preferences = new ArrayList<>();
 
     public DietaryRestrictionsSearch() {}
 
-    public DietaryRestrictionsSearch(Integer restrict_id, String restrictions, Integer cond_id, String health_conds) {
+    public DietaryRestrictionsSearch(Integer restrict_id, String restrictions, String health_conds,
+                                     String ingred_search, List<UserPreference> preferences, String cook_time) {
         this.restrict_id = restrict_id;
         this.restrictions = restrictions;
-        this.cond_id = cond_id;
         this.health_conds = health_conds;
+        this.ingred_search = ingred_search;
+        this.preferences = preferences;
+        this.cook_time = cook_time;
     }
 
     //getters and setters
@@ -51,34 +66,39 @@ public class DietaryRestrictionsSearch {
         this.restrict_id = restrict_id;
     }
 
-    public Integer getCond_id() {
-        return cond_id;
-    }
-
-    public void setCond_id(Integer cond_id) {
-        this.cond_id = cond_id;
-    }
-
     public String getHealth_conds() {
         return health_conds;
     }
 
     public void setHealth_conds(String health_conds) {
-        this.health_conds = health_conds; }
-
-    public List<UserPreference> getPreferences() {
-        return preferences;
+        this.health_conds = health_conds;
     }
 
-    public void setPreferences(List<UserPreference> preferences) {
-        this.preferences = preferences;
+    public String getIngred_search() {
+        return ingred_search;
     }
 
+    public void setIngred_search(String ingred_search) {
+        this.ingred_search = ingred_search;
+    }
+
+    public String getCook_time() {
+        return cook_time;
+    }
+
+    public void setCook_time(String cook_time) {
+        this.cook_time = cook_time;
+    }
 
     @Override
     public String toString() {
         return "DietaryRestrictionsSearch{" +
-                "restrictions='" + restrictions + '\'' +
+                "restrict_id=" + restrict_id +
+                ", restrictions='" + restrictions + '\'' +
+                ", health_conds='" + health_conds + '\'' +
+                ", ingred_search='" + ingred_search + '\'' +
+                ", cook_time='" + cook_time + '\'' +
+                ", preferences=" + preferences +
                 '}';
     }
 
@@ -86,16 +106,18 @@ public class DietaryRestrictionsSearch {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof DietaryRestrictionsSearch)) return false;
-        if (!super.equals(o)) return false;
         DietaryRestrictionsSearch that = (DietaryRestrictionsSearch) o;
-        return getRestrict_id() == that.getRestrict_id();
+        return Objects.equals(getRestrict_id(), that.getRestrict_id()) &&
+                Objects.equals(getRestrictions(), that.getRestrictions()) &&
+                Objects.equals(getHealth_conds(), that.getHealth_conds()) &&
+                Objects.equals(getIngred_search(), that.getIngred_search()) &&
+                Objects.equals(getCook_time(), that.getCook_time()) &&
+                Objects.equals(getPreferences(), that.getPreferences());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getRestrict_id());
+        return Objects.hash(getRestrict_id(), getRestrictions(), getHealth_conds(),
+                getIngred_search(), getCook_time(), getPreferences());
     }
-
-
 }
-

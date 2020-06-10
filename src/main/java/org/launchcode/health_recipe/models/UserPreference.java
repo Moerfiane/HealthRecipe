@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,8 +40,4 @@ public class UserPreference {
     public void setDietaryrestrictionssearches(List<DietaryRestrictionsSearch> dietaryrestrictionssearches) {
         this.dietaryrestrictionssearches = dietaryrestrictionssearches;
     }
-
-    public void setDietaryrestrictionssearches() {
-    }
 }
-
