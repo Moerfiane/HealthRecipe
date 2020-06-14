@@ -6,8 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -37,8 +36,8 @@ public class Recipe extends AbstractEntity {
         this.steps = stepsToRecipe;
     }
 
-    @OneToMany
-    public List<Ingredient> ingredients = new ArrayList<>();
+    @OneToMany(mappedBy = "recipe")
+    private Collection<Ingredient> ingredient;
 
 
     public String getRecipeName() {
@@ -85,5 +84,13 @@ public class Recipe extends AbstractEntity {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), recipeName);
+    }
+
+    public Collection<Ingredient> getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(Collection<Ingredient> ingredient) {
+        this.ingredient = ingredient;
     }
 }

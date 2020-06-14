@@ -21,9 +21,6 @@ public class Ingredient extends AbstractEntity {
     @Size(min = 3,max = 255, message = "Ingredient must be only 3-255 characters.  Please try again.")
     private String ingredient;
 
-//    @ManyToOne(/*mappedBy = "recipe"*/)
-////    @JoinColumn
-//    public String name = this.getName();
 
     public Ingredient() {}
 
