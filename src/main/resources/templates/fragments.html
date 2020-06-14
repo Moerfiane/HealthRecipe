@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:fragment="head">
-    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"/>
-    <title>Health Recipes</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"/>
+        <title>Health Recipes</title>
 
     <link th:href="@{/css/health_recipe.css}" rel="stylesheet"/>
+
 
     <title th:text="'health_recipe' + ${title == null ? '' : ' :: ' + title}">Health Recipe</title>
 </head>
@@ -12,34 +13,34 @@
 <body>
 
 <div th:fragment="page-header1" class="site-content">
-        <section class="nav-scope">
-            <ul class="nav-section">
-                <li class="nav-logo">
-                    <a th:href="@{/admin-home}" aria-label="Health Recipe">Health Recipe
-                    </a>
-                    <a th:href="@{/logout}">
-                        <button type="button" class="nav-btn btn-primary btn-lg" style="float:right;">LogOut</button>
-                    </a>
+    <section class="nav-scope">
+        <ul class="nav-section">
+            <li class="nav-logo">
+                <a th:href="@{/admin-home}" aria-label="Health Recipe">Health Recipe
+                </a>
+                <a th:href="@{/logout}">
+                    <button type="button" class="nav-btn btn-primary btn-lg" style="float:right;">LogOut</button>
+                </a>
+            </li>
+            <div class="nav-links">
+                <li class="nav-recipes">
+                    <a th:href="@{/admin/list}">Recipes</a>
                 </li>
-                <div class="nav-links">
-                    <li class="nav-recipes">
-                        <a th:href="@{/admin/list}">Recipes</a>
-                    </li>
-                    <li class="nav-search">
-                        <a th:href="@{/admin/search}">Search</a>
-                    </li>
-                    <li class="nav-add-recipes">
-                        <a th:href="@{/add}">Add Recipes</a>
-                    </li>
-                    <li class="nav-add-ingredient">
-                        <a th:href="@{/ingredient/add}">Add Ingredient</a>
-                    </li>
-                    <li class="nav-add-admin">
-                        <a th:href="@{/admin/add-admin_user}">Add Admin User</a>
-                    </li>
-                </div>
-            </ul>
-        </section>
+                <li class="nav-search">
+                    <a th:href="@{/admin/search}">Search</a>
+                </li>
+                <li class="nav-add-recipes">
+                    <a th:href="@{/add}">Add Recipes</a>
+                </li>
+                <li class="nav-add-ingredient">
+                    <a th:href="@{/ingredient/add}">Add Ingredient</a>
+                </li>
+                <li class="nav-add-admin">
+                    <a th:href="@{/admin/add-admin_user}">Add Admin User</a>
+                </li>
+            </div>
+        </ul>
+    </section>
 
 </div>
 

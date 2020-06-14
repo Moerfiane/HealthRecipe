@@ -3,10 +3,12 @@ package org.launchcode.health_recipe.models;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User extends AbstractEntity {
@@ -21,7 +23,6 @@ public class User extends AbstractEntity {
     @NotNull
     private String pwHash;
 
-//    @NotNull
     private int access;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -33,7 +34,7 @@ public class User extends AbstractEntity {
         this.email = email;
         this.username = username;
         this.pwHash = encoder.encode(password);
-        this.access =access;
+        this.access = access;
     }
 
     public String getUsername() {
