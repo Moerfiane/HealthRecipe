@@ -3,15 +3,17 @@ package org.launchcode.health_recipe.models;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class User extends AbstractEntity {
+
+    @NotBlank
+    @Size(max = 150)
+    private String name;
 
     @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
     @Size(min=9)
@@ -30,11 +32,21 @@ public class User extends AbstractEntity {
     public User() {}
 
     public User(String name, String email, String username, String password, int access) {
-        super.setName(name);
+        super();
+        this.name = name;
         this.email = email;
         this.username = username;
         this.pwHash = encoder.encode(password);
         this.access = access;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUsername() {

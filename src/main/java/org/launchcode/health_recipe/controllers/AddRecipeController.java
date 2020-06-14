@@ -3,7 +3,6 @@ package org.launchcode.health_recipe.controllers;
 
 import org.launchcode.health_recipe.models.Recipe;
 import org.launchcode.health_recipe.models.data.RecipeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -18,8 +17,11 @@ import javax.validation.Valid;
 @RequestMapping
 public class AddRecipeController {
 
-    @Autowired
-    private RecipeRepository recipeRepository;
+    private final RecipeRepository recipeRepository;
+
+    public AddRecipeController(RecipeRepository recipeRepository) {
+        this.recipeRepository = recipeRepository;
+    }
 
 
     @GetMapping("add")

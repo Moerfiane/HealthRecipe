@@ -1,14 +1,21 @@
 package org.launchcode.health_recipe.models;
 
-import org.springframework.context.annotation.Primary;
+import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Recipe extends AbstractEntity {
+
+    @NotNull(message = "Please give recipe a name.")
+    @NaturalId
+    private String recipeName;
 
     @NotNull (message = "Servings?")
     private String servings;
@@ -22,15 +29,25 @@ public class Recipe extends AbstractEntity {
 
     public Recipe() {}
 
-    public Recipe(String servings, String timeToServe, String stepsToRecipe) {
+    public Recipe(String recipeName, String servings, String timeToServe, String stepsToRecipe) {
         super();
+        this.recipeName = recipeName;
         this.servings = servings;
         this.serve_time = timeToServe;
         this.steps = stepsToRecipe;
     }
 
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany
     public List<Ingredient> ingredients = new ArrayList<>();
+
+
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
+    }
 
     public String getServings() {
         return servings;
@@ -54,5 +71,19 @@ public class Recipe extends AbstractEntity {
 
     public void setSteps(String steps) {
         this.steps = steps;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Recipe recipe = (Recipe) o;
+        return recipeName.equals(recipe.recipeName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), recipeName);
     }
 }

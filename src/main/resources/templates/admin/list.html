@@ -58,7 +58,7 @@
         <a th:href="@{/admin/list/recipes(column='All',value='View All')}">View All</a>
     </div>
     <div class="list2" th:each="recipe : ${recipes}">
-        <a th:href="@{/admin/list/recipes(column=name,value=${recipe.name})}" th:text="${recipe.name}"></a>
+        <a th:href="@{/admin/list/recipes(column=name,value=${recipe.recipeName})}" th:text="${recipe.recipeName}"></a>
         <div class="list-context">
             <p th:text="${'Serve Time: ' + recipe.serve_time}"></p>
             <p th:text="${'Servings: ' + recipe.servings}"></p>

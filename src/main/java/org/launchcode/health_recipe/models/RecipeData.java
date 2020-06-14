@@ -103,7 +103,7 @@ public class RecipeData {
     public static String getFieldValue(Recipe recipe, String fieldName){
         String theValue;
         if (fieldName.equals("name")){
-            theValue = recipe.getName();
+            theValue = recipe.getRecipeName();
         } else {
             theValue = recipe.toString();
         }
@@ -124,7 +124,7 @@ public class RecipeData {
 
         for (Recipe recipe : allRecipes) {
             for (String value : allValues) {
-                if (recipe.getName().toLowerCase().contains(value.toLowerCase())) {
+                if (recipe.getRecipeName().toLowerCase().contains(value.toLowerCase())) {
                     results.add(recipe);
                 } else if (recipe.toString().toLowerCase().contains(value.toLowerCase())) {
                     results.add(recipe);
