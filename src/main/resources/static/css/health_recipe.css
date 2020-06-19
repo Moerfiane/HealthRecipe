@@ -22,6 +22,7 @@ body {
 }
 
 ol,ul {
+    list-style: 0;
     margin: 0;
     padding: 0
 }
@@ -94,10 +95,10 @@ ol,ul {
   grid-gap: 10px;
   background-color: #003e21;
   margin: 4em auto;
-  max-width: 1270px;
+  max-width: 1270px
   border-width: 5px;
-  border-style: solid;
-  border-color: #f8d098;
+    border-style: solid;
+    border-color: #f8d098;
 }
 
 .grid-container > div {
@@ -113,7 +114,6 @@ ol,ul {
   background-color: ForestGreen;
 }
 */
-
 /*may be only Add Recipe on add.html and possibly Username and Password*/
 h1 {
  text-align: center;
@@ -127,7 +127,61 @@ h1 {
 h2 {
     text-align: center
 }
+/*
+td, th {
+    padding: 10px;
+}
 
+th {
+    text-align: center;
+}
+
+td {
+    vertical-align: top;
+}
+
+tr:nth-child(odd) {
+    background-color: #e4e4e4;
+}
+
+.centeredTable {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.job-listing {
+    margin: 30px auto;
+    border: 1px solid #e4e4e4;
+    width: 80%;
+}
+
+table.job-listing td:first-child {
+    font-weight: bold;
+}
+
+table.job-listing td:last-child {
+    width: 80%;
+}
+
+label {
+    display: block;
+    margin-left: 10px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.centeredTable {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.job-listing {
+    border: 1px solid #e4e4e4;
+    width: 80%;
+    background-color: #e4e4e4;
+}*/
 #searchParent {
     list-style: none;
     width: 1270px;
@@ -153,13 +207,20 @@ h2 {
 /*login page styling*/
 .login-cards {
     margin: 4em auto;
-    max-width: 1000px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 1em;
-    font-weight: bold;
-    height: 600px;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1em;
+  font-weight: bold;
+  height: 600px;
 }
+
+.card-image-1 {
+   width: 100%;
+   position: relative;
+   display: block;
+   border-radius: 10px;
+ }
 
 /*cards on login page; pictures are not displaying at this time - don't know why.
   I just put borders around cards for now*/
@@ -180,8 +241,8 @@ h2 {
     padding-top: 5em;
     margin: 0;
     border-radius: 10px 100px / 120px;
+    color: #003e21;
 }
-
 .loginCard-3 {
     background: url('../login/images/vegincircle.jpg');
     background-position: 0% 0%;
@@ -191,14 +252,13 @@ h2 {
     margin: 0;
     border-radius: 10px 100px / 120px;
 }
-
 /*username and password styling*/
  .form-group {
     align: center;
     text-align: center;
     font-size: 2rem;
     font-weight: bold;
-    margin-top: 1em;
+
  }
 
  .form-group label {
@@ -209,7 +269,7 @@ h2 {
  /*this controls the username and password boxes user types in*/
  .form-control {
     background-color: #f8D098;
-     width: 50%;
+     width: 85%;
      padding: 1.3em;
      border: hidden;
      border-radius: .5em;
@@ -266,12 +326,19 @@ h2 {
     padding: 0;
     margin: 0;
 }
+
 .card-3 p {
  color: DarkGreen;
 }
 .card-3 card-content {
    margin-top: 5rem;
 }
+/*
+.checkboxesrestrictions {
+float:left;
+  width:7em;
+  margin-right:1em
+}*/
 
 .card-4 {
   background: url('../images/manyclocks.jpg');
@@ -303,6 +370,18 @@ h2 {
 
   }
 
+  .card-content input {
+      width: 20px;
+      position: relative;
+      vertical-align: middle;
+    }
+
+  .card-content label {
+      width: 250px;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+    }
   /*footer and buttons; not button for logout. this is on recipes choices page*/
   .footer {
      background-color: #098b54;
@@ -311,7 +390,6 @@ h2 {
      width: 1270px;
      text-align: center;
   }
-
 .btn {
     color: #F8D098;
     background-color: #003e21;
@@ -328,29 +406,27 @@ h2 {
 .loginbtn {
   background-color: #003e21;
   box-shadow: 0 5px #F8D098;
-  width: 50%;
+  width: 80%;
   padding: 1em;
   border-radius: .5em;
-  margin-left: 70px;
-
+  margin-left:  30px;
 }
 /*registration button*/
 .registerbtn {
    background-color: #003e21;
    box-shadow: 0 5px #F8D098;
-   width: 50%;
+   width: 70%;
    padding: 1em;
    border-radius: .5em;
-   margin-top: 120px;
+   margin-top; 15px;
    margin-left: 5px;
    text-decoration: none;
 }
-
 /*go to recipe choices page button*/
 .optionsbtn {
   background-color: #003e21;
      box-shadow: 0 5px #F8D098;
-     width: 50%;
+     width: 70%;
      padding: 1em;
      border-radius: .5em;
      margin-left: 3px;
@@ -374,7 +450,7 @@ h2 {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     margin: 2em auto;
     width: 1270px;
-}
+   }
 
 .list-container > div {
   background-color: #067242;
@@ -461,4 +537,3 @@ img {
     height: 200px;
     width: auto;
 }
-

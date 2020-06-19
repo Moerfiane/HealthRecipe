@@ -85,6 +85,7 @@ public class AuthenticationController {
         setUserInSession(request.getSession(), newUser);
 
         return "redirect:/login";
+
     }
 
     @GetMapping("adminregister")
@@ -161,14 +162,14 @@ public class AuthenticationController {
         if (!theUser.isMatchingPassword(password)) {
             errors.rejectValue("password", "password.invalid", "Invalid password");
             model.addAttribute("title", "Log In");
-            return "login";
+            return "selection";
         }
 
         setUserInSession(request.getSession(), theUser);
         if (theUser.getAccess() == 1) {
             return "redirect:/admin-home";
         }
-        return "redirect:/list";
+        return "redirect:";
     }
 
     @GetMapping("/logout")

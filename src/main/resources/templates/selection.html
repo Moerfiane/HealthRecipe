@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+<!--    <meta charset="utf-8">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<script>
+</script>
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+    <h2>MAKE YOUR RECIPE CHOICES AND CLICK GET RESULTS</h2>
+
+</div>
+
+<form action="#"  th:action="@{/selection}" th:object="${dietaryrestrictionssearches}" method="POST">
+<div class="checkbox-cards" >
+    <div class="card-1 card-image">
+
+        <p>HEALTH CONDITION</p>
+
+        <div class="card-content">
+
+         <ul class="checkboxesconditions"></ul>
+
+                   <div th:if="${health_cond.restrict_id <= 103}"
+                           th:each="health_cond : ${health_conds}">
+
+                        <label class="checkbox-1"><input type="checkbox" th:text="${health_cond.health_conds}" name="dietaryrestrictionssearches"  th:value="${health_cond.restrict_id}"></label>
+                        <input type="hidden" value="${health_cond.restrict_id}"/>
+        </div>
+    </div>
+    </div>
+
+    <div class="card-2 card-image">
+        <p>INGREDIENT SEARCH</p>
+
+        <div class="card-content">
+
+        <ul class="checkboxesingredients"></ul>
+
+            <div th:if="${ingred.restrict_id <= 210}"
+                    th:each="ingred : ${ingred_search}" th:unless="${ingred.ingred_search eq null}">
+
+                <label class="checkbox-2"><input type="checkbox" th:text="${ingred.ingred_search}" name="dietaryrestrictionssearches"  th:value="${ingred.restrict_id}"></label>
+                <input type="hidden" value="${ingred.restrict_id}"/>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="card-3 card-image">
+        <p>DIETARY RESTRICTIONS</p>
+
+        <div class="card-content">
+
+            <div class="checkboxrestrictions">
+               <ul>
+                   <th:block th:if="${restriction.restrict_id <= 307}"
+                           th:each="restriction : ${restrictions}" th:unless="${restriction.restrictions eq null}">
+
+                      <label class="checkbox-3"><input type="checkbox"  th:text="${restriction.restrictions}" name="dietaryrestrictionssearches"   th:value="${restriction.restrict_id}"></label>
+                                                <input type="hidden"  value="${restriction.restrict_id}"/>
+                   </th:block>
+               </ul>
+
+                    </div>
+
+        </div>
+    </div>
+
+    <div class="card-4 card-image">
+        <p>COOKING TIME</p>
+
+        <div class="card-content">
+
+            <ul class="checkboxescookingtime"></ul>
+                <div th:if="${time.restrict_id <= 404}"
+                     th:each="time : ${cook_time}" th:unless="${time.cook_time eq null or time.cook_time eq ''}">
+
+                    <label class="checkbox-4"><input type="checkbox" th:text="${time.cook_time}" name="dietaryrestrictionssearches" th:value="${time.restrict_id}"></label>
+                    <input type="hidden" value="${time.restrict_id}"/>
+
+
+                </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="footer">
+    <button id="filterResults" class="btn btn-primary btn-lg" type="submit">Get Results</button>
+</div>
+</form>
+</body>
+</html>
