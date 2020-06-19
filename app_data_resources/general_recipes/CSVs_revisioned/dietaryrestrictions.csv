@@ -1,0 +1,25 @@
+restrict_id,restrictions,health_conds,ingred_search,cook_time
+101,NULL,Diabetes,NULL,NULL
+102,NULL,"High Blood  Pressure",NULL,NULL
+103,NULL,"Celiac Disease",NULL,NULL
+201,NULL,NULL,Pork,NULL
+202,NULL,NULL,Chicken,NULL
+203,NULL,NULL,Beef,NULL
+204,NULL,NULL,Cucumbers,NULL
+205,NULL,NULL,Cheese,NULL
+206,NULL,NULL,Peppers,NULL
+207,NULL,NULL,Fish,NULL
+208,NULL,NULL,Onions,NULL
+209,NULL,NULL,Nuts,NULL
+210,NULL,NULL,Vegetables,NULL
+301,"No Carbohydrates",NULL,NULL,NULL
+302,"No Dairy",NULL,NULL,NULL
+303,"No Saturated Fats",NULL,NULL,NULL
+304,"No Sodium",NULL,NULL,NULL
+305,"Gluten Free",NULL,NULL,NULL
+306,"Nitrate Free",NULL,NULL,NULL
+307,"Sodium Free",,NULL,
+401,NULL,NULL,NULL,"15 Minutes"
+402,NULL,NULL,NULL,"30 Minutes"
+403,NULL,NULL,NULL,"45 Minutes"
+404,NULL,NULL,NULL,"60 Minutes"

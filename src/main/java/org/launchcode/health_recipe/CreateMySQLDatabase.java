@@ -8,8 +8,9 @@ import java.sql.PreparedStatement;
 
 public class CreateMySQLDatabase {
     public static void main(String[] args) {
-        // Defines the JDBC URL. As you can see, we are not specifying
-        // the database name in the URL.
+        // Defines the JDBC URL.
+        // This is a JawsDB hosted on AmazonAWS, care of Michael Banvard. He's willing to keep
+        // it up for a while, to keep things moving forward.
         String url = "jdbc:mysql://spyd1o2a1ywz4gbx:kdikqyzoq9kbmlro@qn66usrj1lwdk1cc.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/zjn0rnwkv03hnqw6?serverTimezone=UTC";
 
         // Defines username and password to connect to database server.
