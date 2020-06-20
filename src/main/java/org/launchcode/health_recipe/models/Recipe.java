@@ -6,13 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 public class Recipe extends AbstractEntity {
 
-    @NotNull(message = "Please give recipe a name.")
     @NaturalId
     private String recipeName;
 
@@ -36,9 +36,8 @@ public class Recipe extends AbstractEntity {
         this.steps = stepsToRecipe;
     }
 
-    @OneToMany(mappedBy = "recipe")
-    private Collection<Ingredient> ingredient;
-
+    @OneToMany
+    public List<Ingredient> ingredients = new ArrayList<>();
 
     public String getRecipeName() {
         return recipeName;
@@ -86,11 +85,5 @@ public class Recipe extends AbstractEntity {
         return Objects.hash(super.hashCode(), recipeName);
     }
 
-    public Collection<Ingredient> getIngredient() {
-        return ingredient;
-    }
 
-    public void setIngredient(Collection<Ingredient> ingredient) {
-        this.ingredient = ingredient;
-    }
 }
