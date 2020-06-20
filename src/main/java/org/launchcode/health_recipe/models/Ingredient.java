@@ -1,6 +1,8 @@
 package org.launchcode.health_recipe.models;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -11,9 +13,14 @@ public class Ingredient extends AbstractEntity {
     @Size(min = 3,max = 150, message = "Ingredient must be only 3-150 characters.  Please try again.")
     public String ingredient;
 
-    public Ingredient(String ingredient){
+    @ManyToOne
+    @JoinColumn
+    private Recipe recipe;
+
+    public Ingredient(Recipe recipe, String ingredient){
         super();
         this.ingredient = ingredient;
+        this.recipe = recipe;
     }
 
     public Ingredient() {}
@@ -24,5 +31,13 @@ public class Ingredient extends AbstractEntity {
 
     public void setIngredient(String ingredient) {
         this.ingredient = ingredient;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 }

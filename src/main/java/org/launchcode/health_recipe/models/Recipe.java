@@ -2,7 +2,10 @@ package org.launchcode.health_recipe.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Recipe extends AbstractEntity{
@@ -26,6 +29,9 @@ public class Recipe extends AbstractEntity{
         this.serve_time = timeToServe;
         this.steps = stepsToRecipe;
     }
+
+    @OneToMany(mappedBy = "recipe")
+    private final List<Ingredient> ingredients = new ArrayList<>();
 
 
     public String getServings() {
