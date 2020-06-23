@@ -1,27 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"/>
-    <link th:href="@{/css/health_recipe.css}" rel="stylesheet"/>
 
-    <title>Health Recipes</title>
+<head th:replace="fragments :: head">
 </head>
 
 <body>
 
-<div class="site-content">
-    <section class="nav-scope">
-        <ul class="nav-section">
-            <li class="nav-logo">
-                <a th:href="@{/list}" aria-label="Health Recipe">Health Recipe
-                </a>
-            </li>
-        </ul>
-    </section>
-</div>
+<div th:replace="fragments :: page-header"></div>
 
 <div class="login-cards">
-    <div class="loginCard-1 card-image1">
+    <div class="loginCard-1 card-image-1">
         <!--                 <img th:src="@{../images/avocados.jpg}" alt="none displayed"/>-->
 
         <div class="loginForm">
@@ -47,7 +35,11 @@
         <div class="form-group">
 
             <p>Don't Have An Account?     </p>
-
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <a href="/register" class="btn btn-primary registerbtn">Register</a>
         </div>
     </div>
@@ -55,10 +47,9 @@
         <div class="form-group">
 
             <p>Choose Recipe Options<br>Without Registering or Login </p>
-
-            <a href="/list" class="btn btn-primary optionsbtn">Click Here.</a>
             <br>
             <br>
+            <a href="/selection" class="btn btn-primary optionsbtn">Click Here.</a>
             </form>
         </div>
     </div>
