@@ -17,6 +17,7 @@ public class Ingredient extends AbstractEntity {
 //    Instantiating the above Class inside a Class, created the table "recipe_ingredients."
 
     @NaturalId
+    @Column(unique=true)
     @NotBlank(message = "Please provide Recipe name.")
     @Size(min = 3,max = 255, message = "Recipe must be only 3-255 characters.  Please try again.")
     private String recipe_name;
@@ -24,7 +25,6 @@ public class Ingredient extends AbstractEntity {
     @NotBlank(message = "Please provide Recipe ingredient.")
     @Size(min = 3,max = 255, message = "Ingredient must be only 3-255 characters.  Please try again.")
     private String ingredient;
-
 
     public Ingredient() {}
 
