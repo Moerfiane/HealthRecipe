@@ -4,29 +4,32 @@ import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import org.launchcode.health_recipe.models.Ingredient;
 
 @Entity
 public class Recipe extends AbstractEntity {
 
-    @NaturalId
+    @NaturalId()
+    @Column(unique=true)
     private String recipeName;
 
-    @NotNull (message = "Servings?")
+    @NotNull(message = "Servings?")
     private String servings;
 
-    @NotNull (message = "Serve time?")
+    @NotNull(message = "Serve time?")
     private String serve_time;
 
-    @NotNull (message = "Recipe steps?")
-    @Column(length=15500)
+    @NotNull(message = "Recipe steps?")
+    @Column(length = 15500)
     private String steps;
 
-    public Recipe() {}
+    public Recipe() {
+    }
 
     public Recipe(String recipeName, String servings, String timeToServe, String stepsToRecipe) {
         super();
@@ -36,8 +39,19 @@ public class Recipe extends AbstractEntity {
         this.steps = stepsToRecipe;
     }
 
-    @OneToMany
-    public List<Ingredient> ingredients = new ArrayList<>();
+    //    @OneToMany
+//    @NotNull
+//    public ArrayList<String> IngredientList() {
+//        ArrayList<String> allIngredients = new ArrayList<String>();
+//        allIngredients = null;
+
+//        for (ingredient : ingredients) {
+//            if (ingredient.recipe_name == this.recipeName) {
+//                allIngredients.add(ingredient.name)
+//            };
+//        }
+//        return allIngredients;
+//    }
 
     public String getRecipeName() {
         return recipeName;
