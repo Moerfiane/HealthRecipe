@@ -20,7 +20,7 @@ public class Ingredient extends AbstractEntity {
     @Column(unique=true)
     @NotBlank(message = "Please provide Recipe name.")
     @Size(min = 3,max = 255, message = "Recipe must be only 3-255 characters.  Please try again.")
-    private String recipe_name;
+    public String recipe_name;
 
     @NotBlank(message = "Please provide Recipe ingredient.")
     @Size(min = 3,max = 255, message = "Ingredient must be only 3-255 characters.  Please try again.")

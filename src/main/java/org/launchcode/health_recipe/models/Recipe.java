@@ -4,12 +4,13 @@ import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+//import javax.persistence.FetchType;
+//import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import org.launchcode.health_recipe.models.Ingredient;
+//import org.launchcode.health_recipe.models.Ingredient;
 
 @Entity
 public class Recipe extends AbstractEntity {
@@ -37,21 +38,28 @@ public class Recipe extends AbstractEntity {
         this.servings = servings;
         this.serve_time = timeToServe;
         this.steps = stepsToRecipe;
+        this.IngredientList();
     }
 
     //    @OneToMany
-//    @NotNull
-//    public ArrayList<String> IngredientList() {
-//        ArrayList<String> allIngredients = new ArrayList<String>();
+    @NotNull
+    public ArrayList<String> IngredientList() {
+        ArrayList<String> allIngredients = new ArrayList<>();
 //        allIngredients = null;
 
-//        for (ingredient : ingredients) {
-//            if (ingredient.recipe_name == this.recipeName) {
-//                allIngredients.add(ingredient.name)
-//            };
-//        }
-//        return allIngredients;
-//    }
+//        @ManyToMany
+//                (mappedBy="ingredient", fetch= FetchType.LAZY)
+        List<Ingredient> ingredients = new ArrayList<>();
+        ingredients.add(/* This is where we need to add filling the ArrayList
+        with Ingredients with the appropriate foreign key*/);
+
+        for (Ingredient ingredient : ingredients) {
+            if (ingredient.recipe_name.equals(this.recipeName)) {
+                allIngredients.add(ingredient.recipe_name);
+            }
+        }
+        return allIngredients;
+    }
 
     public String getRecipeName() {
         return recipeName;
