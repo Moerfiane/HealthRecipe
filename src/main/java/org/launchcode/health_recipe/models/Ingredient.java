@@ -13,14 +13,14 @@ public class Ingredient extends AbstractEntity {
     @Size(min = 3,max = 150, message = "Ingredient must be only 3-150 characters.  Please try again.")
     public String ingredient;
 
-    @ManyToOne
+//    @ManyToOne
     @JoinColumn
-    private Recipe recipe;
+    private String recipe_name;
 
-    public Ingredient(Recipe recipe, String ingredient){
+    public Ingredient(String recipe, String ingredient){
         super();
         this.ingredient = ingredient;
-        this.recipe = recipe;
+        this.recipe_name = recipe;
     }
 
     public Ingredient() {}
@@ -33,11 +33,11 @@ public class Ingredient extends AbstractEntity {
         this.ingredient = ingredient;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
+    public String getRecipe() {
+        return recipe_name;
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public void setRecipe(String recipe) {
+        this.recipe_name = recipe;
     }
 }
