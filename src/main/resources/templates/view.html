@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
+<head th:replace="fragments :: head">
+    <title>Recipe View</title>
+</head>
+
 
 <body>
 
@@ -8,20 +11,22 @@
 
 <div class="grid-container" th:each="recipe : ${recipes}">
     <p>
-        <a th:href="@{'/list/' + ${recipe.id}}"></a>
+        <a th:href="@{'/list/' + ${recipes.id}}"></a>
     </p>
     <div class="item1">
-        <p th:text="${recipe.name}"></p>
+        <p th:text="${recipes.name}"></p>
     </div>
     <div class="item2">Total Time
-        <p th:text="${recipe.serve_time}"></p>
+        <p th:text="${recipes.serve_time}"></p>
     </div>
     <div class="item3">Servings
-        <p th:text="${recipe.servings}"></p>
+        <p th:text="${recipes.servings}"></p>
     </div>
-    <div class="item4">Ingredients</div>
+    <div class="item4">Ingredients
+        <p th:text="${recipes.ingredients}"></p>
+    </div>
     <div class="item5">Directions
-        <p th:text="${recipe.steps}"></p>
+        <p th:text="${recipes.steps}"></p>
     </div>
 </div>
 
