@@ -10,8 +10,10 @@
 <nav th:replace="fragments :: page-header"></nav>
 
 <div class="grid-container" th:each="recipe : ${recipes}">
-    <p>
-        <a th:href="@{'/list/' + ${recipes.id}}"></a>
+     <p>
+         <!--I do not know why these Thymeleaf references are working with the plural reference, but
+            every line required changing 'recipe' to 'recipes'-->
+         <a th:href="@{'/list/' + ${recipes.id}}"></a>
     </p>
     <div class="item1">
         <p th:text="${recipes.name}"></p>
@@ -23,7 +25,7 @@
         <p th:text="${recipes.servings}"></p>
     </div>
     <div class="item4">Ingredients
-        <p th:text="${recipes.ingredients}"></p>
+          <p th:text="${recipes.ingredients}"></p>
     </div>
     <div class="item5">Directions
         <p th:text="${recipes.steps}"></p>

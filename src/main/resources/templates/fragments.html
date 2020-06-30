@@ -7,7 +7,9 @@
     <link th:href="@{/css/health_recipe.css}" rel="stylesheet"/>
 
 
-    <title th:text="'health_recipe' + ${title == null ? '' : ' :: ' + title}">Health Recipe</title>
+    <title th:text="'health_recipe'">Health Recipe</title>
+    <!--Pulled this out of above line, after second single quote-->
+    <!--+ ${title == null ? '' : ' :: ' + title}-->
 </head>
 
 <body>
