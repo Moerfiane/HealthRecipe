@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
 <!--    <meta charset="utf-8">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,8 @@
 
 </div>
 
-<form action="#"  th:action="@{/selection}" th:object="${dietaryrestrictionssearches}" method="POST">
+<form action="#"  th:action="@{/selection}" th:object="${dietaryRestrictionsSearch}" method="POST">
+    <!--Changed object from 'dietaryrestrictionssearhes'-->
 <div class="checkbox-cards" >
     <div class="card-1 card-image">
 

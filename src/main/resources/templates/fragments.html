@@ -7,7 +7,8 @@
     <link th:href="@{/css/health_recipe.css}" rel="stylesheet"/>
 
 
-    <title th:text="'health_recipe' + ${title == null ? '' : ' :: ' + title}">Health Recipe</title>
+    <title th:text="'health_recipe'">Health Recipe</title>
+    <!--Removed [ + ${title == null ? '' : ' :: ' + title}] from above line, due to redlines on 'title'-->
 </head>
 
 <body>

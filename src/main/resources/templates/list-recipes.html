@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
 </head>
 <body>
@@ -17,6 +17,8 @@
         <p th:text="${recipe.servings}"></p>
     </div>
     <div class="item4">Ingredients</div>
+        <p th:text="${recipe.ingredients}"></p>
+    <!--Added 'recipe.ingredients' as a placeholder.-->
     <div class="item5">Directions
         <p th:text="${recipe.steps}"></p>
     </div>
