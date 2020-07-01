@@ -29,9 +29,9 @@ public class Recipe extends AbstractEntity {
         this.steps = stepsToRecipe;
     }
 
-    @OneToMany(mappedBy = "recipe")
-    public List<Ingredient> ingredients = new ArrayList<>();
-
+//    @OneToMany(mappedBy = "ingredient.ingredient")
+//    public List<Ingredient> ingredients = new ArrayList<>();
+//  Chasing Whitelabel 500 error by simplifying Recipe.java
     public String getServings() {
         return servings;
     }
