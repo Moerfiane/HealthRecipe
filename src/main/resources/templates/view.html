@@ -7,11 +7,12 @@
 <nav th:replace="fragments :: page-header"></nav>
 
 <div class="grid-container" th:each="recipe : ${recipes}">
+
     <p>
         <a th:href="@{'/list/' + ${recipe.id}}"></a>
     </p>
     <div class="item1">
-        <p th:text="${recipe.name}"></p>
+        <p th:text="${recipe.recipeName}"></p>
     </div>
     <div class="item2">Total Time
         <p th:text="${recipe.serve_time}"></p>
@@ -19,7 +20,10 @@
     <div class="item3">Servings
         <p th:text="${recipe.servings}"></p>
     </div>
-    <div class="item4">Ingredients</div>
+    <div class="item4">Ingredients
+        <p th:each="ingredient : ${ingredients}"
+                th:text="${ingredient.ingredient}"></p>
+       </div>
     <div class="item5">Directions
         <p th:text="${recipe.steps}"></p>
     </div>

@@ -42,7 +42,7 @@
 <div class="list-container">
 
     <div class="list1" th:each="recipe : ${recipes}">
-        <a th:href="@{'/view/' + ${recipe.id}}" th:text="${recipe.name}"></a>
+        <a th:href="@{'/view/' + ${recipe.id}}" th:text="${recipe.recipeName}"></a>
         <div class="list-context">
             <p th:text="${'Serve Time: ' + recipe.serve_time}"></p>
             <p th:text="${'Servings: ' + recipe.servings}"></p>

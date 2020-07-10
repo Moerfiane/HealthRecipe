@@ -1,39 +1,50 @@
 package org.launchcode.health_recipe.models;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import java.util.*;
 
 @Entity
-public class Recipe extends AbstractEntity{
+public class Recipe extends AbstractEntity {
 
-//    @OneToMany(/*mappedBy = "recipes"*/)
-//    @JoinColumn(name = "ingredient")
-//    private Set<Ingredient> ingredients;
+    @NaturalId
+    private String recipeName;
 
-//    @OneToMany(orphanRemoval=true)
-//    @JoinColumn(name="ingredient") // join column is in table for Ingredient
-//    public Set<Ingredient> getIngredient() {return ingredient;}
-
-    @NotBlank(message = "Servings?")
+    @NotNull (message = "Servings?")
     private String servings;
 
-    @NotBlank (message = "Serve time?")
+    @NotNull (message = "Serve time?")
     private String serve_time;
 
-    @NotBlank (message = "Recipe steps?")
+    @NotNull (message = "Recipe steps?")
     @Column(length=15500)
     private String steps;
 
+    @OneToMany
+    private List<Ingredient> ingredient = new ArrayList<>();
+
     public Recipe() {}
 
-    public Recipe(String servings, String timeToServe, String stepsToRecipe) {
+    public Recipe(String recipeName, String servings, String timeToServe, String stepsToRecipe, List<Ingredient> ingredient) {
         super();
+        this.recipeName = recipeName;
         this.servings = servings;
         this.serve_time = timeToServe;
         this.steps = stepsToRecipe;
+        this.ingredient = ingredient;
     }
 
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
+    }
 
     public String getServings() {
         return servings;
@@ -57,5 +68,13 @@ public class Recipe extends AbstractEntity{
 
     public void setSteps(String steps) {
         this.steps = steps;
+    }
+
+    public List<Ingredient> getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(List<Ingredient> ingredient) {
+        this.ingredient = ingredient;
     }
 }

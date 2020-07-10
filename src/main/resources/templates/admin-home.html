@@ -8,23 +8,23 @@
 <body>
 <div>
     <section class="nav-scope">
-    <ul class="nav-section">
-        <li class="nav-logo">
-            <a th:href="@{/admin-home}" aria-label="Health Recipe">Health Recipe
-            </a>
-            <a th:href="@{/logout}">
-                <button type="button" class="nav-btn btn-primary btn-lg" style="float:right;">LogOut</button>
-            </a>
-        </li>
-        <div class="nav-links">
-            <li class="nav-recipes">
-                <a th:href="@{/admin/list}">Recipes</a>
+        <ul class="nav-section">
+            <li class="nav-logo">
+                <a th:href="@{/admin-home}" aria-label="Health Recipe">Health Recipe
+                </a>
+                <a th:href="@{/logout}">
+                    <button type="button" class="nav-btn btn-primary btn-lg" style="float:right;">LogOut</button>
+                </a>
             </li>
-            <li class="nav-search">
-                <a th:href="@{/admin/search}">Search</a>
-            </li>
-        </div>
-    </ul>
+            <div class="nav-links">
+                <li class="nav-recipes">
+                    <a th:href="@{/admin/list}">Recipes</a>
+                </li>
+                <li class="nav-search">
+                    <a th:href="@{/admin/search}">Search</a>
+                </li>
+            </div>
+        </ul>
     </section>
 </div>
 <header><h1 th:text="${title}">Greeting</h1></header>

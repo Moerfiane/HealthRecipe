@@ -40,8 +40,8 @@
 <form method="post" style="max-width:600px;">
     <div class="form-group">
         <label th:for="name">Name</label>
-        <input class="form-control" th:field="${recipe.name}"/>
-        <span th:errors="${recipe.name}" class="error"></span>
+        <input class="form-control" th:field="${recipe.recipeName}"/>
+        <span th:errors="${recipe.recipeName}" class="error"></span>
     </div>
     <div class="form-group">
         <label th:for="timeToServe">Serve Time</label>
