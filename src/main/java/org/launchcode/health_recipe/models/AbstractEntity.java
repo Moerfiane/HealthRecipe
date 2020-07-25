@@ -22,8 +22,7 @@ public abstract class AbstractEntity {
         return id;
     }
 
-
-//    public String getName() {
+    //    public String getName() {
 //        return name;
 //    }
 //

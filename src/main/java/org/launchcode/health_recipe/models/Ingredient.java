@@ -8,30 +8,31 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
 public class Ingredient extends AbstractEntity {
 
-
-    @ManyToMany(mappedBy = "ingredient")
+    @ManyToMany(mappedBy = "ingredients")
 //    @JoinColumn(name = "recipeName", referencedColumnName = "recipeName")
     private List<Recipe> recipe = new ArrayList<>();
 
-
     private String recipeName;
 
-    @NotNull(message = "Please provide Recipe ingredient.")
-    @Column(length=15500)
+    @NotBlank(message = "Please provide Recipe ingredient.")
+    @Size(min = 3,max = 15500, message = "Ingredient must be max 15500.  Please try again.")
     private String ingredient;
 
 
     public Ingredient() {}
 
-    public Ingredient(List<Recipe> recipe, String ingredient) {
+    public Ingredient(List<Recipe> recipe, String recipeName, String ingredient) {
         super();
         this.recipe = recipe;
+        this.recipeName = recipeName;
         this.ingredient = ingredient;
     }
 

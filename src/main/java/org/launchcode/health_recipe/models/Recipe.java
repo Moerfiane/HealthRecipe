@@ -2,11 +2,11 @@ package org.launchcode.health_recipe.models;
 
 import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity
 public class Recipe extends AbstractEntity {
@@ -24,19 +24,21 @@ public class Recipe extends AbstractEntity {
     @Column(length=15500)
     private String steps;
 
-    @OneToMany
-    private List<Ingredient> ingredient = new ArrayList<>();
-
     public Recipe() {}
 
-    public Recipe(String recipeName, String servings, String timeToServe, String stepsToRecipe, List<Ingredient> ingredient) {
+    public Recipe(String recipeName, String servings, String timeToServe, String stepsToRecipe) {
         super();
         this.recipeName = recipeName;
         this.servings = servings;
         this.serve_time = timeToServe;
         this.steps = stepsToRecipe;
-        this.ingredient = ingredient;
     }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+               @JoinTable(name = "recipe_ingredient",
+               joinColumns = @JoinColumn(name = "recipe_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "id"))
+    public List<Ingredient> ingredients = new ArrayList<>();
 
     public String getRecipeName() {
         return recipeName;
@@ -70,11 +72,18 @@ public class Recipe extends AbstractEntity {
         this.steps = steps;
     }
 
-    public List<Ingredient> getIngredient() {
-        return ingredient;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Recipe recipe = (Recipe) o;
+        return recipeName.equals(recipe.recipeName);
     }
 
-    public void setIngredient(List<Ingredient> ingredient) {
-        this.ingredient = ingredient;
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), recipeName);
     }
+
 }

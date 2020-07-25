@@ -13,10 +13,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/ingredient")
@@ -56,6 +58,8 @@ public class IngredientController {
         }
 
         ingredientRepository.save(newIngredient);
+
+
         return "redirect:./add";
     }
 
