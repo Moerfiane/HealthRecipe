@@ -2,18 +2,14 @@ package org.launchcode.health_recipe.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Recipe extends AbstractEntity{
 
-//    @OneToMany(/*mappedBy = "recipes"*/)
-//    @JoinColumn(name = "ingredient")
-//    private Set<Ingredient> ingredients;
-
-//    @OneToMany(orphanRemoval=true)
-//    @JoinColumn(name="ingredient") // join column is in table for Ingredient
-//    public Set<Ingredient> getIngredient() {return ingredient;}
+    @ManyToOne
+    private Ingredient ingredient;
 
     @NotBlank(message = "Servings?")
     private String servings;
@@ -27,13 +23,21 @@ public class Recipe extends AbstractEntity{
 
     public Recipe() {}
 
-    public Recipe(String servings, String timeToServe, String stepsToRecipe) {
+    public Recipe(Ingredient ingredient, String servings, String timeToServe, String stepsToRecipe) {
         super();
+        this.ingredient = ingredient;
         this.servings = servings;
         this.serve_time = timeToServe;
         this.steps = stepsToRecipe;
     }
 
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
+    }
 
     public String getServings() {
         return servings;

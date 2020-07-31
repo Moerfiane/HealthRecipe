@@ -1,18 +1,19 @@
 package org.launchcode.health_recipe.controllers;
 
+import org.launchcode.health_recipe.models.Ingredient;
 import org.launchcode.health_recipe.models.Recipe;
 import org.launchcode.health_recipe.models.RecipeData;
+import org.launchcode.health_recipe.models.data.IngredientRepository;
 import org.launchcode.health_recipe.models.data.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
@@ -25,6 +26,9 @@ public class RecipeController {
 
     @Autowired
     private RecipeRepository recipeRepository;
+
+    @Autowired
+    private IngredientRepository ingredientRepository;
 
     static HashMap<String, String> columnChoices = new HashMap<>();
 
@@ -63,18 +67,7 @@ public class RecipeController {
 //        return "add";
 //    }
 //
-//    @PostMapping("add")
-//    public String processAddRecipeForm(@ModelAttribute Recipe newRecipe,
-//                                       Errors errors, Model model){
-//
-//        if (errors.hasErrors()) {
-//            model.addAttribute("title", "Add Recipe");
-//            return "add";
-//        }
-//
-//        recipeRepository.save(newRecipe);
-//        return "redirect:";
-//    }
+
 
     @GetMapping("view/{recipeId}")
     public String displayViewRecipe(Model model, @PathVariable int recipeId) {
