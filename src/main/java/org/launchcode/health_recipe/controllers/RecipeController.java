@@ -41,6 +41,7 @@ public class RecipeController {
         return "list";
     }
 
+
     @RequestMapping(value = "recipes")
     public String listRecipeByChoice(Model model, @RequestParam String column,
                                      @RequestParam ArrayList<String> value) {

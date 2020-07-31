@@ -48,7 +48,7 @@ public class IngredientController {
 
     }
 
-    @PostMapping("add")
+    @RequestMapping(value="/ingredient/add",method=RequestMethod.POST)
     public String processAddIngredientForm(@ModelAttribute(value = "Add Ingredient") @Valid Ingredient newIngredient,
                                            Errors errors, Model model) {
 
@@ -58,7 +58,6 @@ public class IngredientController {
         }
 
         ingredientRepository.save(newIngredient);
-
 
         return "redirect:./add";
     }

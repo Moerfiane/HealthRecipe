@@ -67,7 +67,6 @@ public class DietaryRestrictionsController {
 
                 List<DietaryRestrictionsSearch> restObjs = (List<DietaryRestrictionsSearch>) dietaryRestrictionsRepository.findAllById(dietaryrestrictionssearches);
 
-
                 if (!restObjs.isEmpty()) {
                     newUserPreference.setDietaryrestrictionssearches(restObjs);
                 }

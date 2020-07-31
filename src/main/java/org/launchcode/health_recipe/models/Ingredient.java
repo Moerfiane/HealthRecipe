@@ -36,6 +36,7 @@ public class Ingredient extends AbstractEntity {
         this.ingredient = ingredient;
     }
 
+
     public List<Recipe> getRecipe() {
         return recipe;
     }
@@ -59,5 +60,4 @@ public class Ingredient extends AbstractEntity {
     public void setIngredient(String ingredient) {
         this.ingredient = ingredient;
     }
-
 }
