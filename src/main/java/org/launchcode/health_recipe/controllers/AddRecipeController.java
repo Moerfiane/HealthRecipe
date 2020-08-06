@@ -1,6 +1,7 @@
 package org.launchcode.health_recipe.controllers;
 
 
+import org.launchcode.health_recipe.models.DietaryRestrictionsSearch;
 import org.launchcode.health_recipe.models.Ingredient;
 import org.launchcode.health_recipe.models.Recipe;
 import org.launchcode.health_recipe.models.data.IngredientRepository;
@@ -26,38 +27,65 @@ public class AddRecipeController {
     @Autowired
     private IngredientRepository ingredientRepository;
 
-    public AddRecipeController(RecipeRepository recipeRepository) {
-        this.recipeRepository = recipeRepository;
-    }
-
+//    public AddRecipeController(RecipeRepository recipeRepository) {
+//        this.recipeRepository = recipeRepository;
+//    }
 
 
     @GetMapping("add")
     public String displayAddRecipeForm(Model model) {
         model.addAttribute("title", "Add Recipe");
-        model.addAttribute("recipe", new Recipe());
+        model.addAttribute(new Recipe());
+//        model.addAttribute("recipe", new Recipe());
+
         model.addAttribute("title", "Add Ingredient");
-        model.addAttribute("ingredient", new Ingredient());
+//        model.addAttribute("ingredient", new Ingredient());
+        model.addAttribute(new Ingredient());
+
         return "add";
     }
 
-    @RequestMapping(value="/add",method=RequestMethod.POST)
+//    @RequestMapping(value="/add",method=RequestMethod.POST,params = "ingredient")
+//    public String processAddRecipeIngredient(@Valid @ModelAttribute(value = "Add Ingredient") Ingredient newIngredient,
+//                                             Errors errors, Model model) {
+//        if (errors.hasErrors()) {
+//            model.addAttribute("title", "Add Ingredient");
+//            return "add";
+//        }
+//
+//        ingredientRepository.save(newIngredient);
+//        int ingId = newIngredient.getId();
+//        return "add";
+//    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddRecipeForm(@Valid @ModelAttribute Recipe newRecipe,
-                                        @Valid @ModelAttribute("Add Ingredient") Ingredient newIngredient,
-                                        Errors errors, Model model) {
+                                       @Valid @ModelAttribute(value = "Add Ingredient") Ingredient newIngredient,
+//                                     @RequestParam Integer ingId,
+//                                       @RequestParam(required = false) List<Integer> ingredients,
+                                       Errors errors, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Recipe");
             model.addAttribute("title", "Add Ingredient");
-
             return "add";
         }
 
-            recipeRepository.save(newRecipe);
+        ingredientRepository.save(newIngredient);
 
-            ingredientRepository.save(newIngredient);
-              return "redirect:/add";
+        if (newIngredient != null) {
+            Optional<Ingredient> ing = ingredientRepository.findById(newIngredient.getId());
+            if (ing.isPresent()) {
+                Ingredient ingredient = ing.get();
+                newRecipe.setIngredient(ingredient);
+            }
+
+            recipeRepository.save(newRecipe);
+            return "redirect:/add";
+        }
+        return "redirect:/add";
     }
+}
 
 //    @RequestMapping(value="/add",method=RequestMethod.POST)
 //    public String processAddRecipeIngredientIDs(@ModelAttribute @Valid Recipe newRecipe,
@@ -88,4 +116,25 @@ public class AddRecipeController {
 //            return "redirect:/view/" + newRecipe.getId();
 //        }
 
-}
+
+
+//        System.out.println("THIS IS THE NEW INGREDIENT ID " + "** " + newIngredient.getId() + " ** GOT IT !");
+//        int ingObj = newIngredient.getId();
+
+//        Optional<Ingredient> temp = ingredientRepository.findById(ingObj);
+//            if (temp.isPresent()) {
+//                Ingredient ingredients = temp.get();
+//
+//            }
+//        newRecipe.setIngredients(ingObj);
+//        List<Ingredient> ingObjs = (List<Ingredient>) ingredientRepository.findById(ingObj)
+//        if (!ingObjs.isEmpty()) {
+//            newRecipe.setIngredients(ingObjs);
+//        }
+//        Optional<Ingredient> ingObj = ingredientRepository.findById(newIngredient.getId());
+//        Iterable<Ingredient> ingObj = ingredientRepository.findAll();
+//
+//        if (!ingObj.isPresent()) {
+//                newIngredient.setIngredient(ingObj);
+//            }
+//        List<Ingredient> ingObjs = (List<Ingredient>) ingredientRepository.findAllById(ingredients);

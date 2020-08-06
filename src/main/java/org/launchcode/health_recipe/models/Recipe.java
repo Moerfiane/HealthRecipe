@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 @Entity
 public class Recipe extends AbstractEntity {
 
-    @NaturalId
+    @NotNull(message = "Enter a name for the recipe.")
     private String recipeName;
 
     @NotNull (message = "Servings?")
@@ -24,22 +24,26 @@ public class Recipe extends AbstractEntity {
     @Column(length=15500)
     private String steps;
 
+    @ManyToOne
+    private Ingredient ingredient;
+
     public Recipe() {}
 
-    public Recipe(String recipeName, String servings, String timeToServe, String stepsToRecipe) {
-        super();
+    public Recipe(Ingredient ingredient, String recipeName, String servings, String timeToServe, String stepsToRecipe) {
         this.recipeName = recipeName;
         this.servings = servings;
         this.serve_time = timeToServe;
         this.steps = stepsToRecipe;
+        this.ingredient = ingredient;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
-               @JoinTable(name = "recipe_ingredient",
-               joinColumns = @JoinColumn(name = "recipe_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "id"))
-    private List<Ingredient> ingredients = new ArrayList<>();
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
 
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
+    }
 
     public String getRecipeName() {
         return recipeName;
@@ -73,31 +77,24 @@ public class Recipe extends AbstractEntity {
         this.steps = steps;
     }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Recipe)) return false;
-        if (!super.equals(o)) return false;
-        Recipe recipe = (Recipe) o;
-        return Objects.equals(getRecipeName(), recipe.getRecipeName()) &&
-                Objects.equals(getServings(), recipe.getServings()) &&
-                Objects.equals(getServe_time(), recipe.getServe_time()) &&
-                Objects.equals(getSteps(), recipe.getSteps()) &&
-                Objects.equals(getIngredients(), recipe.getIngredients());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), getRecipeName(), getServings(), getServe_time(), getSteps(), getIngredients());
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof Recipe)) return false;
+//        if (!super.equals(o)) return false;
+//        Recipe recipe = (Recipe) o;
+//        return Objects.equals(getRecipeName(), recipe.getRecipeName()) &&
+//                Objects.equals(getServings(), recipe.getServings()) &&
+//                Objects.equals(getServe_time(), recipe.getServe_time()) &&
+//                Objects.equals(getSteps(), recipe.getSteps()) &&
+//                Objects.equals(getIngredient(), recipe.getIngredient());
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(super.hashCode(), getRecipeName(), getServings(), getServe_time(), getSteps(), getIngredient());
+//    }
 
     //    @Override
 //    public boolean equals(Object o) {
