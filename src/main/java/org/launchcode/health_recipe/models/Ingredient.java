@@ -1,27 +1,41 @@
 package org.launchcode.health_recipe.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 
-@Entity
-public class Ingredient extends AbstractEntity {
+@Entity(name = "Ingredient")
+@Table(name = "ingredient")
+public class Ingredient {
 
-    @Size(min=3, message="Ingredient must be at least 3 characters long")
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @NotNull
+    @Size(max = 75)
     private String ingredient;
 
-    public Ingredient(@Size(min = 3, message = "Ingredient must be at least 3 characters long") String ingredient) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "recipe_id")
+    private Recipe recipe;
+
+    public Ingredient(Long id, @NotNull @Size(max = 75) String ingredient, Recipe recipe) {
+        this.id = id;
         this.ingredient = ingredient;
+        this.recipe = recipe;
     }
 
-    @OneToMany
-   @JoinColumn(name = "ingredient_id")
-   private final List<Recipe> recipes = new ArrayList<>();
-
-
     public Ingredient() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getIngredient() {
         return ingredient;
@@ -31,4 +45,22 @@ public class Ingredient extends AbstractEntity {
         this.ingredient = ingredient;
     }
 
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Ingredient )) return false;
+        return id != null && id.equals(((Ingredient) obj).getId());
+    }
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 }

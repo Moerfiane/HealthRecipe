@@ -61,7 +61,7 @@ public class AddRecipeController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddRecipeForm(@Valid @ModelAttribute Recipe newRecipe,
                                        @Valid @ModelAttribute(value = "Add Ingredient") Ingredient newIngredient,
-//                                     @RequestParam Integer ingId,
+//                                     @RequestParam(required = false) recipeId,
 //                                       @RequestParam(required = false) List<Integer> ingredients,
                                        Errors errors, Model model) {
 
@@ -71,21 +71,28 @@ public class AddRecipeController {
             return "add";
         }
 
+        recipeRepository.save(newRecipe);
+
+        newIngredient.setRecipe(newRecipe);
         ingredientRepository.save(newIngredient);
+        System.out.println("This is value of newIngredient " + newIngredient.getId());
+        System.out.println("This is string ingredient name " + newIngredient.getIngredient());
+        System.out.println("What is recipe ID " + newRecipe.getId());
 
-        if (newIngredient != null) {
-            Optional<Ingredient> ing = ingredientRepository.findById(newIngredient.getId());
-            if (ing.isPresent()) {
-                Ingredient ingredient = ing.get();
-                newRecipe.setIngredient(ingredient);
-            }
-
-            recipeRepository.save(newRecipe);
-            return "redirect:/add";
+//        if (newIngredient != null) {
+//            Optional<Ingredient> ing = ingredientRepository.findById(newIngredient).get();
+//            if (ing.isPresent()) {
+//                Ingredient ingredient = ing.get();
+//                newRecipe.setIngredients(ingredient);
+//            }
+//        Optional<Ingredient> ing = ingredientRepository.findById(newIngredient.getId());
+//            model.addAttribute(String.valueOf(recipeRepository), ing);
+//            recipeRepository.save(newRecipe);
+            return "list";
         }
-        return "redirect:/add";
+//        return "redirect:/add";
     }
-}
+//}
 
 //    @RequestMapping(value="/add",method=RequestMethod.POST)
 //    public String processAddRecipeIngredientIDs(@ModelAttribute @Valid Recipe newRecipe,

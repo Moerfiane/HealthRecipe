@@ -8,41 +8,51 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@Entity
-public class Recipe extends AbstractEntity {
+@Entity(name = "Recipe")
+@Table(name = "recipe")
+public class Recipe {
+
+    @Id
+    @GeneratedValue
+    private int id;
 
     @NotNull(message = "Enter a name for the recipe.")
     private String recipeName;
 
-    @NotNull (message = "Servings?")
+    @NotNull(message = "Servings?")
     private String servings;
 
-    @NotNull (message = "Serve time?")
+    @NotNull(message = "Serve time?")
     private String serve_time;
 
-    @NotNull (message = "Recipe steps?")
-    @Column(length=15500)
+    @NotNull(message = "Recipe steps?")
+    @Column(length = 15500)
     private String steps;
 
-    @ManyToOne
-    private Ingredient ingredient;
+    @OneToMany(
+            mappedBy = "recipe",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Ingredient> ingredients = new ArrayList<>();
+
+    public Recipe(int id, @NotNull(message = "Enter a name for the recipe.") String recipeName, @NotNull(message = "Servings?") String servings, @NotNull(message = "Serve time?") String serve_time, @NotNull(message = "Recipe steps?") String steps, List<Ingredient> ingredients) {
+        this.id = id;
+        this.recipeName = recipeName;
+        this.servings = servings;
+        this.serve_time = serve_time;
+        this.steps = steps;
+        this.ingredients = ingredients;
+    }
 
     public Recipe() {}
 
-    public Recipe(Ingredient ingredient, String recipeName, String servings, String timeToServe, String stepsToRecipe) {
-        this.recipeName = recipeName;
-        this.servings = servings;
-        this.serve_time = timeToServe;
-        this.steps = stepsToRecipe;
-        this.ingredient = ingredient;
+    public int getId() {
+        return id;
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
-    }
-
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getRecipeName() {
@@ -77,37 +87,21 @@ public class Recipe extends AbstractEntity {
         this.steps = steps;
     }
 
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (!(o instanceof Recipe)) return false;
-//        if (!super.equals(o)) return false;
-//        Recipe recipe = (Recipe) o;
-//        return Objects.equals(getRecipeName(), recipe.getRecipeName()) &&
-//                Objects.equals(getServings(), recipe.getServings()) &&
-//                Objects.equals(getServe_time(), recipe.getServe_time()) &&
-//                Objects.equals(getSteps(), recipe.getSteps()) &&
-//                Objects.equals(getIngredient(), recipe.getIngredient());
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(super.hashCode(), getRecipeName(), getServings(), getServe_time(), getSteps(), getIngredient());
-//    }
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
 
-    //    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        if (!super.equals(o)) return false;
-//        Recipe recipe = (Recipe) o;
-//        return recipeName.equals(recipe.recipeName);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(super.hashCode(), recipeName);
-//    }
+    public void addIngredient(Ingredient ingredient) {
+        ingredients.add(ingredient);
+        ingredient.setRecipe(this);
+    }
 
+    public void removeIngredient(Ingredient ingredient) {
+        ingredients.remove(ingredient);
+        ingredient.setRecipe(null);
+    }
 }
