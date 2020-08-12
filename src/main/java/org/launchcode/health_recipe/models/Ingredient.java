@@ -3,64 +3,44 @@ package org.launchcode.health_recipe.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity(name = "Ingredient")
 @Table(name = "ingredient")
-public class Ingredient {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Ingredient extends AbstractEntity {
 
     @NotNull
     @Size(max = 75)
-    private String ingredient;
+    private String ingredientName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "recipe_id")
-    private Recipe recipe;
+    @OneToMany(
+        mappedBy = "ingredient",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<Recipe> recipes = new ArrayList<>();
 
-    public Ingredient(Long id, @NotNull @Size(max = 75) String ingredient, Recipe recipe) {
-        this.id = id;
-        this.ingredient = ingredient;
-        this.recipe = recipe;
+    public Ingredient(@NotNull @Size(max = 75) String ingredientName, List<Recipe> recipes) {
+        this.ingredientName = ingredientName;
+        this.recipes = recipes;
     }
-
     public Ingredient() {}
 
-    public Long getId() {
-        return id;
+    public String getIngredientName() {
+        return ingredientName;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIngredientName(String ingredientName) {
+        this.ingredientName = ingredientName;
     }
 
-    public String getIngredient() {
-        return ingredient;
+    public List<Recipe> getRecipes() {
+        return recipes;
     }
 
-    public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Ingredient )) return false;
-        return id != null && id.equals(((Ingredient) obj).getId());
-    }
-    @Override
-    public int hashCode() {
-        return 31;
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 }

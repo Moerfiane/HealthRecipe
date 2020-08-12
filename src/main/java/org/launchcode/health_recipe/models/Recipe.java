@@ -10,11 +10,7 @@ import java.util.stream.Stream;
 
 @Entity(name = "Recipe")
 @Table(name = "recipe")
-public class Recipe {
-
-    @Id
-    @GeneratedValue
-    private int id;
+public class Recipe extends AbstractEntity {
 
     @NotNull(message = "Enter a name for the recipe.")
     private String recipeName;
@@ -29,31 +25,19 @@ public class Recipe {
     @Column(length = 15500)
     private String steps;
 
-    @OneToMany(
-            mappedBy = "recipe",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<Ingredient> ingredients = new ArrayList<>();
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ingredient_id")
+    private Ingredient ingredient;
 
-    public Recipe(int id, @NotNull(message = "Enter a name for the recipe.") String recipeName, @NotNull(message = "Servings?") String servings, @NotNull(message = "Serve time?") String serve_time, @NotNull(message = "Recipe steps?") String steps, List<Ingredient> ingredients) {
-        this.id = id;
+    public Recipe(@NotNull(message = "Enter a name for the recipe.") String recipeName, @NotNull(message = "Servings?") String servings, @NotNull(message = "Serve time?") String serve_time, @NotNull(message = "Recipe steps?") String steps, Ingredient ingredient) {
         this.recipeName = recipeName;
         this.servings = servings;
         this.serve_time = serve_time;
         this.steps = steps;
-        this.ingredients = ingredients;
+        this.ingredient = ingredient;
     }
 
     public Recipe() {}
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getRecipeName() {
         return recipeName;
@@ -87,21 +71,12 @@ public class Recipe {
         this.steps = steps;
     }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
+    public Ingredient getIngredient() {
+        return ingredient;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
     }
 
-    public void addIngredient(Ingredient ingredient) {
-        ingredients.add(ingredient);
-        ingredient.setRecipe(this);
-    }
-
-    public void removeIngredient(Ingredient ingredient) {
-        ingredients.remove(ingredient);
-        ingredient.setRecipe(null);
-    }
 }
