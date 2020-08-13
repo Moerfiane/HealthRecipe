@@ -48,9 +48,10 @@ public class AddRecipeController {
             return "add";
         }
 
-        ingredientRepository.save(newIngredient);
 
         newRecipe.setIngredient(newIngredient);
+
+        ingredientRepository.save(newIngredient);
         recipeRepository.save(newRecipe);
 
             return "list";

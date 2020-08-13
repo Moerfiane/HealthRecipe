@@ -13,7 +13,7 @@ public class Ingredient extends AbstractEntity {
 
     @NotNull
     @Size(max = 75)
-    private String ingredientName;
+    private String recipeIngredients;
 
     @OneToMany(
         mappedBy = "ingredient",
@@ -22,18 +22,18 @@ public class Ingredient extends AbstractEntity {
     )
     private List<Recipe> recipes = new ArrayList<>();
 
-    public Ingredient(@NotNull @Size(max = 75) String ingredientName, List<Recipe> recipes) {
-        this.ingredientName = ingredientName;
+    public Ingredient(@NotNull @Size(max = 75) String recipeIngredients, List<Recipe> recipes) {
+        this.recipeIngredients = recipeIngredients;
         this.recipes = recipes;
     }
     public Ingredient() {}
 
-    public String getIngredientName() {
-        return ingredientName;
+    public String getRecipeIngredients() {
+        return recipeIngredients;
     }
 
-    public void setIngredientName(String ingredientName) {
-        this.ingredientName = ingredientName;
+    public void setRecipeIngredients(String recipeIngredients) {
+        this.recipeIngredients = recipeIngredients;
     }
 
     public List<Recipe> getRecipes() {
