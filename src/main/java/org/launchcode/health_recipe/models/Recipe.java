@@ -1,17 +1,18 @@
 package org.launchcode.health_recipe.models;
 
 import org.hibernate.annotations.NaturalId;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-@Entity
+@Entity(name = "Recipe")
+@Table(name = "recipe")
 public class Recipe extends AbstractEntity {
 
-    @NaturalId
+    @NotNull(message = "Enter a name for the recipe.")
     private String recipeName;
 
     @NotNull (message = "Servings?")
@@ -24,22 +25,19 @@ public class Recipe extends AbstractEntity {
     @Column(length=15500)
     private String steps;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ingredient_id")
+    private Ingredient ingredient;
+
     public Recipe() {}
 
-    public Recipe(String recipeName, String servings, String timeToServe, String stepsToRecipe) {
-        super();
+    public Recipe(String recipeName, String servings, String serve_time, String steps, Ingredient ingredient) {
         this.recipeName = recipeName;
         this.servings = servings;
-        this.serve_time = timeToServe;
-        this.steps = stepsToRecipe;
+        this.serve_time = serve_time;
+        this.steps = steps;
+        this.ingredient = ingredient;
     }
-
-    @ManyToMany(fetch = FetchType.LAZY)
-               @JoinTable(name = "recipe_ingredient",
-               joinColumns = @JoinColumn(name = "recipe_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "id"))
-    private List<Ingredient> ingredients = new ArrayList<>();
-
 
     public String getRecipeName() {
         return recipeName;
@@ -73,44 +71,32 @@ public class Recipe extends AbstractEntity {
         this.steps = steps;
     }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
+    public Ingredient getIngredient() {
+        return ingredient;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Recipe)) return false;
-        if (!super.equals(o)) return false;
-        Recipe recipe = (Recipe) o;
-        return Objects.equals(getRecipeName(), recipe.getRecipeName()) &&
-                Objects.equals(getServings(), recipe.getServings()) &&
-                Objects.equals(getServe_time(), recipe.getServe_time()) &&
-                Objects.equals(getSteps(), recipe.getSteps()) &&
-                Objects.equals(getIngredients(), recipe.getIngredients());
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), getRecipeName(), getServings(), getServe_time(), getSteps(), getIngredients());
-    }
 
-    //    @Override
+//    @Override
 //    public boolean equals(Object o) {
 //        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
+//        if (!(o instanceof Recipe)) return false;
 //        if (!super.equals(o)) return false;
 //        Recipe recipe = (Recipe) o;
-//        return recipeName.equals(recipe.recipeName);
+//        return Objects.equals(getRecipeName(), recipe.getRecipeName()) &&
+//                Objects.equals(getServings(), recipe.getServings()) &&
+//                Objects.equals(getServe_time(), recipe.getServe_time()) &&
+//                Objects.equals(getSteps(), recipe.getSteps()) &&
+//                Objects.equals(getIngredients(), recipe.getIngredients());
 //    }
 //
 //    @Override
 //    public int hashCode() {
-//        return Objects.hash(super.hashCode(), recipeName);
+//        return Objects.hash(super.hashCode(), getRecipeName(), getServings(), getServe_time(), getSteps(), getIngredients());
 //    }
 
 }

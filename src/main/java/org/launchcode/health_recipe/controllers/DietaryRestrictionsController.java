@@ -2,25 +2,15 @@ package org.launchcode.health_recipe.controllers;
 
 import org.launchcode.health_recipe.models.*;
 import org.launchcode.health_recipe.models.data.DietaryRestrictionsRepository;
-//import org.launchcode.health_recipe.models.data.UserPreferenceRepository;
-//import org.launchcode.health_recipe.models.data.UserPreferenceRepository;
 import org.launchcode.health_recipe.models.data.UserPreferenceRepository;
 import org.launchcode.health_recipe.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
 
 

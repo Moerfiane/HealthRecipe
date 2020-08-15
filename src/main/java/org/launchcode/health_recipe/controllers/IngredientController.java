@@ -1,24 +1,15 @@
 package org.launchcode.health_recipe.controllers;
 
-import org.launchcode.health_recipe.models.DietaryRestrictionsSearch;
 import org.launchcode.health_recipe.models.Ingredient;
-import org.launchcode.health_recipe.models.Recipe;
 import org.launchcode.health_recipe.models.data.IngredientRepository;
 import org.launchcode.health_recipe.models.data.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/ingredient")

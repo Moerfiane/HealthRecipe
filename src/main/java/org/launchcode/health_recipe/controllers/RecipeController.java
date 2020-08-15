@@ -58,7 +58,7 @@ public class RecipeController {
         return "list-recipes";
     }
 
-    @GetMapping("view/{recipeId}")
+    @GetMapping("view/{recipeId}{ingredientId}")
     public String displayViewRecipe(Model model, @PathVariable int recipeId) {
 
         Optional optRecipe = recipeRepository.findById(recipeId);

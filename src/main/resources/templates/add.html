@@ -58,12 +58,11 @@
         <input class="form-control" th:field="${recipe.steps}"/>
         <span th:errors="${recipe.steps}" class="error"></span>
     </div>
-<!--    <form method="post" style="max-width:600px;" action="#" th:action="@{/add}" th:object="${ingredient}">-->
 
-        <div class="form-group">
+    <div class="form-group" >
         <label th:for="ingredient">Ingredient</label>
-        <input type="text" class="form-control" th:field="${ingredient.ingredient}" th:name="ingredient" />
-<!--        <span th:errors="${ingredient}" class="error"></span>-->
+        <input class="form-control" th:field="${ingredient.ingredientName}" />
+        <span th:errors="${ingredient.ingredientName}" class="error"></span>
     </div>
 
     <input class="btn btn-primary" type="submit" value="Add Recipe" />

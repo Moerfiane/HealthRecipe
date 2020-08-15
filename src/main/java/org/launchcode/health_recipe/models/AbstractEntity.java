@@ -4,7 +4,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @MappedSuperclass
 public abstract class AbstractEntity {
@@ -22,18 +24,10 @@ public abstract class AbstractEntity {
         return id;
     }
 
-    //    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return name;
-//    }
+
+    public AbstractEntity() {
+        super();
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -47,5 +41,7 @@ public abstract class AbstractEntity {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
 
 }
