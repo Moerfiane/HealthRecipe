@@ -97,8 +97,8 @@ public class AuthenticationController {
 
     @PostMapping("/adminregister")
     public String processAdminRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
-                                          Errors errors, HttpServletRequest request,
-                                          Model model) {
+                                               Errors errors, HttpServletRequest request,
+                                               Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Register");

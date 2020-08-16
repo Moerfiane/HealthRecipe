@@ -8,7 +8,7 @@
 
 <div class="grid-container" th:each="recipe : ${recipes}">
     <div class="item1">
-        <p th:text="${recipe.name}"></p>
+        <p th:text="${recipe.recipeName}"></p>
     </div>
     <div class="item2">Total Time
         <p th:text="${recipe.serve_time}"></p>
@@ -16,7 +16,9 @@
     <div class="item3">Servings
         <p th:text="${recipe.servings}"></p>
     </div>
-    <div class="item4">Ingredients</div>
+    <div class="item4">Ingredients
+        <p th:text="$ingredient.recipeIngredients"></p>
+    </div>
     <div class="item5">Directions
         <p th:text="${recipe.steps}"></p>
     </div>

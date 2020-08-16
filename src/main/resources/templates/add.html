@@ -37,11 +37,11 @@
 
 <h1>Add Recipe</h1>
 
-<form method="post" style="max-width:600px;">
+<form method="post" style="max-width:600px;" >
     <div class="form-group">
         <label th:for="name">Name</label>
-        <input class="form-control" th:field="${recipe.name}"/>
-        <span th:errors="${recipe.name}" class="error"></span>
+        <input class="form-control" th:field="${recipe.recipeName}"/>
+        <span th:errors="${recipe.recipeName}" class="error"></span>
     </div>
     <div class="form-group">
         <label th:for="timeToServe">Serve Time</label>
@@ -55,11 +55,18 @@
     </div>
     <div class="form-group">
         <label th:for="stepsToRecipe">Steps</label>
-        <textarea class="form-control" th:field="${recipe.steps}"/>
+        <input class="form-control" th:field="${recipe.steps}"/>
         <span th:errors="${recipe.steps}" class="error"></span>
     </div>
 
+    <div class="form-group" >
+        <label th:for="ingredient">Ingredient</label>
+        <input class="form-control" th:field="${ingredient.recipeIngredients}" />
+        <span th:errors="${ingredient.recipeIngredients}" class="error"></span>
+    </div>
+
     <input class="btn btn-primary" type="submit" value="Add Recipe" />
+<!--    </form>-->
 </form>
 
 </body>

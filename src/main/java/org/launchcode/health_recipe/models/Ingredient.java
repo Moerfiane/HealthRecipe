@@ -1,48 +1,64 @@
 package org.launchcode.health_recipe.models;
 
-import javax.persistence.Entity;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import org.springframework.stereotype.Component;
+import org.w3c.dom.Text;
 
-@Entity
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.*;
+
+@Entity(name = "Ingredient")
+@Table(name = "ingredient")
 public class Ingredient extends AbstractEntity {
 
-    @NotBlank(message = "Please provide Recipe ingredient.")
-    @Size(min = 3,max = 150, message = "Ingredient must be only 3-150 characters.  Please try again.")
-//    @JoinColumn(name = "ingredients")
-    public String ingredient;
 
-//    @ManyToOne
-//    @JoinColumn(/*name="recipe_name",*/ nullable=false)
-//    protected Recipe recipe;
+    @OneToMany(mappedBy = "ingredient",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Recipe> recipes = new ArrayList<>();
 
+    @NotNull(message = "Please provide Recipe ingredient.")
+    @Size(min = 3,max = 16000, message = "Ingredient must be max 30000.  Please try again.")
+    @Column(name = "recipe_ingredients")
+    private String recipeIngredients;
 
-    public Ingredient(String ingredient){
-        this.ingredient = ingredient;
+    public Ingredient(List<Recipe> recipes, String recipeIngredients) {
+        this.recipes = recipes;
+        this.recipeIngredients = recipeIngredients;
     }
 
     public Ingredient() {}
 
-    public String getIngredient() {
-        return ingredient;
+    public List<Recipe> getRecipes() {
+        return recipes;
     }
 
-    public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 
+    public String getRecipeIngredients() {
+        return recipeIngredients;
+    }
 
+    public void setRecipeIngredients(String recipeIngredients) {
+        this.recipeIngredients = recipeIngredients;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ingredient)) return false;
+        if (!super.equals(o)) return false;
+        Ingredient that = (Ingredient) o;
+        return Objects.equals(getRecipes(), that.getRecipes()) &&
+                Objects.equals(recipeIngredients, that.recipeIngredients);
+    }
 
-
-//    @ManyToOne(optional = false)
-//    private Recipe recipes;
-//
-//    public Recipe getRecipes() {
-//        return recipes;
-//    }
-//
-//    public void setRecipes(Recipe recipes) {
-//        this.recipes = recipes;
-//    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getRecipes(), recipeIngredients);
+    }
 }

@@ -1,39 +1,51 @@
 package org.launchcode.health_recipe.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.validation.constraints.NotBlank;
+import org.hibernate.annotations.NaturalId;
+import org.springframework.stereotype.Component;
 
-@Entity
-public class Recipe extends AbstractEntity{
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+@Entity(name = "Recipe")
+@Table(name = "recipe")
+public class Recipe extends AbstractEntity {
 
-//    @OneToMany(/*mappedBy = "recipes"*/)
-//    @JoinColumn(name = "ingredient")
-//    private Set<Ingredient> ingredients;
+    @NotNull(message = "Enter a name for the recipe.")
+    private String recipeName;
 
-//    @OneToMany(orphanRemoval=true)
-//    @JoinColumn(name="ingredient") // join column is in table for Ingredient
-//    public Set<Ingredient> getIngredient() {return ingredient;}
-
-    @NotBlank(message = "Servings?")
+    @NotNull (message = "Servings?")
     private String servings;
 
-    @NotBlank (message = "Serve time?")
+    @NotNull (message = "Serve time?")
     private String serve_time;
 
-    @NotBlank (message = "Recipe steps?")
+    @NotNull (message = "Recipe steps?")
     @Column(length=15500)
     private String steps;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ingredient_id")
+    private Ingredient ingredient;
+
     public Recipe() {}
 
-    public Recipe(String servings, String timeToServe, String stepsToRecipe) {
-        super();
+    public Recipe(String recipeName, String servings, String serve_time, String steps, Ingredient ingredient) {
+        this.recipeName = recipeName;
         this.servings = servings;
-        this.serve_time = timeToServe;
-        this.steps = stepsToRecipe;
+        this.serve_time = serve_time;
+        this.steps = steps;
+        this.ingredient = ingredient;
     }
 
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
+    }
 
     public String getServings() {
         return servings;
@@ -58,4 +70,33 @@ public class Recipe extends AbstractEntity{
     public void setSteps(String steps) {
         this.steps = steps;
     }
+
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
+    }
+
+
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof Recipe)) return false;
+//        if (!super.equals(o)) return false;
+//        Recipe recipe = (Recipe) o;
+//        return Objects.equals(getRecipeName(), recipe.getRecipeName()) &&
+//                Objects.equals(getServings(), recipe.getServings()) &&
+//                Objects.equals(getServe_time(), recipe.getServe_time()) &&
+//                Objects.equals(getSteps(), recipe.getSteps()) &&
+//                Objects.equals(getIngredients(), recipe.getIngredients());
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(super.hashCode(), getRecipeName(), getServings(), getServe_time(), getSteps(), getIngredients());
+//    }
+
 }

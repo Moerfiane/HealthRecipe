@@ -40,4 +40,9 @@ INSERT INTO dietary_restrictions_search (restrict_id, ingred_search)
             (402,"30 Minutes"),
             (403,"45 Minutes"),
             (404,"60 Minutes");
-
+            
+--## inserts the matching ingredient_id from ingredient to matching recipes in recipe table
+ UPDATE recipe
+ INNER JOIN ingredient
+ ON recipe.recipe_name = ingredient.recipe_name
+ SET recipe.ingredient_id = ingredient.id;

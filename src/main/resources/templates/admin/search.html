@@ -62,10 +62,10 @@
 
     <hr />
 
-<!--Remove ID: from line 42 before final deployment; is currently being used for referencing recipe IDs-->
+    <!--Remove ID: from line 42 before final deployment; is currently being used for referencing recipe IDs-->
     <div class="grid-container" th:each="recipe : ${recipes}">
         <div class="item1">
-            <p th:text="${recipe.name + ' | ID: ' + recipe.id}"></p>
+            <p th:text="${recipe.recipeName + ' | ID: ' + recipe.id}"></p>
         </div>
         <div class="item2">Total Time
             <p th:text="${recipe.serve_time}"></p>

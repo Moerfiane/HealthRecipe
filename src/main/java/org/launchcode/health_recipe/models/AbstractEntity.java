@@ -4,9 +4,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @MappedSuperclass
 public abstract class AbstractEntity {
@@ -16,25 +16,17 @@ public abstract class AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank
-    @Size(max = 150)
-    private String name;
+//    @NotBlank
+//    @Size(max = 150)
+//    private String name;
 
     public int getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return name;
+    public AbstractEntity() {
+        super();
     }
 
     @Override
@@ -49,6 +41,7 @@ public abstract class AbstractEntity {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 
 
 }
