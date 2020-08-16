@@ -26,7 +26,7 @@ public class IngredientController {
     @GetMapping("/")
     public String displayAllIngredients(Model model) {
         model.addAttribute("title", "All Ingredients");
-        model.addAttribute("ingredient", ingredientRepository.findAll());
+        model.addAttribute("recipe_ingredients", ingredientRepository.findAll());
         return "ingredient/index";
     }
 
@@ -44,7 +44,7 @@ public class IngredientController {
                                            Errors errors, Model model) {
 
         if (errors.hasErrors()) {
-            errors.rejectValue("ingredient", "ingredient.invalid", "Ingredient is required");
+            errors.rejectValue("recipe_ingredients", "recipe_ingredients.invalid", "Ingredient is required");
             return "ingredient/add";
         }
 

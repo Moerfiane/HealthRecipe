@@ -20,7 +20,7 @@
     <div class="item3">Servings
         <p th:text="${recipe.servings}"></p>
     </div>
-    <form method="post" style="max-width:600px;" action="/list/" th:action="@{/add}" th:object="${ingredient}">
+<!--    <form method="post" style="max-width:600px;" action="/list/" th:action="@{/add}" th:object="${ingredient}">-->
         <div class="item4">Ingredients
             <p th:each="ingredient : ${ingredients}"
                th:text="${ingredient.recipeIngredients}"></p>

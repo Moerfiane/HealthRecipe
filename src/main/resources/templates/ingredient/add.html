@@ -36,13 +36,13 @@
 
     <div class="form-group">
         <label th:for="name">Recipe Name</label>
-        <input class="form-control" th:field="${ingredient.recipeName}"/>
-        <span th:errors="${ingredient.recipeName}" class="error"></span>
+        <input class="form-control" th:field="${ingredient.recipeIngredients}"/>
+        <span th:errors="${ingredient.recipeIngredients}" class="error"></span>
     </div>
     <div class="form-group">
         <label th:for="ingredient">Ingredient</label>
-        <textarea class="form-control" th:field="${ingredient.ingredient}" />
-        <span th:errors="${ingredient.ingredient}" class="error"></span>
+        <textarea class="form-control" th:field="${ingredient.recipeIngredients}" />
+        <span th:errors="${ingredient.recipeIngredients}" class="error"></span>
     </div>
 
     <input class="btn btn-primary" type="submit" value="Add Ingredient" />
