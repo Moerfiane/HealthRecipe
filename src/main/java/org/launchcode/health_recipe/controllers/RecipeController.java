@@ -60,24 +60,29 @@ public class RecipeController {
         return "list-recipes";
     }
 
-    @GetMapping("view/{recipeId}{ingredientId}")
-    public String displayViewRecipe(Model model, @PathVariable int recipeId,
-                                    @PathVariable int ingredientId) {
+    @GetMapping("view/{recipeId}")
+    public String displayViewRecipe(Model model, @PathVariable int recipeId) {
 
         Optional optRecipe = recipeRepository.findById(recipeId);
-        Optional optIngredient = ingredientRepository.findById(ingredientId);
             if (optRecipe.isPresent()) {
                 Recipe recipe = (Recipe) optRecipe.get();
-                Ingredient ingredient = (Ingredient) optIngredient.get();
                 model.addAttribute("recipes", recipe);
-                model.addAttribute("recipeIngredients", ingredient);
                 return "view";
             } else {
                 return "redirect:../";
             }
     }
+//           @GetMapping("view/{recipeId}")
+//           public String displayViewJob(Model model, @PathVariable int recipeId) {
+//
+//           Optional<Recipe> tempRecipe = recipeRepository.findById(recipeId);
+//           Recipe result = tempRecipe.get();
+//           model.addAttribute(result);
+//           return "view";
+//}
 
     }
+
 
 
 

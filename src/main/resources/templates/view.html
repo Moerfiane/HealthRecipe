@@ -9,7 +9,7 @@
 <div class="grid-container" th:each="recipe : ${recipes}">
 
     <p>
-        <a th:href="@{'/view/' + ${recipe.id}}"></a>
+        <a th:href="@{'/list/' + ${recipe.id}}"></a>
     </p>
     <div class="item1">
         <p th:text="${recipe.recipeName}"></p>
@@ -20,13 +20,13 @@
     <div class="item3">Servings
         <p th:text="${recipe.servings}"></p>
     </div>
-        <div class="item4">Ingredients
-            <p th:text="${ingredient.recipeIngredients}"></p>
-        </div>
+    <div class="item4">Ingredients
+        <p th:each="ingredient : ${ingredients}"
+           th:text="${ingredient.ingredient}"></p>
+    </div>
     <div class="item5">Directions
         <p th:text="${recipe.steps}"></p>
     </div>
-    </form>
 </div>
 
 
