@@ -1,5 +1,6 @@
 package org.launchcode.health_recipe.models;
 
+import org.launchcode.health_recipe.models.data.IngredientRepository;
 import org.launchcode.health_recipe.models.data.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,9 @@ public class RecipeData {
 
     @Autowired
     RecipeRepository recipeRepository;
+
+    @Autowired
+    IngredientRepository ingredientRepository;
 
     /**
      * Returns pageable list of Recipes
@@ -52,6 +56,7 @@ public class RecipeData {
 
         if (allValues.contains("all".toLowerCase())) {
             return (ArrayList<Recipe>) allRecipes;
+
         }
 
         if (column.equals("all")){
@@ -72,33 +77,6 @@ public class RecipeData {
         return results;
 
     }
-
-
-    /* old method */
-//    public static ArrayList<Recipe> findByColumnAndValue(String column, String value, Iterable<Recipe> allRecipes) {
-//
-//        ArrayList<Recipe> results = new ArrayList<>();
-//
-//        if (value.toLowerCase().equals("all")){
-//            return (ArrayList<Recipe>) allRecipes;
-//        }
-//
-//        if (column.equals("all")){
-//            results = findByValue(value, allRecipes);
-//            return results;
-//        }
-//        for (Recipe recipes : allRecipes) {
-//
-//            String aValue = getFieldValue(recipes, column);
-//
-//            if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
-//                results.add(recipes);
-//            }
-//        }
-//
-//        return results;
-//
-//    }
 
     public static String getFieldValue(Recipe recipe, String fieldName){
         String theValue;
@@ -125,6 +103,8 @@ public class RecipeData {
         for (Recipe recipe : allRecipes) {
             for (String value : allValues) {
                 if (recipe.getRecipeName().toLowerCase().contains(value.toLowerCase())) {
+                    results.add(recipe);
+                } else if (recipe.getIngredient().toString().toLowerCase().contains(value.toLowerCase())) {
                     results.add(recipe);
                 } else if (recipe.toString().toLowerCase().contains(value.toLowerCase())) {
                     results.add(recipe);

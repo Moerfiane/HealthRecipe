@@ -26,7 +26,7 @@ public class IngredientController {
     @GetMapping("/")
     public String displayAllIngredients(Model model) {
         model.addAttribute("title", "All Ingredients");
-        model.addAttribute("recipe_ingredients", ingredientRepository.findAll());
+        model.addAttribute("recipeIngredients", ingredientRepository.findAll());
         return "ingredient/index";
     }
 
