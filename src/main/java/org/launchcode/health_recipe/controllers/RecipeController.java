@@ -46,13 +46,16 @@ public class RecipeController {
     public String listRecipeByChoice(Model model, @RequestParam String column,
                                      @RequestParam ArrayList<String> value) {
         Iterable<Recipe> recipes;
+
         if (column.toLowerCase().equals("all")) {
             recipes = recipeRepository.findAll();
             model.addAttribute("title", "All Recipes");
 
         } else {
+
             recipes = RecipeData.findByColumnAndValue(column, value, recipeRepository.findAll());
             model.addAttribute("title", "Recipe Choice");
+
         }
         model.addAttribute("recipes", recipes);
 

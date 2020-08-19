@@ -21,8 +21,7 @@
         <p th:text="${recipe.servings}"></p>
     </div>
     <div class="item4">Ingredients
-        <p th:each="ingredient : ${ingredients}"
-           th:text="${ingredient.ingredient}"></p>
+        <p th:text="${recipe.ingredient.recipeIngredients}"></p>
     </div>
     <div class="item5">Directions
         <p th:text="${recipe.steps}"></p>
